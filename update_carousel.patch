@@ -1,0 +1,78 @@
+--- web-app/components/blocks/ImageGallery/GalleryCarousel.tsx
++++ web-app/components/blocks/ImageGallery/GalleryCarousel.tsx
+@@ -48,31 +48,47 @@
+     portrait: 'aspect-[3/4]'
+   };
+
+-  // Get card width from the DOM
+-  const getCardWidth = useCallback(() => {
+-    if (!carouselRef.current) return 300;
+-    const firstCard = carouselRef.current.querySelector('figure');
+-    return firstCard ? firstCard.offsetWidth : 300;
+-  }, []);
++  // Performance optimization: Cache card width to avoid DOM layout thrashing during scroll
++  const [cachedCardWidth, setCachedCardWidth] = useState<number>(300);
++
++  // Set up ResizeObserver to track width changes of the first card
++  useEffect(() => {
++    if (!carouselRef.current) return;
++
++    const firstCard = carouselRef.current.querySelector('figure');
++    if (!firstCard) return;
++
++    // Initial measurement
++    setCachedCardWidth(firstCard.offsetWidth || 300);
++
++    let animationFrameId: number;
++    const resizeObserver = new ResizeObserver((entries) => {
++      // Use requestAnimationFrame to debounce updates and avoid ResizeObserver loop errors
++      cancelAnimationFrame(animationFrameId);
++      animationFrameId = requestAnimationFrame(() => {
++        for (const entry of entries) {
++          const newWidth = entry.borderBoxSize?.[0]?.inlineSize ?? (entry.target as HTMLElement).offsetWidth;
++          if (newWidth) {
++            setCachedCardWidth(newWidth);
++          }
++        }
++      });
++    });
++
++    resizeObserver.observe(firstCard);
++
++    return () => {
++      resizeObserver.disconnect();
++      cancelAnimationFrame(animationFrameId);
++    };
++  }, [images]);
+
+   // Calculate scroll position for a given index
+   const getScrollPosition = useCallback((index: number) => {
+-    const cardWidth = getCardWidth();
+     const gapWidth = spacingValues[spacing];
+     // Each card position = index * (cardWidth + gap)
+-    return index * (cardWidth + gapWidth);
+-  }, [getCardWidth, spacing]);
++    return index * (cachedCardWidth + gapWidth);
++  }, [cachedCardWidth, spacing]);
+
+   // Handle scroll to update active index
+   const handleScroll = useCallback(() => {
+@@ -80,16 +96,15 @@
+
+     const scrollLeft = carouselRef.current.scrollLeft;
+-    const cardWidth = getCardWidth();
+     const gapWidth = spacingValues[spacing];
+-    const cardTotalWidth = cardWidth + gapWidth;
++    const cardTotalWidth = cachedCardWidth + gapWidth;
+
+     // Calculate which card is centered
+     const newIndex = Math.round(scrollLeft / cardTotalWidth);
+     const clampedIndex = Math.max(0, Math.min(newIndex, images.length - 1));
+
+     if (clampedIndex !== activeIndex) {
+       setActiveIndex(clampedIndex);
+     }
+-  }, [images.length, activeIndex, getCardWidth, spacing]);
++  }, [images.length, activeIndex, cachedCardWidth, spacing]);
+
+   // Scroll to specific index with smooth animation

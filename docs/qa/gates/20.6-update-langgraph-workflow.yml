@@ -1,0 +1,8 @@
+schema: 1
+story: '20.6'
+gate: PASS
+status_reason: 'All acceptance criteria verified and met. 18/18 tests PASSING with comprehensive coverage of workflow integration, state propagation, fallback behavior, and budget tracking.'
+reviewer: 'Quinn'
+updated: '2026-03-09T00:00:00Z'
+top_issues: []
+waiver: { active: false }

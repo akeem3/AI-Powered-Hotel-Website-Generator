@@ -1,0 +1,170 @@
+gate:
+  id: "22.4"
+  name: "LangGraph Agent Prompt Tuning"
+  story: "22.4"
+  epic: "22"
+  status: "FAIL"
+  reviewed_by: "dev"
+  reviewed_date: "2026-03-16"
+  agent_model: "Claude Opus 4.6"
+
+acceptance_criteria:
+  - id: "AC1"
+    description: "Maximum 3 generate→score→tune cycles completed"
+    status: "PASS"
+    verification: "3 cycles completed (Baseline, Cycle 1, Cycle 2, Cycle 3)"
+    evidence: "All cycle reports generated in output/diversity-validation/"
+
+  - id: "AC2"
+    description: "Overall diversity score ≥40%"
+    status: "FAIL"
+    verification: "Measured by Story 22.1 diversity scorer"
+    actual: "30.1%"
+    target: "≥40%"
+    gap: "-9.9%"
+    evidence: "output/diversity-validation/cycle3/diversity-report.json"
+
+  - id: "AC3"
+    description: "Visual diversity score ≥28%"
+    status: "FAIL"
+    verification: "Measured by Story 22.1 diversity scorer"
+    actual: "20.0%"
+    target: "≥28%"
+    gap: "-8.0%"
+    evidence: "Visual diversity completely static across all cycles"
+    note: "Critical failure - zero improvement from baseline"
+
+  - id: "AC4"
+    description: "Generation success rate ≥90%"
+    status: "FAIL"
+    verification: "Counted successful generations in batch output"
+    actual: "58.3% (7/12)"
+    target: "≥90%"
+    gap: "-31.7%"
+    evidence: "Cycle 3 generation summary shows 5 failed hotels"
+
+  - id: "AC5"
+    description: "Document reasons if diversity <80% with recommendations"
+    status: "PASS"
+    verification: "Comprehensive documentation of failure causes"
+    evidence: |
+      - output/diversity-validation/cycle3/CYCLE3-COMPARISON-REPORT.md
+      - Root cause analysis with architectural gaps identified
+      - 5 architectural gaps documented
+      - Epic 22.6 recommendations provided
+
+test_results:
+  automated_tests: null
+  manual_validation:
+    method: "Diversity scoring via Story 22.1 framework"
+    cycles_tested: 3
+    generations_per_cycle: 12
+    total_generations: 36
+    successful_generations: 28
+    failed_generations: 8
+
+issues_found:
+  - id: "PROMPT-001"
+    severity: "critical"
+    title: "Visual diversity completely static at 20.0%"
+    description: |
+      Visual diversity score remained exactly 20.0% across Baseline, Cycle 1, Cycle 2, and Cycle 3.
+      All pairwise comparisons show:
+      - typographyDifference: 0 (same fonts)
+      - spacingDifference: 0 (same spacing scales)
+      - borderRadiusDifference: 0 (same border radius)
+    impact: "Primary diversity dimension completely failed"
+    recommendation: "Architectural change required - see Epic 22.6"
+
+  - id: "PROMPT-002"
+    severity: "high"
+    title: "Overall diversity regressed in Cycle 3"
+    description: |
+      Cycle 3 performed WORSE than Cycle 2 in all dimensions:
+      - Overall: 30.1% vs 32.7% (-2.6%)
+      - Structural: 27.8% vs 31.7% (-3.9%)
+      - Thematic: 43.2% vs 46.9% (-3.7%)
+      - Visual: 20.0% vs 20.0% (0% change)
+    impact: "Prompt simplification in Cycle 3 reduced diversity pressure"
+    recommendation: "Revert complexity-removal changes if retrying"
+
+  - id: "PROMPT-003"
+    severity: "high"
+    title: "Success rate degraded from 100% to 58%"
+    description: |
+      Success rate by cycle:
+      - Baseline: 100% (19/19)
+      - Cycle 1: 100% (12/12)
+      - Cycle 2: 75% (9/12)
+      - Cycle 3: 58% (7/12)
+    impact: "Prompt changes introduced new failure modes"
+    root_cause: |
+      - TokenGenerator JSON parsing errors (YOTELAIR)
+      - ContentGenerator amenity name validation (Taj Palace)
+      - Assembly validation failures (3 hotels)
+
+  - id: "PROMPT-004"
+    severity: "medium"
+    title: "TokenGenerator JSON parsing errors introduced"
+    description: |
+      Cycle 3 TokenGenerator changes caused nested JSON block emission:
+      "```json" inside JSON response
+    impact: "1/12 hotels failed (YOTELAIR)"
+    recommendation: "TokenGenerator prompt changes incompatible with model"
+
+  - id: "PROMPT-005"
+    severity: "medium"
+    title: "Assembly validation failures persist at 25%"
+    description: |
+      3/12 hotels failed with assembly validation errors across all cycles:
+      - The Pemberton Grand (all 3 cycles)
+      - COMO Shambhala Estate (all 3 cycles)
+      - Club Med Punta Cana (Cycles 2, 3)
+    impact: "Removal of uniqueness fingerprint did not resolve"
+    recommendation: "AssemblyAgent error recovery insufficient"
+
+acceptance_criteria_summary:
+  total: 5
+  passed: 2
+  failed: 3
+  pass_rate: "40%"
+
+gate_status: "FAIL"
+
+overall_assessment: |
+  Story 22.4 FAILED to achieve any diversity targets through prompt-only changes.
+  The complete failure of visual diversity (static at 20.0% across all cycles)
+  demonstrates that architectural changes are required beyond prompt engineering.
+
+  While Story 22.4 met the process requirement of completing 3 cycles and
+  documented comprehensive failure analysis, it did not achieve the primary
+  objective of improving diversity scores.
+
+next_steps:
+  - "Document Epic 22 as complete with Story 22.4 failure noted"
+  - "Create Epic 22.6: Architectural Diversity Enhancement"
+  - "Implement BatchContext agent for cross-generation awareness"
+  - "Refactor TokenGenerator for probabilistic palette generation"
+  - "Fix AssemblyAgent error recovery with robust JSON repair"
+  - "Add per-archetype visual constraints for enforced distinction"
+
+evidence_files:
+  - "output/diversity-validation/cycle3/diversity-report.json"
+  - "output/diversity-validation/cycle3/DIVERSITY-REPORT.md"
+  - "output/diversity-validation/cycle3/CYCLE3-COMPARISON-REPORT.md"
+  - "output/diversity-validation/cycle2/diversity-report.json"
+  - "output/diversity-validation/cycle2/DIVERSITY-REPORT.md"
+  - "output/diversity-validation/cycle2/CYCLE2-COMPARISON-REPORT.md"
+  - "web-app/app/langgraph/agents/prompts/component-selector.md (consolidated)"
+  - "web-app/app/langgraph/agents/prompts/styling-agent.md (consolidated)"
+  - "web-app/app/langgraph/agents/prompts/content-generator.md (consolidated)"
+  - "web-app/app/langgraph/agents/prompts/token-generator.md (consolidated)"
+
+signatures:
+  reviewer: "dev"
+  review_date: "2026-03-16"
+  gate_status: "FAIL"
+  notes: |
+    Prompt-only approach proven insufficient. Visual diversity failure is
+    complete and absolute across all cycles. Architectural intervention
+    required via Epic 22.6.

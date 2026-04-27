@@ -4,7 +4,7 @@
 >
 > **Status:** Ready for new project implementation
 >
-> **Date Extracted:** 2025-01-19
+> **Date Extracted:** 2025-06-21
 
 ## Overview
 
@@ -31,61 +31,61 @@ This documentation captures the **HOW** of building an LLM-driven hotel website 
 
 ## Documentation Structure
 
-### 📘 01-vision/ - Project Vision & Research
+### 📘 Vision & Research
 
 **Purpose:** Understand the market opportunity, problem space, and proven patterns
 
-- **[project-brief.md](./01-vision/project-brief.md)**
+- **[project-brief.md](architecture/project-brief.md)**
   - Executive summary and problem statement
   - Market analysis and target users
   - MVP scope and success metrics
   - Technology preferences and constraints
 
 - **research/**
-  - **[claudable-architecture-analysis.md](./01-vision/research/claudable-architecture-analysis.md)** - Interactive generation patterns from reference architecture
-  - **[claudable-inspired-patterns.md](./01-vision/research/claudable-inspired-patterns.md)** - Proven UX patterns for LLM-driven generation
-  - **[claudable-reference-modules.md](./01-vision/research/claudable-reference-modules.md)** - Reusable module patterns
-  - **[LLM-Driven Web Development_.md](./01-vision/research/LLM-Driven%20Web%20Development_%20The%20Proven%20Playbook%20for%20Generating%20Unique,%20On-Brand%20React%20&%20Tailwind%20Sites%20at%20Production%20Scale.md)** - Production-scale LLM development playbook
+  - **[claudable-architecture-analysis.md](architecture/research/claudable-architecture-analysis.md)** - Interactive generation patterns from reference architecture
+  - **[claudable-inspired-patterns.md](architecture/research/claudable-inspired-patterns.md)** - Proven UX patterns for LLM-driven generation
+  - **[claudable-reference-modules.md](architecture/research/claudable-reference-modules.md)** - Reusable module patterns
+  - **[LLM-Driven Web Development_.md](architecture/research/LLM-Driven%20Web%20Development_%20The%20Proven%20Playbook%20for%20Generating%20Unique,%20On-Brand%20React%20&%20Tailwind%20Sites%20at%20Production%20Scale.md)** - Production-scale LLM development playbook
 
 **Key Concepts:** Market positioning, cost economics ($2-5 per generation), component-first architecture, LangGraph orchestration rationale
 
 ---
 
-### 🏗️ 02-architecture/ - System Architecture
+### 🏗️ System Architecture
 
 **Purpose:** Core technical architecture and development standards
 
-- **[overview.md](./02-architecture/overview.md)** - System architecture overview with key decisions
-- **[tech-stack.md](./02-architecture/tech-stack.md)** - Complete technology stack (Next.js, LangGraph, LangFuse, OpenRouter)
-- **[coding-standards.md](./02-architecture/coding-standards.md)** - TypeScript, React, Tailwind, and LangGraph coding patterns
-- **[source-tree.md](./02-architecture/source-tree.md)** - Project structure and file organization
-- **[technical-architecture.md](./02-architecture/technical-architecture.md)** - Detailed technical specifications (responsive design, multi-language, deployment)
-- **[langfuse-langgraph-integration.md](./02-architecture/langfuse-langgraph-integration.md)** - LangFuse observability and cost tracking integration
+- **[overview.md](architecture/overview.md)** - System architecture overview with key decisions
+- **[tech-stack.md](architecture/tech-stack.md)** - Complete technology stack (Next.js, LangGraph, LangFuse, OpenRouter)
+- **[coding-standards.md](guides/coding-standards.md)** - TypeScript, React, Tailwind, and LangGraph coding patterns
+- **[source-tree.md](architecture/source-tree.md)** - Project structure and file organization
+- **[technical-architecture.md](architecture/technical-architecture.md)** - Detailed technical specifications (responsive design, multi-language, deployment)
+- **[langfuse-langgraph-integration.md](architecture/langfuse-langgraph-integration.md)** - LangFuse observability and cost tracking integration
 
-**Key Concepts:** Next.js 14+, TypeScript strict mode, Tailwind CSS utilities, LangGraph state management, 768px responsive breakpoint
+**Key Concepts:** Next.js 15.5+, TypeScript strict mode, Tailwind CSS 4.1+, LangGraph state management, 768px responsive breakpoint
 
 ---
 
-### 🧩 03-component-system/ - Component Library Design
+### 🧩 Component System (Architecture)
 
 **Purpose:** The 4-tier component system and integration patterns (the "Lego principle")
 
-- **[component-library.md](./03-component-system/component-library.md)**
+- **[component-library.md](architecture/component-library.md)**
   - **Tier 1:** Primitives (Shadcn/ui base components)
   - **Tier 2:** Blocks (Hotel-specific: RoomCard, BookingWidget, TestimonialCard)
   - **Tier 3:** Sections (HeroSection, RoomsSection, GallerySection)
-  - **Tier 4:** Pages (Complete views with wireframe selection)
+  - **Tier 4:** Pages (Composed views via AssemblyAgent)
   - Responsive design strategy (separate variants vs. responsive utilities)
   - Mobile-first approach with 768px breakpoint
   - Component selection logic and LLM integration
 
-- **[backend-integration.md](./03-component-system/backend-integration.md)**
+- **[backend-integration.md](architecture/backend-integration.md)**
   - Directus CMS integration patterns
   - Effective Tours booking API
   - BackBlaze storage strategy
   - DeepL translation service
 
-- **[component-types.ts](./03-component-system/component-types.ts)**
+- **[component-types.ts](architecture/reference/component-types.ts)**
   - Complete TypeScript type definitions
   - ZOD validation schemas
   - Component manifest interfaces
@@ -95,25 +95,25 @@ This documentation captures the **HOW** of building an LLM-driven hotel website 
 
 ---
 
-### 🤖 04-llm-orchestration/ - LLM Integration & Workflows
+### 🤖 LLM Orchestration (Architecture)
 
 **Purpose:** LangGraph workflows, agent patterns, and cost management
 
-- **[llm-integration.md](./04-llm-orchestration/llm-integration.md)**
+- **[llm-integration.md](architecture/llm-integration.md)**
   - Complete LangGraph workflow architecture
-  - Agent specifications (InputAnalyzer, ComponentSelector, StylingAgent, etc.)
+  - Agent specifications (ComponentSelector, StylingAgent, ContentGenerator, AssemblyAgent, QualityValidator)
   - LLM configuration and prompt engineering
   - Retry strategies and error handling
   - Budget enforcement with LangFuse
 
-- **[langgraph-workflows.md](./04-llm-orchestration/langgraph-workflows.md)**
+- **[langgraph-workflows.md](architecture/langgraph-workflows.md)**
   - Implementation details and architecture
   - Agent communication patterns
   - State management between agents
   - Performance optimization (86% improvement achieved)
   - Cost allocation per agent
 
-- **[api-reference.md](./04-llm-orchestration/api-reference.md)**
+- **[api-reference.md](guides/api-reference.md)**
   - API usage patterns and examples
   - Cost tracking implementation
   - Error handling patterns
@@ -123,11 +123,11 @@ This documentation captures the **HOW** of building an LLM-driven hotel website 
 
 ---
 
-### ⚙️ 05-configuration/ - System Configuration
+### ⚙️ Configuration (Guides)
 
 **Purpose:** LLM settings and operational configuration
 
-- **[llm-settings.md](./05-configuration/llm-settings.md)**
+- **[llm-settings.md](guides/llm-configuration.md)**
   - Model selection (Kimi K2, Claude, GPT-4o-mini)
   - Temperature and token settings
   - Cost tracking configuration
@@ -139,7 +139,7 @@ This documentation captures the **HOW** of building an LLM-driven hotel website 
 
 ## Core Architectural Concepts
 
-### 1. The Lego Principle: 4-Tier Component System
+### 1. The Lego Principle: Component System
 
 ```
 Primitives (Shadcn/ui)
@@ -148,7 +148,7 @@ Blocks (Hotel-specific: RoomCard, BookingWidget)
     ↓
 Sections (Page layouts: HeroSection, RoomsSection)
     ↓
-Pages (Complete views with wireframe selection)
+Pages (Composed via AssemblyAgent)
 ```
 
 **Key Innovation:** LLM agents select and configure pre-built, tested components rather than generating raw code. This ensures reliability, performance, and maintainability.
@@ -158,13 +158,13 @@ Pages (Complete views with wireframe selection)
 ```
 Input Parameters
     ↓
-InputAnalyzer (strategic analysis)
-    ↓
 ComponentSelector (manifest-driven selection)
     ↓
 StylingAgent (Tailwind theme generation)
     ↓
-ConfigurationGenerator (Next.js app assembly)
+ContentGenerator (Copy and JSON content)
+    ↓
+AssemblyAgent (Next.js app assembly)
     ↓
 QualityValidator (standards verification)
     ↓
@@ -219,17 +219,17 @@ Generated Website
 
 1. **Copy docs_new/** to your new project as `/docs`
 2. **Read in order:**
-   - `01-vision/project-brief.md` - Understand the problem and approach
-   - `02-architecture/overview.md` - System architecture decisions
-   - `03-component-system/component-library.md` - Component hierarchy
-   - `04-llm-orchestration/llm-integration.md` - LangGraph workflows
-   - `02-architecture/tech-stack.md` - Technology choices
+   - `architecture/project-brief.md` - Understand the problem and approach
+   - `architecture/overview.md` - System architecture decisions
+   - `architecture/component-library.md` - Component hierarchy
+   - `architecture/llm-integration.md` - LangGraph workflows
+   - `architecture/tech-stack.md` - Technology choices
 
 3. **Reference as needed:**
-   - Component types: `03-component-system/component-types.ts`
-   - Coding standards: `02-architecture/coding-standards.md`
-   - Cost management: `04-llm-orchestration/langgraph-workflows.md`
-   - Backend integration: `03-component-system/backend-integration.md`
+   - Component types: `architecture/reference/component-types.ts`
+   - Coding standards: `guides/coding-standards.md`
+   - Cost management: `architecture/langgraph-workflows.md`
+   - Backend integration: `architecture/backend-integration.md`
 
 ### Key Implementation Steps
 
@@ -240,9 +240,9 @@ Generated Website
    - Create page wireframes
 
 2. **LangGraph Agent Development**
-   - Implement InputAnalyzer with strategic prompts
-   - Build ComponentSelector with manifest integration
-   - Create StylingAgent for Tailwind theme generation
+   - Implement ComponentSelector with manifest integration
+   - Build StylingAgent for Tailwind theme generation
+   - Create ContentGenerator for copy
    - Set up cost monitoring with LangFuse
 
 3. **Backend Integration**
@@ -263,14 +263,14 @@ Generated Website
 
 ```yaml
 Frontend Generation:
-  - Next.js 14+ (App Router, SSG)
+  - Next.js 15.5+ (App Router, SSG)
   - TypeScript 5.0+ (strict mode)
-  - Tailwind CSS 3.4+ (utility-first)
+  - Tailwind CSS 4.1+ (utility-first)
   - Shadcn/ui (Radix UI primitives)
 
 LLM Orchestration:
   - LangGraph 0.2+ (multi-agent workflows)
-  - LangFuse 2.0+ (observability & cost tracking)
+  - LangFuse 3.38+ (observability & cost tracking)
   - OpenRouter (LLM gateway)
   - Kimi K2 ($0.0002 per generation)
 
@@ -376,7 +376,7 @@ const validated = ComponentSelectionSchema.parse(llmOutput);
 ## Troubleshooting & Common Issues
 
 ### Issue: Budget Overruns
-**Solution:** Check cost-monitor.ts allocation, verify model selection (use Kimi K2), review prompt length
+**Solution:** Check `CostMonitor.ts` allocation, verify model selection (use Kimi K2), review prompt length
 
 ### Issue: Component Selection Failures
 **Solution:** Validate manifest completeness, check confidence thresholds, review selection logic
@@ -398,29 +398,36 @@ const validated = ComponentSelectionSchema.parse(llmOutput);
 - [LangGraph Docs](https://langchain-ai.github.io/langgraph/) - Multi-agent workflow framework
 - [LangFuse Docs](https://langfuse.com/docs) - LLM observability and cost tracking
 - [Shadcn/ui](https://ui.shadcn.com/) - Component library foundation
-- [Next.js 14 Docs](https://nextjs.org/docs) - React framework with App Router
+- [Next.js Docs](https://nextjs.org/docs) - React framework with App Router
 - [OpenRouter](https://openrouter.ai/) - LLM gateway and provider abstraction
 
 ### Key Files Reference
 ```
-src/
+web-app/
 ├── types/
-│   └── components.ts          # Type definitions (copied to docs)
-├── langgraph/
-│   ├── agents/               # InputAnalyzer, ComponentSelector, etc.
-│   └── workflows/            # GenerationWorkflow orchestration
+│   └── components.ts          # Type definitions (reference only)
+├── app/
+│   └── langgraph/
+│       ├── agents/            # ComponentSelector, StylingAgent, etc.
+│       ├── services/
+│       │   └── CostMonitor.ts # Budget tracking and enforcement
+│       └── workflows/         # GenerationWorkflow orchestration
 ├── lib/
-│   ├── cost-monitor.ts       # Budget tracking and enforcement
-│   └── llm-service.ts        # OpenRouter API integration
+│   └── llm-service.ts         # OpenRouter API integration
 └── components/
-    ├── ui/                   # Tier 1: Shadcn/ui primitives
-    ├── blocks/               # Tier 2: Hotel-specific components
-    └── sections/             # Tier 3: Page sections
+    ├── ui/                    # Tier 1: Shadcn/ui primitives
+    ├── blocks/                # Tier 2: Hotel-specific components
+    └── sections/              # Tier 3: Page sections
 ```
 
 ---
 
 ## Version History
+
+- **v1.1 (2026-03-25)** - Epic 24 & 25 completion
+  - Multi-page routing implemented at `app/[lang]/` with Directus CMS integration (Epic 24)
+  - WebsiteConfig multi-page generation via `splitToPages()` + `multiplyContent()` post-processing (Epic 25)
+  - Platform now generates complete multi-page hotel websites (homepage, rooms, dining, etc.) within the ~$2/site budget
 
 - **v1.0 (2025-01-19)** - Initial extraction from production system
   - 16 core documents preserved
@@ -441,4 +448,4 @@ This documentation represents architectural patterns and design decisions. When 
 
 ---
 
-**Ready to build?** Start with `01-vision/project-brief.md` to understand the full context, then dive into `02-architecture/overview.md` for system design.
+**Ready to build?** Start with `architecture/project-brief.md` to understand the full context, then dive into `architecture/overview.md` for system design.

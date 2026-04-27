@@ -1,0 +1,1 @@
+{ "selectedComponents": ["hero", "navigation", "gallery", "amenities", "booking", "contact"], "layoutStructure": "grid", "emphasisComponents": ["hero", "gallery"], "reasoning": "Large scale events." }

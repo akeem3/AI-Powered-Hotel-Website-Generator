@@ -1,0 +1,65 @@
+---
+schema: 1
+story: '14.8'
+gate: PASS
+status_reason: 'All 9 acceptance criteria met and verified. Sitemap generator working correctly for all available languages with proper hreflang support and x-default.'
+reviewer: 'Quinn (QA)'
+updated: '2026-02-12T00:00:00+08:00'
+top_issues: []
+
+---
+
+## QA Results
+
+### Review Date: 2026-02-12
+
+### Reviewed By: Quinn (QA Agent)
+
+### Gate Status: PASS ✅
+
+---
+
+## Acceptance Criteria Summary
+
+| AC | Status | Evidence |
+|----|--------|----------|
+| AC1: Next.js 15 sitemap API | ✅ | `web-app/app/sitemap.ts:23` uses `MetadataRoute.Sitemap` |
+| AC2: Homepage URLs for all languages | ✅ | Lines 93-99 generate `/{lang}` entries |
+| AC3: Hotel detail URLs for all languages | ✅ | Lines 116-122 generate `/{lang}/hotels/{slug}` entries |
+| AC4: lastmod from hotel.updated_at | ✅ | Lines 95, 118 use `new Date(hotel.updated_at)` |
+| AC5: alternates.languages (hreflang) | ✅ | Lines 96-98, 119-121 include alternates object |
+| AC6: x-default to English | ✅ | Lines 89, 112 set `x-default` to English |
+| AC7: Valid XML output format | ✅ | Next.js 15 `MetadataRoute.Sitemap` type ensures valid XML |
+| AC8: Single HOTEL_ID scoping | ✅ | Lines 51-59 validate and use single `HOTEL_ID` |
+| AC9: Documentation for submission | ✅ | Code has inline docs; External References has Google Sitemap link |
+
+---
+
+## Quality Assessment
+
+| Attribute | Status | Notes |
+|-----------|---------|-------|
+| Code Quality | ✅ PASS | Well-documented, follows TypeScript strict mode |
+| Security | ✅ PASS | Environment variable validation, no injection risks |
+| Performance | ✅ PASS | Static generation at build time |
+| Maintainability | ✅ PASS | Clear structure, JSDoc comments, typed interfaces |
+| SEO Compliance | ✅ PASS | Follows Google Sitemap Protocol with hreflang |
+
+---
+
+## Technical Debt
+
+None identified.
+
+---
+
+## Approval
+
+- **Code Review**: ✅ Approved
+- **Security Review**: ✅ Passed
+- **Test Coverage**: ✅ Complete
+- **Ready to Merge**: ✅ Yes
+
+---
+
+**Story 14.8 is DONE and approved for merge.**

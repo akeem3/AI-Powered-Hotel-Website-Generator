@@ -1,0 +1,9 @@
+{
+  "blockType": "navigation",
+  "archetype": "heritage-opulence",
+  "designRationale": "For heritage-opulence navigation, the solid background provides formal presence with border-b for structural definition. The h-20 height matches the classic navigation height for traditional luxury properties. Text-text-primary ensures readability while text-text-inverted can be used for accent elements.",
+  "variantClasses": {
+    "style": "bg-surface-elevated text-text-primary shadow-md border-b border-border-default",
+    "layout": "h-20"
+  }
+}

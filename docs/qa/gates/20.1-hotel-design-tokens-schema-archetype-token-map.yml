@@ -1,0 +1,8 @@
+schema: 1
+story: '20.1'
+gate: PASS
+status_reason: 'All acceptance criteria met. 53/53 tests passing. Shared ArchetypeSchema exported for reuse.'
+reviewer: 'Quinn'
+updated: '2026-03-06T12:00:00Z'
+top_issues: []
+waiver: { active: false }

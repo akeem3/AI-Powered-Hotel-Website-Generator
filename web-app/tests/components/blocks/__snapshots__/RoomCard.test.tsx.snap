@@ -1,0 +1,318 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`RoomCard Component Snapshot Tests matches snapshot for compact variant: RoomCard-compact 1`] = `
+<div
+  class="rounded-xl shadow-card bg-surface-primary overflow-hidden"
+>
+  <div
+    class="relative w-full h-image-card"
+  >
+    <img
+      alt="Executive Suite"
+      class="object-cover"
+      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+      src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80"
+    />
+  </div>
+  <div
+    class="p-card space-y-1"
+  >
+    <h3
+      class="text-size-h3 text-brand-primary font-display"
+    >
+      Executive Suite
+    </h3>
+    <p
+      class="text-size-caption text-text-muted"
+    >
+      Suite
+    </p>
+    <p
+      class="text-brand-primary font-bold text-size-body-large tabular-nums"
+    >
+      $
+      350
+    </p>
+    <p
+      class="text-size-caption text-text-secondary"
+    >
+      4
+       guests
+    </p>
+    <ul
+      class="flex flex-wrap gap-gap-card text-size-caption text-text-secondary mt-gap-card"
+    >
+      <li
+        class="bg-surface-secondary px-gap-card py-1 rounded-sm"
+      >
+        WiFi
+      </li>
+      <li
+        class="bg-surface-secondary px-gap-card py-1 rounded-sm"
+      >
+        Workspace
+      </li>
+      <li
+        class="bg-surface-secondary px-gap-card py-1 rounded-sm"
+      >
+        Mini Bar
+      </li>
+    </ul>
+  </div>
+</div>
+`;
+
+exports[`RoomCard Component Snapshot Tests matches snapshot for detailed variant: RoomCard-detailed 1`] = `
+<div
+  class="group relative overflow-hidden rounded-2xl transition-all duration-300 bg-surface-primary shadow-card hover:shadow-card-hover border border-border-default flex flex-col h-full"
+>
+  <div
+    class="relative w-full overflow-hidden aspect-video"
+  >
+    <img
+      alt="Executive Suite"
+      class="object-cover transition-transform duration-standard group-hover:scale-110"
+      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+      src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80"
+    />
+    <div
+      class="absolute inset-0 bg-brand-primary/0 group-hover:bg-brand-primary/wash transition-all duration-standard"
+    />
+  </div>
+  <div
+    class="p-card flex flex-col gap-gap-card grow"
+  >
+    <div>
+      <h3
+        class="text-size-h3 font-display text-brand-primary mb-gap-card"
+      >
+        Executive Suite
+      </h3>
+      <p
+        class="text-size-caption text-brand-secondary font-medium uppercase tracking-wide"
+      >
+        Suite
+      </p>
+    </div>
+    <p
+      class="text-text-secondary text-size-body leading-relaxed grow"
+    >
+      Spacious suite with separate living area.
+    </p>
+    <div
+      class="py-gap-card border-t border-border-default"
+    >
+      <ul
+        aria-label="List of room amenities"
+        class="flex flex-wrap gap-gap-card text-text-muted"
+        role="list"
+      >
+        <li
+          class="bg-surface-secondary px-gap-card py-1 rounded-md"
+        >
+          WiFi
+        </li>
+        <li
+          class="bg-surface-secondary px-gap-card py-1 rounded-md"
+        >
+          Workspace
+        </li>
+        <li
+          class="bg-surface-secondary px-gap-card py-1 rounded-md"
+        >
+          Mini Bar
+        </li>
+        <li
+          class="bg-surface-secondary px-gap-card py-1 rounded-md"
+        >
+          City View
+        </li>
+      </ul>
+    </div>
+    <div
+      class="flex justify-between items-end mt-auto pt-gap-card border-t border-border-default"
+    >
+      <div
+        class="flex flex-col"
+      >
+        <span
+          class="text-size-caption text-text-muted uppercase tracking-wider"
+        >
+          Starting from
+        </span>
+        <span
+          class="text-size-body-large font-display text-brand-primary tabular-nums"
+        >
+          $
+          350
+        </span>
+      </div>
+      <span
+        class="text-size-caption text-text-secondary bg-surface-muted px-gap-card py-1 rounded-lg"
+      >
+        Up to 
+        4
+         guests
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`RoomCard Component Snapshot Tests matches snapshot for grid variant: RoomCard-grid 1`] = `
+<div
+  class="rounded-2xl bg-surface-primary overflow-hidden shadow-card"
+>
+  <div
+    class="relative w-full h-image-card"
+  >
+    <img
+      alt="Executive Suite"
+      class="object-cover"
+      src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80"
+    />
+  </div>
+  <div
+    class="p-card text-center space-y-2"
+  >
+    <h3
+      class="text-size-h3 font-medium text-brand-primary"
+    >
+      Executive Suite
+    </h3>
+    <p
+      class="text-size-caption text-text-muted"
+    >
+      Suite
+    </p>
+    <p
+      class="text-brand-primary font-bold text-size-body-large tabular-nums"
+    >
+      $
+      350
+    </p>
+    <p
+      class="text-size-caption text-text-secondary"
+    >
+      4
+       guests
+    </p>
+    <ul
+      class="flex flex-wrap justify-center gap-gap-card text-size-caption text-text-secondary mt-gap-card"
+    >
+      <li
+        class="bg-surface-secondary px-gap-card py-1 rounded"
+      >
+        WiFi
+      </li>
+      <li
+        class="bg-surface-secondary px-gap-card py-1 rounded"
+      >
+        Workspace
+      </li>
+      <li
+        class="bg-surface-secondary px-gap-card py-1 rounded"
+      >
+        Mini Bar
+      </li>
+    </ul>
+  </div>
+</div>
+`;
+
+exports[`RoomCard Component Snapshot Tests matches snapshot with custom className: RoomCard-custom-class 1`] = `
+<div
+  class="group relative overflow-hidden rounded-2xl transition-all duration-300 bg-surface-primary shadow-card hover:shadow-card-hover border border-border-default flex flex-col h-full custom-snapshot-class"
+>
+  <div
+    class="relative w-full overflow-hidden aspect-video"
+  >
+    <img
+      alt="Executive Suite"
+      class="object-cover transition-transform duration-standard group-hover:scale-110"
+      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+      src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80"
+    />
+    <div
+      class="absolute inset-0 bg-brand-primary/0 group-hover:bg-brand-primary/wash transition-all duration-standard"
+    />
+  </div>
+  <div
+    class="p-card flex flex-col gap-gap-card grow"
+  >
+    <div>
+      <h3
+        class="text-size-h3 font-display text-brand-primary mb-gap-card"
+      >
+        Executive Suite
+      </h3>
+      <p
+        class="text-size-caption text-brand-secondary font-medium uppercase tracking-wide"
+      >
+        Suite
+      </p>
+    </div>
+    <p
+      class="text-text-secondary text-size-body leading-relaxed grow"
+    >
+      Spacious suite with separate living area.
+    </p>
+    <div
+      class="py-gap-card border-t border-border-default"
+    >
+      <ul
+        aria-label="List of room amenities"
+        class="flex flex-wrap gap-gap-card text-text-muted"
+        role="list"
+      >
+        <li
+          class="bg-surface-secondary px-gap-card py-1 rounded-md"
+        >
+          WiFi
+        </li>
+        <li
+          class="bg-surface-secondary px-gap-card py-1 rounded-md"
+        >
+          Workspace
+        </li>
+        <li
+          class="bg-surface-secondary px-gap-card py-1 rounded-md"
+        >
+          Mini Bar
+        </li>
+        <li
+          class="bg-surface-secondary px-gap-card py-1 rounded-md"
+        >
+          City View
+        </li>
+      </ul>
+    </div>
+    <div
+      class="flex justify-between items-end mt-auto pt-gap-card border-t border-border-default"
+    >
+      <div
+        class="flex flex-col"
+      >
+        <span
+          class="text-size-caption text-text-muted uppercase tracking-wider"
+        >
+          Starting from
+        </span>
+        <span
+          class="text-size-body-large font-display text-brand-primary tabular-nums"
+        >
+          $
+          350
+        </span>
+      </div>
+      <span
+        class="text-size-caption text-text-secondary bg-surface-muted px-gap-card py-1 rounded-lg"
+      >
+        Up to 
+        4
+         guests
+      </span>
+    </div>
+  </div>
+</div>
+`;

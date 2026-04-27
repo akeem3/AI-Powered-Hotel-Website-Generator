@@ -1,0 +1,39 @@
+{
+  "componentVariants": {
+    "hero": {
+      "style": "bold",
+      "layout": "split",
+      "overlay": "dark",
+      "height": "large"
+    },
+    "navigation": {
+      "navStyle": "minimal",
+      "navLayout": "split"
+    },
+    "gallery": {
+      "galleryLayout": "masonry",
+      "gallerySpacing": "tight",
+      "aspectRatio": "square",
+      "columns": 4
+    },
+    "rooms": {
+      "roomCardStyle": "compact",
+      "imageHeight": "small"
+    },
+    "amenities": {
+      "amenitiesLayout": "grid",
+      "amenitiesColumns": 4,
+      "iconSize": "medium",
+      "iconStyle": "colored"
+    },
+    "booking": {
+      "bookingStyle": "minimal",
+      "bookingTheme": "accent"
+    },
+    "contact": {
+      "contactLayout": "centered",
+      "contactBackground": "none"
+    }
+  },
+  "reasoning": "Energetic and social vibe. 'Masonry' gallery with 'Tight' spacing creates a collage effect. 'Bold' hero with split layout highlights activity. Compact room cards for quick scanning of dorm options."
+}

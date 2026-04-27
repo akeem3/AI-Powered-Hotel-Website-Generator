@@ -1,0 +1,9 @@
+schema: 1
+story: '20.8'
+gate: PASS
+status_reason: 'All 27 tests pass. Acceptance criteria met. Allowlist validation enforced. No high-severity issues.'
+reviewer: 'Quinn'
+updated: '2026-03-09T12:00:00Z'
+top_issues: []
+waiver:
+  active: false

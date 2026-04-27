@@ -1,0 +1,43 @@
+{
+  "timestamp": "2025-12-10T15:17:45.909Z",
+  "status": "pass",
+  "data": {
+    "componentVariants": {
+      "hero": {
+        "style": "bold",
+        "layout": "split",
+        "overlay": "dark",
+        "height": "fullscreen"
+      },
+      "navigation": {
+        "navStyle": "minimal",
+        "navLayout": "split"
+      },
+      "gallery": {
+        "galleryLayout": "masonry",
+        "gallerySpacing": "loose",
+        "aspectRatio": "portrait",
+        "columns": 3
+      },
+      "rooms": {
+        "roomCardStyle": "featured",
+        "imageHeight": "large"
+      },
+      "amenities": {
+        "amenitiesLayout": "grid",
+        "amenitiesColumns": 3,
+        "iconSize": "medium",
+        "iconStyle": "outline"
+      },
+      "booking": {
+        "bookingStyle": "minimal",
+        "bookingTheme": "accent"
+      },
+      "contact": {
+        "contactLayout": "side-by-side",
+        "contactBackground": "featured"
+      }
+    },
+    "reasoning": "Modern, edgy aesthetic. 'Bold' hero typography. 'Masonry' gallery works best for varied art pieces. 'Outline' icons feel more contemporary and designed than standard filled icons."
+  }
+}

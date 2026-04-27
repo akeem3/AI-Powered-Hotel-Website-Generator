@@ -1,0 +1,196 @@
+{
+  "datasetName": "room-cards-golden-v1",
+  "component": "RoomCards",
+  "contractSchema": "RoomCardFlatSchema",
+  "createdAt": "2025-12-03T20:55:00Z",
+  "lastUpdated": "2025-12-03T20:55:00Z",
+  "version": "1.0",
+  "testCases": [
+    {
+      "id": "luxury-suite-1",
+      "description": "Detailed luxury suite with tall image height",
+      "hotelContext": {
+        "type": "luxury",
+        "targetAudience": "business",
+        "brandPersonality": "professional",
+        "roomsPageLayout": "featured"
+      },
+      "expectedOutput": {
+        "id": "luxury-suite-001",
+        "name": "Presidential Ocean View Suite",
+        "type": "Executive Suite",
+        "price": 599,
+        "capacity": 4,
+        "amenities": [
+          "King Bed", "Ocean View", "Living Area", "Mini Bar",
+          "Rain Shower", "Work Desk", "Balcony", "Marble Bathroom",
+          "Coffee Maker", "Smart TV", "Luxury Linens"
+        ],
+        "image": "https://cdn.example.com/hotel/luxury-suite-ocean.webp",
+        "description": "Experience unparalleled luxury in our Presidential Suite featuring breathtaking ocean views, a separate living area, and premium amenities designed for the discerning traveler.",
+        "variant": "detailed",
+        "imageHeight": "tall"
+      },
+      "qualityThresholds": {
+        "relevanceScore": 0.95,
+        "creativityScore": 0.70,
+        "brandAlignmentScore": 0.98,
+        "humanRating": 10
+      },
+      "validationRules": {
+        "mustPassZOD": true,
+        "mustMeetA11y": true,
+        "mustRenderWithoutErrors": true,
+        "mustPassResponsiveTest": true
+      }
+    },
+    {
+      "id": "budget-compact-1",
+      "description": "Compact budget room for value-conscious travelers",
+      "hotelContext": {
+        "type": "budget",
+        "targetAudience": "leisure",
+        "brandPersonality": "friendly",
+        "roomsPageLayout": "grid"
+      },
+      "expectedOutput": {
+        "id": "budget-std-001",
+        "name": "Comfort Queen Room",
+        "type": "Standard Queen",
+        "price": 129,
+        "capacity": 2,
+        "amenities": [
+          "Queen Bed", "Private Bathroom", "Free WiFi", "TV", "Air Conditioning"
+        ],
+        "image": "https://cdn.example.com/hotel/budget-queen-room.webp",
+        "description": "Clean, comfortable room with essential amenities for a restful stay. Perfect for budget-conscious travelers seeking value and convenience.",
+        "variant": "compact",
+        "imageHeight": "default"
+      },
+      "qualityThresholds": {
+        "relevanceScore": 0.88,
+        "creativityScore": 0.55,
+        "brandAlignmentScore": 0.92,
+        "humanRating": 8
+      },
+      "validationRules": {
+        "mustPassZOD": true,
+        "mustMeetA11y": true,
+        "mustRenderWithoutErrors": true,
+        "mustPassResponsiveTest": true
+      }
+    },
+    {
+      "id": "boutique-detailed-1",
+      "description": "Detailed boutique room with wide image for design emphasis",
+      "hotelContext": {
+        "type": "boutique",
+        "targetAudience": "couples",
+        "brandPersonality": "artistic",
+        "roomsPageLayout": "featured"
+      },
+      "expectedOutput": {
+        "id": "boutique-design-001",
+        "name": "Artist Loft King Room",
+        "type": "Boutique King",
+        "price": 289,
+        "capacity": 2,
+        "amenities": [
+          "King Bed", "City View", "Art Gallery Access", "Premium Sound System",
+          "Designer Furniture", "Rain Shower", "Mini Bar", "Work Station"
+        ],
+        "image": "https://cdn.example.com/hotel/boutique-artist-loft.webp",
+        "description": "Immerse yourself in artistic luxury with our uniquely designed King Room featuring original artwork, premium sound system, and exclusive gallery access.",
+        "variant": "detailed",
+        "imageHeight": "wide"
+      },
+      "qualityThresholds": {
+        "relevanceScore": 0.92,
+        "creativityScore": 0.85,
+        "brandAlignmentScore": 0.95,
+        "humanRating": 9
+      },
+      "validationRules": {
+        "mustPassZOD": true,
+        "mustMeetA11y": true,
+        "mustRenderWithoutErrors": true,
+        "mustPassResponsiveTest": true
+      }
+    },
+    {
+      "id": "resort-grid-1",
+      "description": "Grid layout resort room for family comparison",
+      "hotelContext": {
+        "type": "resort",
+        "targetAudience": "family",
+        "brandPersonality": "adventurous",
+        "roomsPageLayout": "grid"
+      },
+      "expectedOutput": {
+        "id": "resort-family-001",
+        "name": "Tropical Garden Family Suite",
+        "type": "Family Suite",
+        "price": 349,
+        "capacity": 6,
+        "amenities": [
+          "King Bed", "Bunk Beds", "Garden View", "Mini Fridge",
+          "Kids Activities", "Patio Access", "Coffee Maker", "Safe"
+        ],
+        "image": "https://cdn.example.com/hotel/resort-family-suite.webp",
+        "description": "Spacious family suite with separate sleeping areas, garden views, and kid-friendly amenities. Perfect for families seeking comfort and convenience.",
+        "variant": "grid",
+        "imageHeight": "default"
+      },
+      "qualityThresholds": {
+        "relevanceScore": 0.90,
+        "creativityScore": 0.75,
+        "brandAlignmentScore": 0.88,
+        "humanRating": 9
+      },
+      "validationRules": {
+        "mustPassZOD": true,
+        "mustMeetA11y": true,
+        "mustRenderWithoutErrors": true,
+        "mustPassResponsiveTest": true
+      }
+    },
+    {
+      "id": "business-standard-1",
+      "description": "Standard business room with productivity features",
+      "hotelContext": {
+        "type": "business",
+        "targetAudience": "corporate",
+        "brandPersonality": "professional",
+        "roomsPageLayout": "list"
+      },
+      "expectedOutput": {
+        "id": "business-exec-001",
+        "name": "Executive Business King",
+        "type": "Business King",
+        "price": 259,
+        "capacity": 2,
+        "amenities": [
+          "King Bed", "City Skyline View", "Large Work Desk", "Ergonomic Chair",
+          "High-Speed WiFi", "Coffee Maker", "Iron Board", "Room Service Access"
+        ],
+        "image": "https://cdn.example.com/hotel/business-executive-room.webp",
+        "description": "Productivity-enhanced room designed for business travelers with large workspace, high-speed connectivity, and premium business amenities.",
+        "variant": "detailed",
+        "imageHeight": "default"
+      },
+      "qualityThresholds": {
+        "relevanceScore": 0.89,
+        "creativityScore": 0.60,
+        "brandAlignmentScore": 0.94,
+        "humanRating": 8
+      },
+      "validationRules": {
+        "mustPassZOD": true,
+        "mustMeetA11y": true,
+        "mustRenderWithoutErrors": true,
+        "mustPassResponsiveTest": true
+      }
+    }
+  ],
+  "notes": "Golden dataset for regression testing. All test cases cover different hotel types, target audiences, and room page layouts to validate comprehensive RoomCards functionality including variant combinations, image height options, and responsive grid behavior."
+}

@@ -1,0 +1,94 @@
+version: '3.8'
+
+services:
+  web-app:
+    build:
+      context: ./web-app
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - DIRECTUS_URL=http://mock-directus:3001
+      - LLM_MODEL_PRIMARY=${LLM_MODEL_PRIMARY:-anthropic/claude-3.5-sonnet}
+      - LLM_MODEL_FALLBACK=${LLM_MODEL_FALLBACK:-anthropic/claude-3-haiku}
+      - LLM_MODEL_BUDGET=${LLM_MODEL_BUDGET:-openai/gpt-4o-mini}
+      - LLM_MODEL_SAMPLE=${LLM_MODEL_SAMPLE:-moonshotai/kimi-k2}
+      - LLM_TOKENS_DEFAULT=${LLM_TOKENS_DEFAULT:-1500}
+      - LLM_TOKENS_HOTEL_ANALYSIS=${LLM_TOKENS_HOTEL_ANALYSIS:-2500}
+      - LLM_TOKENS_COMPONENT_SELECTION=${LLM_TOKENS_COMPONENT_SELECTION:-3500}
+      - LLM_TOKENS_SITE_CONFIG=${LLM_TOKENS_SITE_CONFIG:-4000}
+      - LLM_TOKENS_QUALITY_VALIDATION=${LLM_TOKENS_QUALITY_VALIDATION:-2000}
+      - LLM_TOKENS_HOTEL_CONTENT=${LLM_TOKENS_HOTEL_CONTENT:-1000}
+      - LLM_TOKENS_TEST=${LLM_TOKENS_TEST:-100}
+      - LLM_TEMPERATURE=${LLM_TEMPERATURE:-0.7}
+      - LLM_TOP_P=${LLM_TOP_P:-1.0}
+      - LLM_FREQUENCY_PENALTY=${LLM_FREQUENCY_PENALTY:-0.0}
+      - LLM_PRESENCE_PENALTY=${LLM_PRESENCE_PENALTY:-0.0}
+      - LLM_MAX_RETRIES=${LLM_MAX_RETRIES:-3}
+      - LLM_RETRY_DELAY=${LLM_RETRY_DELAY:-1000}
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+    env_file:
+      - .env
+    volumes:
+      - ./web-app:/app
+      - /app/node_modules
+    depends_on:
+      - mock-directus
+    networks:
+      - et-network
+
+  mock-directus:
+    build:
+      context: .
+      dockerfile: mock-directus/Dockerfile
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./mock-directus/responses:/app/mock-directus/responses
+    networks:
+      - et-network
+
+  mariadb:
+    image: mariadb:11
+    ports:
+      - "3306:3306"
+    environment:
+      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD:-root}
+      - MARIADB_DATABASE=${MARIADB_DATABASE:-directus}
+      - MARIADB_USER=${MARIADB_USER:-directus}
+      - MARIADB_PASSWORD=${MARIADB_PASSWORD:-directus}
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - et-network
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - et-network
+
+  orchestrator:
+    build:
+      context: .
+      dockerfile: docker/orchestrator.Dockerfile
+    volumes:
+      - .:/app
+    environment:
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+    env_file:
+      - .env
+    tty: true
+    networks:
+      - et-network
+
+volumes:
+  mariadb_data:
+  redis_data:
+
+networks:
+  et-network:
+    driver: bridge

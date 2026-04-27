@@ -1,0 +1,668 @@
+@import 'tailwindcss';
+@import '../styles/typography-tokens.css';
+@config '../tailwind.config.js';
+
+/* ====================================================================================
+   DYNAMIC PALETTE SYSTEM: OKLCH + @theme inline + Culori Generation
+   ====================================================================================
+
+   Architecture:
+
+   1. @theme inline { }  — Registers Tailwind utility tokens pointing to CSS vars
+   2. @layer theme :root  — DEFAULT values (used when no hotel theme is applied)
+   3. @layer theme [dark] — DEFAULT dark mode overrides
+   4. useHotelTheme hook  — OVERRIDES all -val vars with palette-generated values
+
+   HOW IT WORKS:
+   - Hotels provide 2-5 OKLCH base colors (primary + secondary required)
+   - The palette generator (Culori) creates 11-step shade scales per color
+   - Semantic tokens are derived algorithmically from shade indices
+   - useHotelTheme applies generated values to :root CSS variables
+   - The defaults below ensure pages render correctly without a hotel theme
+
+   WHY @theme inline?
+   - "inline" tells Tailwind v4 to use var() references at runtime (not static values)
+   - This means runtime CSS variable overrides work with Tailwind utilities
+   - Tailwind auto-generates utility classes (bg-brand-primary, text-text-secondary, etc.)
+
+   WHY OKLCH?
+   - Perceptually uniform (equal steps = equal perceived change)
+   - Better color-mix() results than HSL
+   - Wider gamut (Display P3 support)
+   - CSS Color Level 4 standard
+
+   shadcn/ui COMPATIBILITY:
+   - Token aliases (--color-primary, --color-accent, etc.) bridge shadcn/ui
+     components to project semantic tokens. No shadcn/ui component modifications.
+
+   OPACITY MODIFIERS:
+   - Tailwind v4 handles via color-mix(in oklab, color, transparent) automatically
+   - bg-brand-primary/50 works without any special config
+   ==================================================================================== */
+
+@theme inline {
+  /* BRAND */
+  --color-brand-primary: var(--brand-primary-val);
+  --color-brand-primary-hover: var(--brand-primary-hover-val);
+  --color-brand-secondary: var(--brand-secondary-val);
+  --color-brand-secondary-hover: var(--brand-secondary-hover-val);
+  --color-on-brand: var(--on-brand-val);
+  --color-on-brand-secondary: var(--on-brand-secondary-val);
+  --color-brand-white: var(--brand-white-val);
+
+  /* TEXT */
+  --color-text-primary: var(--text-primary-val);
+  --color-text-secondary: var(--text-secondary-val);
+  --color-text-muted: var(--text-muted-val);
+  --color-text-inverted: var(--text-inverted-val);
+  --color-text-on-brand: var(--on-brand-val);
+  --color-text-on-brand-secondary: var(--on-brand-secondary-val);
+  --color-on-brand: var(--on-brand-val);
+
+  /* SURFACE */
+  --color-surface-default: var(--surface-default-val);
+  --color-surface-primary: var(--surface-primary-val);
+  --color-surface-elevated: var(--surface-elevated-val);
+  --color-surface-secondary: var(--surface-secondary-val);
+  --color-surface-muted: var(--surface-muted-val);
+  --color-surface-tertiary: var(--surface-tertiary-val);
+
+  /* BORDER */
+  --color-border-default: var(--border-default-val);
+  --color-border-strong: var(--border-strong-val);
+
+  /* STATUS */
+  --color-status-success: var(--status-success-val);
+  --color-status-warning: var(--status-warning-val);
+  --color-status-error: var(--status-error-val);
+  --color-status-error-strong: var(--status-error-strong-val);
+  --color-status-info: var(--status-info-val);
+
+  /* INTERACTIVE */
+  --color-interactive-primary: var(--interactive-primary-val);
+  --color-interactive-primary-hover: var(--interactive-primary-hover-val);
+
+  /* TYPOGRAPHY - Semantic Font Sizes */
+  --text-size-display: var(--font-size-display-val);
+  --text-size-h1: var(--font-size-h1-val);
+  --text-size-h2: var(--font-size-h2-val);
+  --text-size-h3: var(--font-size-h3-val);
+  --text-size-body-large: var(--font-size-body-large-val);
+  --text-size-body: var(--font-size-body-val);
+  --text-size-caption: var(--font-size-caption-val);
+  --text-size-overline: var(--font-size-overline-val);
+
+  /* ── shadcn/ui COMPATIBILITY BRIDGE ──
+     Aliases project semantic tokens so shadcn/ui components (Button, Input,
+     Calendar, Select, Popover, Textarea, Accordion, Card, Form) use project
+     brand colors without modifying any shadcn/ui component files.
+     See: docs/research/shadcn_ui_customization_tailwind_v4_design_tokens_*.md */
+  --color-primary: var(--brand-primary-val);
+  --color-primary-foreground: var(--on-brand-val);
+  --color-secondary: var(--surface-secondary-val);
+  --color-secondary-foreground: var(--text-primary-val);
+  --color-accent: var(--surface-secondary-val);
+  --color-accent-foreground: var(--text-primary-val);
+  --color-muted: var(--surface-muted-val);
+  --color-muted-foreground: var(--text-muted-val);
+  --color-destructive: var(--status-error-val);
+  --color-destructive-foreground: var(--on-brand-val);
+  --color-popover: var(--surface-primary-val);
+  --color-popover-foreground: var(--text-primary-val);
+  --color-card: var(--surface-primary-val);
+  --color-card-foreground: var(--text-primary-val);
+  --color-background: var(--surface-default-val);
+  --color-foreground: var(--text-primary-val);
+  --color-input: var(--border-default-val);
+  --color-ring: var(--brand-primary-val);
+  --color-border: var(--border-default-val);
+
+  /* SPACING - Uses var(--*-val) indirection for runtime density overrides (matches color system pattern) */
+  --spacing-section: var(--spacing-section-val);
+  --spacing-container: var(--spacing-container-val);
+  --spacing-card: var(--spacing-card-val);
+  --spacing-hero: var(--spacing-hero-val);
+  --spacing-gap-card: var(--spacing-gap-card-val);
+  --spacing-gap-section: var(--spacing-gap-section-val);
+
+  /* DIMENSIONS */
+  --height-hero-sm: var(--height-hero-sm);
+  --height-hero-md: var(--height-hero-md);
+  --height-hero-lg: var(--height-hero-lg);
+  --height-scroll-container: var(--height-scroll-container);
+  --height-card-min: var(--height-card-min);
+  --width-scrollbar-thin: var(--width-scrollbar-thin);
+  --width-amenity-card: var(--width-amenity-card);
+  --max-width-amenity-card: var(--width-amenity-card);
+  --size-avatar: var(--size-avatar);
+  --size-dot: var(--size-dot);
+  --size-image-card: var(--size-image-card);
+
+  /* NAVIGATION HEIGHTS */
+  --h-nav-height: var(--h-nav-height);
+  --h-nav-classic: var(--h-nav-classic);
+  --h-nav-compact: var(--h-nav-compact);
+  --h-nav-extended: var(--h-nav-extended);
+
+  /* COMMON HEIGHTS */
+  --h-3: var(--h-3);
+  --h-4: var(--h-4);
+  --h-5: var(--h-5);
+  --h-6: var(--h-6);
+  --h-7: var(--h-7);
+  --h-8: var(--h-8);
+  --h-9: var(--h-9);
+  --h-10: var(--h-10);
+  --h-12: var(--h-12);
+  --h-14: var(--h-14);
+  --h-16: var(--h-16);
+
+  /* COMMON WIDTHS */
+  --w-3: var(--w-3);
+  --w-4: var(--w-4);
+  --w-5: var(--w-5);
+  --w-6: var(--w-6);
+  --w-8: var(--w-8);
+  --w-10: var(--w-10);
+  --w-12: var(--w-12);
+  --w-16: var(--w-16);
+  --w-20: var(--w-20);
+  --w-24: var(--w-24);
+  --w-32: var(--w-32);
+  --w-64: var(--w-64);
+
+  /* MAX WIDTHS */
+  --max-w-xs: var(--max-w-xs);
+  --max-w-sm: var(--max-w-sm);
+  --max-w-md: var(--max-w-md);
+  --max-w-lg: var(--max-w-lg);
+  --max-w-xl: var(--max-w-xl);
+  --max-w-2xl: var(--max-w-2xl);
+  --max-w-3xl: var(--max-w-3xl);
+  --max-w-4xl: var(--max-w-4xl);
+  --max-w-5xl: var(--max-w-5xl);
+  --max-w-6xl: var(--max-w-6xl);
+  --max-w-7xl: var(--max-w-7xl);
+
+  /* GAP */
+  --gap-1: var(--gap-1);
+  --gap-2: var(--gap-2);
+  --gap-3: var(--gap-3);
+  --gap-4: var(--gap-4);
+  --gap-5: var(--gap-5);
+  --gap-6: var(--gap-6);
+  --gap-8: var(--gap-8);
+
+  /* SPACE Y/X */
+  --space-y-1: var(--space-y-1);
+  --space-y-2: var(--space-y-2);
+
+  /* LAYOUT ACCENTS & DIVIDERS */
+  --width-divider-sm: var(--width-divider-sm);
+  --width-divider-lg: var(--width-divider-lg);
+  --height-divider: var(--height-divider);
+  --height-divider-accent: var(--height-divider-accent);
+
+  /* RESPONSIVE COMPONENT DIMENSIONS */
+  --width-hero-asset-sm: var(--width-hero-asset-sm);
+  --width-hero-asset-md: var(--width-hero-asset-md);
+  --width-hero-asset-lg: var(--width-hero-asset-lg);
+  --width-testimonial-card-sm: var(--width-testimonial-card-sm);
+  --width-testimonial-card-md: var(--width-testimonial-card-md);
+  --width-testimonial-card-lg: var(--width-testimonial-card-lg);
+  --size-icon-overlay: var(--size-icon-overlay);
+
+  /* Z-INDEX */
+  --z-negative: var(--z-negative);
+  --z-base: var(--z-base);
+  --z-elevated: var(--z-elevated);
+  --z-sticky: var(--z-sticky);
+  --z-overlay: var(--z-overlay);
+  --z-nav: var(--z-nav);
+  --z-modal: var(--z-modal);
+  --z-popover: var(--z-popover);
+  --z-toast: var(--z-toast);
+  --z-max: var(--z-max);
+
+  /* MOTION */
+  --duration-instant: var(--duration-instant);
+  --duration-fast: var(--duration-fast);
+  --duration-standard: var(--duration-standard);
+  --duration-slow: var(--duration-slow);
+  --duration-emphasis: var(--duration-emphasis);
+
+  --ease-standard: var(--ease-standard);
+  --ease-in: var(--ease-in);
+  --ease-out: var(--ease-out);
+  --ease-emphasis: var(--ease-emphasis);
+
+  /* FONT WEIGHTS */
+  --font-normal: var(--font-normal);
+  --font-medium: var(--font-medium);
+  --font-semibold: var(--font-semibold);
+  --font-bold: var(--font-bold);
+  --font-extrabold: var(--font-extrabold);
+}
+
+/* ====================================================================================
+   THEME LAYER: DEFAULT Color Values (OKLCH)
+   These values are defaults used when no hotel theme is applied.
+   When useHotelTheme runs, the palette generator OVERRIDES all -val variables.
+   ==================================================================================== */
+
+@layer theme {
+  :root {
+    /* ── BRAND ── */
+    --brand-primary-val: oklch(0.346 0.074 256);
+    --brand-primary-hover-val: color-mix(in oklch, var(--brand-primary-val), black 20%);
+    --brand-secondary-val: oklch(0.748 0.099 86.1);
+    --brand-secondary-hover-val: color-mix(in oklch, var(--brand-secondary-val), black 15%);
+    --on-brand-val: oklch(1 0 0);
+    --on-brand-secondary-val: oklch(1 0 0);
+    --brand-white-val: oklch(1 0 0);
+
+    /* ── TEXT ── */
+    --text-primary-val: oklch(0.208 0.04 265.8);
+    --text-secondary-val: oklch(0.554 0.041 257.4);
+    --text-muted-val: oklch(0.711 0.035 256.8);
+    --text-inverted-val: oklch(0.984 0.003 247.9);
+    --text-on-brand-val: oklch(1 0 0);
+    --text-on-brand-secondary-val: oklch(1 0 0);
+
+    /* ── SURFACE ── */
+    --surface-default-val: oklch(1 0 0);
+    --surface-primary-val: oklch(1 0 0);
+    --surface-elevated-val: oklch(0.984 0.003 247.9);
+    --surface-secondary-val: oklch(0.968 0.007 247.9);
+    --surface-muted-val: oklch(0.968 0.007 247.9);
+    --surface-tertiary-val: oklch(0.94 0.01 247.9);
+
+    /* ── BORDER ── */
+    --border-default-val: oklch(0.929 0.013 255.5);
+    --border-strong-val: oklch(0.711 0.035 256.8);
+
+    /* ── STATUS ── */
+    --status-success-val: oklch(0.448 0.108 151.3);
+    --status-warning-val: oklch(0.795 0.162 86);
+    --status-error-val: oklch(0.577 0.215 27.3);
+    --status-error-strong-val: oklch(0.505 0.19 27.5);
+    --status-info-val: oklch(0.588 0.139 242);
+
+    /* ── INTERACTIVE (aliases) ── */
+    --interactive-primary-val: var(--brand-secondary-val);
+    --interactive-primary-hover-val: var(--brand-secondary-hover-val);
+
+    /* ── TYPOGRAPHY ── */
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+    --font-mono: 'Fira Code', monospace;
+
+    /* ── SHADOW ── */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    --shadow-card: var(--shadow-md);
+    --shadow-card-hover: var(--shadow-lg);
+
+    /* ── RADIUS ── */
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+    --radius-2xl: 1.5rem;
+    --radius-full: 9999px;
+
+    /* ── Z-INDEX MAP ── */
+    --z-negative: -1;
+    --z-base: 0;
+    --z-elevated: 10;
+    --z-sticky: 40;
+    --z-overlay: 50;
+    --z-nav: 60;
+    --z-modal: 100;
+    --z-popover: 110;
+    --z-toast: 150;
+    --z-max: 999;
+
+    /* ── MOTION SYSTEM ── */
+    --duration-instant: 50ms;
+    --duration-fast: 150ms;
+    --duration-standard: 200ms;
+    --duration-slow: 400ms;
+    --duration-emphasis: 600ms;
+
+    --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-in: cubic-bezier(0.4, 0, 1, 1);
+    --ease-out: cubic-bezier(0, 0, 0.2, 1);
+    --ease-emphasis: cubic-bezier(0.87, 0, 0.13, 1);
+
+    /* ── COMPONENT DIMENSIONS ── */
+    --height-hero-sm: 400px;
+    --height-hero-md: 600px;
+    --height-hero-lg: 800px;
+    --height-scroll-container: 600px;
+    --height-card-min: 16rem;
+    --width-scrollbar-thin: 6px;
+    --width-amenity-card: 350px;
+    --size-avatar: 48px;
+    --size-dot: 4px;
+    --size-image-card: 240px;
+
+    /* ── NAVIGATION HEIGHTS ── */
+    --h-nav-height: 80px;
+    --h-nav-classic: 80px;
+    --h-nav-compact: 64px;
+    --h-nav-extended: auto;
+
+    /* ── COMMON HEIGHTS ── */
+    --h-3: 12px;
+    --h-4: 16px;
+    --h-5: 20px;
+    --h-6: 24px;
+    --h-7: 28px;
+    --h-8: 32px;
+    --h-9: 36px;
+    --h-10: 40px;
+    --h-12: 48px;
+    --h-14: 56px;
+    --h-16: 64px;
+
+    /* ── COMMON SIZES ── */
+    --size-3: 12px;
+    --size-4: 16px;
+    --size-5: 20px;
+    --size-6: 24px;
+    --size-7: 28px;
+    --size-8: 32px;
+    --size-9: 36px;
+    --size-10: 40px;
+    --size-12: 48px;
+
+    /* ── COMMON WIDTHS ── */
+    --w-3: 12px;
+    --w-4: 16px;
+    --w-5: 20px;
+    --w-6: 24px;
+    --w-8: 32px;
+    --w-10: 40px;
+    --w-12: 48px;
+    --w-16: 64px;
+    --w-20: 80px;
+    --w-24: 96px;
+    --w-32: 128px;
+    --w-64: 256px;
+
+    /* ── MAX WIDTHS ── */
+    --max-w-xs: 20rem;
+    --max-w-sm: 24rem;
+    --max-w-md: 28rem;
+    --max-w-lg: 32rem;
+    --max-w-xl: 36rem;
+    --max-w-2xl: 42rem;
+    --max-w-3xl: 48rem;
+    --max-w-4xl: 56rem;
+    --max-w-5xl: 64rem;
+    --max-w-6xl: 72rem;
+    --max-w-7xl: 80rem;
+
+    /* ── GAP ── */
+    --gap-1: 0.25rem;
+    --gap-2: 0.5rem;
+    --gap-3: 0.75rem;
+    --gap-4: 1rem;
+    --gap-5: 1.25rem;
+    --gap-6: 1.5rem;
+    --gap-8: 2rem;
+
+    /* ── SPACE Y/X ── */
+    --space-y-1: 0.25rem;
+    --space-y-2: 0.5rem;
+
+    /* ── LAYOUT ACCENTS & DIVIDERS ── */
+    --width-divider-sm: 4rem;
+    --width-divider-lg: 6rem;
+    --height-divider: 1px;
+    --height-divider-accent: 0.25rem;
+
+    /* ── RESPONSIVE COMPONENT DIMENSIONS ── */
+    --width-hero-asset-sm: 320px;
+    --width-hero-asset-md: 400px;
+    --width-hero-asset-lg: 600px;
+    --width-testimonial-card-sm: 85%;
+    --width-testimonial-card-md: 300px;
+    --width-testimonial-card-lg: 380px;
+    --size-icon-overlay: 3.5rem;
+
+    /* ── FONT WEIGHTS ── */
+    --font-normal: 400;
+    --font-medium: 500;
+    --font-semibold: 600;
+    --font-bold: 700;
+    --font-extrabold: 800;
+
+    /* ── SPACING DEFAULTS (Story 15.1 validated, "comfortable" density) ── */
+    /* All spacing uses clamp() for fluid scaling from 375px to 768px viewport */
+    --spacing-section-val: clamp(2rem, 0.0915rem + 8.143vw, 4rem);     /* 32px → 64px */
+    --spacing-container-val: clamp(1rem, 0.0459rem + 4.071vw, 2rem);   /* 16px → 32px */
+    --spacing-card-val: clamp(1rem, 2vw, 1.5rem);                       /* 16px → 24px */
+    --spacing-hero-val: clamp(4rem, 10vw, 8rem);                        /* 64px → 128px */
+    --spacing-gap-card-val: clamp(1rem, 1.5vw, 2rem);                   /* 16px → 32px */
+    --spacing-gap-section-val: clamp(2rem, 4vw, 4rem);                  /* 32px → 64px */
+
+  }
+
+  [data-theme='dark'], [data-mode='dark'] {
+    /* ── SURFACE ── */
+    --surface-default-val: oklch(0.145 0 0);
+    --surface-primary-val: oklch(0.145 0 0);
+    --surface-elevated-val: oklch(0.168 0 0);
+    --surface-secondary-val: oklch(0.168 0 0);
+    --surface-muted-val: oklch(0.218 0 0);
+    --surface-tertiary-val: oklch(0.24 0 0);
+
+    /* ── TEXT ── */
+    --text-primary-val: oklch(0.985 0 0);
+    --text-secondary-val: oklch(0.715 0 0);
+    --text-muted-val: oklch(0.556 0 0);
+    --text-inverted-val: oklch(0.145 0 0);
+
+    /* ── BORDER ── */
+    --border-default-val: oklch(0.297 0 0);
+    --border-strong-val: oklch(0.371 0 0);
+
+    /* ── BRAND (lighter for dark backgrounds) ── */
+    --brand-primary-val: oklch(0.55 0.10 256);
+    --brand-secondary-val: oklch(0.78 0.10 86.1);
+
+    /* ── STATUS (brighter for dark backgrounds) ── */
+    --status-success-val: oklch(0.65 0.15 151.3);
+    --status-warning-val: oklch(0.85 0.16 86);
+    --status-error-val: oklch(0.65 0.20 27.3);
+    --status-error-strong-val: oklch(0.58 0.22 27.5);
+    --status-info-val: oklch(0.65 0.14 242);
+  }
+}
+
+/* ====================================================================================
+   GLOBAL ELEMENT DEFAULTS
+   ==================================================================================== */
+
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: var(--surface-primary-val);
+    color: var(--text-primary-val);
+    font-family: var(--font-body);
+  }
+}
+
+/* ====================================================================================
+   COMPONENT LAYER
+   Story 12.4: Focus ring utilities for WCAG AA compliance
+   ==================================================================================== */
+
+@layer components {
+  /* Focus Ring - WCAG AA Compliant */
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2;
+  }
+
+  /* Focus Ring - Inverted (for dark backgrounds) */
+  .focus-ring-inverted {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-brand focus-visible:ring-offset-2 focus-visible:ring-offset-brand-primary;
+  }
+
+  /* Grid Scroll Container - Custom Branded Scrollbar */
+  .grid-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: var(--brand-secondary-val) var(--surface-muted-val);
+  }
+
+  .grid-scroll::-webkit-scrollbar {
+    width: var(--width-scrollbar-thin);
+  }
+
+  .grid-scroll::-webkit-scrollbar-track {
+    background: var(--surface-muted-val);
+    border-radius: var(--radius-full);
+  }
+
+  .grid-scroll::-webkit-scrollbar-thumb {
+    background: var(--brand-secondary-val);
+    border-radius: var(--radius-full);
+    transition: background var(--duration-standard) var(--ease-standard);
+  }
+
+  .grid-scroll::-webkit-scrollbar-thumb:hover {
+    background: var(--brand-primary-val);
+  }
+}
+
+/* ====================================================================================
+   KEYFRAME ANIMATIONS
+   Story 12.4: Shimmer animation for skeleton loading states
+   ==================================================================================== */
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* ====================================================================================
+   UTILITY CLASSES
+   ==================================================================================== */
+
+@layer utilities {
+  /* Hide scrollbar while maintaining scroll functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari, Opera */
+  }
+
+  /* AC3.4: Extract scrollBehavior to utility class */
+  .scroll-smooth-behavior {
+    scroll-behavior: smooth;
+  }
+
+  /* Scroll container with fixed height using CSS variable */
+  .scroll-container {
+    height: var(--height-scroll-container);
+    overflow-y: auto;
+  }
+
+  /* Scroll container with both directions */
+  .scroll-container-both {
+    height: var(--height-scroll-container);
+    overflow: auto;
+  }
+
+  /* Text alignment utilities - Story 15.3 */
+  .text-trim {
+    /* Native text-box-trim for Chrome 133+, Safari 18.2+ */
+    text-box-trim: trim-both;
+    text-box-edge: cap alphabetic;
+  }
+
+  /* Firefox fallback using margin-block */
+  @supports not (text-box-trim: trim-both) {
+    .text-trim {
+      margin-block: calc(0.5cap - 0.5lh);
+    }
+  }
+
+  /* Tabular numbers for price alignment */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Lightbox max height - responsive */
+  .max-h-lightbox-mobile {
+    max-height: 70vh;
+  }
+
+  .max-h-lightbox {
+    max-height: 75vh;
+  }
+
+  /* Gallery carousel card width - responsive */
+  .carousel-card-width {
+    width: 75vw;
+  }
+
+  @media (min-width: 640px) {
+    .carousel-card-width {
+      width: 60vw;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .carousel-card-width {
+      width: 45vw;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .carousel-card-width {
+      width: 35vw;
+    }
+  }
+
+  /* SVG stroke utilities - replaces inline strokeLinecap/strokeLinejoin attributes */
+  .stroke-linecap-round {
+    stroke-linecap: round;
+  }
+
+  .stroke-linecap-square {
+    stroke-linecap: square;
+  }
+
+  .stroke-linecap-butt {
+    stroke-linecap: butt;
+  }
+
+  .stroke-linejoin-round {
+    stroke-linejoin: round;
+  }
+
+  .stroke-linejoin-bevel {
+    stroke-linejoin: bevel;
+  }
+
+  .stroke-linejoin-miter {
+    stroke-linejoin: miter;
+  }
+}

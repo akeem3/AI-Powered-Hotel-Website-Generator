@@ -1,0 +1,8 @@
+schema: 1
+story: '20.7'
+gate: PASS
+status_reason: 'All acceptance criteria met with 82/82 tests passing. Allowlist provides comprehensive coverage of all CVA variant classes.'
+reviewer: 'Quinn'
+updated: '2026-03-09T00:00:00Z'
+top_issues: []
+waiver: { active: false }

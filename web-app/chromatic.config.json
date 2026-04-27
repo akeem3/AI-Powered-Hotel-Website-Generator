@@ -1,0 +1,9 @@
+{
+  "$schema": "https://chromatic.com/schema.json",
+  "projectId": "697852f049be43181587e61e",
+  "buildScriptName": "build-storybook",
+  "onlyChanged": true,
+  "externals": ["public/**"],
+  "skip": "@(skip)*",
+  "storybookBuildDir": "storybook-static"
+}

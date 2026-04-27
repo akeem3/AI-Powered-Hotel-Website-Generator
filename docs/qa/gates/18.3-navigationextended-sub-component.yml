@@ -1,0 +1,8 @@
+schema: 1
+story: '18.3'
+gate: PASS
+status_reason: 'All acceptance criteria met with 38 passing tests. Desktop two-row layout, mobile booking modal, and style variants verified.'
+reviewer: 'Quinn'
+updated: '2026-02-26T22:30:00Z'
+top_issues: []
+waiver: { active: false }

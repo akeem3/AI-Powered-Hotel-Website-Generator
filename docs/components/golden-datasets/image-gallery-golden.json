@@ -1,0 +1,181 @@
+{
+  "datasetName": "image-gallery-golden-v1",
+  "component": "ImageGallery",
+  "contractSchema": "ImageGalleryContract",
+  "createdAt": "2025-12-03T21:10:00Z",
+  "lastUpdated": "2025-12-03T21:10:00Z",
+  "version": "1.0",
+  "testCases": [
+    {
+      "id": "luxury-masonry-1",
+      "description": "Masonry layout gallery for luxury hotel artistic showcase",
+      "hotelContext": {
+        "type": "luxury",
+        "targetAudience": "business",
+        "brandPersonality": "professional",
+        "galleryPurpose": "artistic-showcase",
+        "primaryImageType": "architecture"
+      },
+      "expectedOutput": {
+        "variant": {
+          "layout": "masonry",
+          "spacing": "normal",
+          "aspectRatio": "landscape",
+          "columns": 3,
+          "cardStyle": "default"
+        },
+        "enableLightbox": true
+      },
+      "qualityThresholds": {
+        "relevanceScore": 0.95,
+        "creativityScore": 0.85,
+        "brandAlignmentScore": 0.98,
+        "humanRating": 10
+      },
+      "validationRules": {
+        "mustPassZOD": true,
+        "mustMeetA11y": true,
+        "mustRenderWithoutErrors": true,
+        "mustPassResponsiveTest": true,
+        "mustSupportImageFormats": true
+      }
+    },
+    {
+      "id": "budget-grid-1",
+      "description": "Grid layout gallery for budget hotel efficient display",
+      "hotelContext": {
+        "type": "budget",
+        "targetAudience": "leisure",
+        "brandPersonality": "friendly",
+        "galleryPurpose": "efficient-display",
+        "primaryImageType": "interiors"
+      },
+      "expectedOutput": {
+        "variant": {
+          "layout": "grid",
+          "spacing": "tight",
+          "aspectRatio": "landscape",
+          "columns": 2,
+          "cardStyle": "minimal"
+        },
+        "enableLightbox": false
+      },
+      "qualityThresholds": {
+        "relevanceScore": 0.88,
+        "creativityScore": 0.60,
+        "brandAlignmentScore": 0.92,
+        "humanRating": 8
+      },
+      "validationRules": {
+        "mustPassZOD": true,
+        "mustMeetA11y": true,
+        "mustRenderWithoutErrors": true,
+        "mustPassResponsiveTest": true,
+        "mustSupportImageFormats": true
+      }
+    },
+    {
+      "id": "boutique-square-1",
+      "description": "Square aspect ratio grid gallery for boutique hotel artistic display",
+      "hotelContext": {
+        "type": "boutique",
+        "targetAudience": "couples",
+        "brandPersonality": "artistic",
+        "galleryPurpose": "artistic-showcase",
+        "primaryImageType": "details"
+      },
+      "expectedOutput": {
+        "variant": {
+          "layout": "grid",
+          "spacing": "normal",
+          "aspectRatio": "square",
+          "columns": 3,
+          "cardStyle": "default"
+        },
+        "enableLightbox": true
+      },
+      "qualityThresholds": {
+        "relevanceScore": 0.92,
+        "creativityScore": 0.90,
+        "brandAlignmentScore": 0.95,
+        "humanRating": 9
+      },
+      "validationRules": {
+        "mustPassZOD": true,
+        "mustMeetA11y": true,
+        "mustRenderWithoutErrors": true,
+        "mustPassResponsiveTest": true,
+        "mustSupportImageFormats": true
+      }
+    },
+    {
+      "id": "resort-carousel-1",
+      "description": "Carousel layout gallery for resort hotel immersive experience",
+      "hotelContext": {
+        "type": "resort",
+        "targetAudience": "family",
+        "brandPersonality": "adventurous",
+        "galleryPurpose": "immersive-experience",
+        "primaryImageType": "experiences"
+      },
+      "expectedOutput": {
+        "variant": {
+          "layout": "carousel",
+          "spacing": "normal",
+          "aspectRatio": "landscape",
+          "columns": 3,
+          "cardStyle": "default"
+        },
+        "enableLightbox": true
+      },
+      "qualityThresholds": {
+        "relevanceScore": 0.94,
+        "creativityScore": 0.80,
+        "brandAlignmentScore": 0.89,
+        "humanRating": 9
+      },
+      "validationRules": {
+        "mustPassZOD": true,
+        "mustMeetA11y": true,
+        "mustRenderWithoutErrors": true,
+        "mustPassResponsiveTest": true,
+        "mustSupportImageFormats": true
+      }
+    },
+    {
+      "id": "business-grid-1",
+      "description": "4-column grid gallery for business hotel comprehensive showcase",
+      "hotelContext": {
+        "type": "business",
+        "targetAudience": "corporate",
+        "brandPersonality": "professional",
+        "galleryPurpose": "efficient-display",
+        "primaryImageType": "facilities"
+      },
+      "expectedOutput": {
+        "variant": {
+          "layout": "grid",
+          "spacing": "normal",
+          "aspectRatio": "landscape",
+          "columns": 4,
+          "cardStyle": "minimal"
+        },
+        "enableLightbox": true
+      },
+      "qualityThresholds": {
+        "relevanceScore": 0.89,
+        "creativityScore": 0.65,
+        "brandAlignmentScore": 0.94,
+        "humanRating": 8
+      },
+      "validationRules": {
+        "mustPassZOD": true,
+        "mustMeetA11y": true,
+        "mustRenderWithoutErrors": true,
+        "mustPassResponsiveTest": true,
+        "mustSupportImageFormats": true
+      }
+    }
+  ],
+  "notes": "Golden dataset for regression testing. All test cases cover different hotel types, target audiences, gallery purposes, and primary image types to validate comprehensive ImageGallery functionality including layout variants, responsive behavior, lightbox features, and image format requirements."
+}

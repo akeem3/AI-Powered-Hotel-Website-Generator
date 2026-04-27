@@ -1,0 +1,8 @@
+schema: 1
+story: '24.11'
+gate: PASS
+status_reason: 'All acceptance criteria met. Navigation extended with all 8 links (Home, Rooms, Gallery, Amenities, Reviews, Contact, About, FAQ). NavigationProvider auto-prefixes with currentLang.'
+reviewer: 'James (Dev)'
+updated: '2026-03-23T16:30:00Z'
+top_issues: []
+waiver: { active: false }

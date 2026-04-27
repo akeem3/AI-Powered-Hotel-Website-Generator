@@ -1,0 +1,164 @@
+{
+  "generationId": "boutique-artistic-v1",
+  "timestamp": "2025-12-10T17:00:00Z",
+  "hotelParameters": {
+    "hotelType": "boutique",
+    "targetAudience": "leisure",
+    "brandPersonality": "modern",
+    "hotelName": "The Canvas",
+    "location": "Melbourne, Australia"
+  },
+  "layoutStructure": "mixed",
+  "emphasisComponents": ["gallery", "hero"],
+  "validationStatus": "PASS",
+  "components": [
+    {
+      "type": "navigation",
+      "order": 0,
+      "variant": {
+        "navStyle": "minimal",
+        "navLayout": "split"
+      },
+      "props": {
+        "logoText": "The Canvas",
+        "links": [
+          { "text": "Studios", "href": "/studios" },
+          { "text": "Exhibitions", "href": "/exhibitions" },
+          { "text": "Eat/Drink", "href": "/dining" },
+          { "text": "Book", "href": "/booking" }
+        ]
+      }
+    },
+    {
+      "type": "hero",
+      "order": 1,
+      "variant": {
+        "style": "bold",
+        "layout": "split",
+        "overlay": "dark",
+        "height": "fullscreen"
+      },
+      "props": {
+        "heading": "Sleep Inside a Masterpiece",
+        "subheading": "Curated Stays in Melbourne's Arts District",
+        "description": "More than a hotel—a living gallery. Featuring rotating installations by local artists and design-forward spaces.",
+        "ctaText": "View Studios",
+        "ctaLink": "/studios",
+        "secondaryCtaText": "Current Exhibition",
+        "secondaryCtaLink": "/gallery",
+        "backgroundImage": "/images/hero-art.webp"
+      }
+    },
+    {
+      "type": "gallery",
+      "order": 2,
+      "variant": {
+        "galleryLayout": "masonry",
+        "gallerySpacing": "loose",
+        "aspectRatio": "portrait",
+        "columns": 3
+      },
+      "props": {
+        "images": [
+          { "id": "g1", "src": "/images/lobby-installation.jpg", "alt": "Neon light installation in lobby", "desktopUrl": "/images/lobby-installation.jpg", "mobileUrl": "/images/lobby-installation-m.jpg" },
+          { "id": "g2", "src": "/images/mural.jpg", "alt": "Street art mural in courtyard", "desktopUrl": "/images/mural.jpg", "mobileUrl": "/images/mural-m.jpg" },
+          { "id": "g3", "src": "/images/sculpture.jpg", "alt": "Modern sculpture in garden", "desktopUrl": "/images/sculpture.jpg", "mobileUrl": "/images/sculpture-m.jpg" },
+          { "id": "g4", "src": "/images/cocktail.jpg", "alt": "Craft cocktails at The Palette Bar", "desktopUrl": "/images/cocktail.jpg", "mobileUrl": "/images/cocktail-m.jpg" },
+          { "id": "g5", "src": "/images/loft-interior.jpg", "alt": "Industrial loft interior design", "desktopUrl": "/images/loft-interior.jpg", "mobileUrl": "/images/loft-interior-m.jpg" },
+          { "id": "g6", "src": "/images/artist-residence.jpg", "alt": "Artist in residence at work", "desktopUrl": "/images/artist-residence.jpg", "mobileUrl": "/images/artist-residence-m.jpg" }
+        ]
+      }
+    },
+    {
+      "type": "rooms",
+      "order": 3,
+      "variant": {
+        "roomCardStyle": "featured",
+        "imageHeight": "large"
+      },
+      "props": {
+        "rooms": [
+          {
+            "id": "studio-loft",
+            "name": "Artist Loft",
+            "type": "Loft",
+            "price": 240,
+            "currency": "AUD",
+            "capacity": 2,
+            "amenities": ["Easels Included", "North Facing Light", "Turntable", "Espresso Bar"],
+            "description": "Double-height ceilings and industrial chic design. Stocked with art supplies for when inspiration strikes.",
+            "image": "/images/loft.jpg"
+          },
+          {
+            "id": "gallery-suite",
+            "name": "Collector's Suite",
+            "type": "Suite",
+            "price": 350,
+            "currency": "AUD",
+            "capacity": 2,
+            "amenities": ["Original Artworks", "Lounge Area", "Free-standing Tub", "City Views"],
+            "description": "Surround yourself with curated pieces from our permanent collection in this expansive suite.",
+            "image": "/images/suite-gallery.jpg"
+          },
+          {
+            "id": "design-queen",
+            "name": "Design Queen",
+            "type": "Room",
+            "price": 180,
+            "currency": "AUD",
+            "capacity": 2,
+            "amenities": ["Queensize Bed", "Smart TV", "Rain Shower", "Minibar"],
+            "description": "Efficient design meets bold aesthetics. Perfect for the modern nomad.",
+            "image": "/images/room-design.jpg"
+          }
+        ]
+      }
+    },
+    {
+      "type": "amenities",
+      "order": 4,
+      "variant": {
+        "amenitiesLayout": "grid",
+        "amenitiesColumns": 3,
+        "iconSize": "medium",
+        "iconStyle": "outline"
+      },
+      "props": {
+        "amenities": [
+          { "id": "a1", "name": "Art Gallery", "description": "Rotating local exhibitions", "category": "hotel", "icon": "eye" },
+          { "id": "a2", "name": "Rooftop Cinema", "description": "Indie films under the stars", "category": "hotel", "icon": "film" },
+          { "id": "a3", "name": "Vinyl Library", "description": "Curated records for your room", "category": "services", "icon": "music" },
+          { "id": "a4", "name": "Coffee Roastery", "description": "Small batch brew on site", "category": "hotel", "icon": "coffee" },
+          { "id": "a5", "name": "Design Shop", "description": "Prints and goods by locals", "category": "services", "icon": "shopping-bag" },
+          { "id": "a6", "name": "Bike Share", "description": "Custom vintage bikes", "category": "location", "icon": "bicycle" }
+        ]
+      }
+    },
+    {
+      "type": "booking",
+      "order": 5,
+      "variant": {
+        "bookingStyle": "minimal",
+        "bookingTheme": "accent"
+      },
+      "props": {
+        "title": "Stay Inspired",
+        "submitButtonText": "Find a Room"
+      }
+    },
+    {
+      "type": "contact",
+      "order": 6,
+      "variant": {
+        "contactLayout": "side-by-side",
+        "contactBackground": "featured"
+      },
+      "props": {
+        "title": "Collaborate",
+        "subtitle": "Host an event or exhibition",
+        "submitButtonText": "Get in Touch",
+        "successMessage": "We love new ideas. Talk soon."
+      }
+    }
+  ]
+}

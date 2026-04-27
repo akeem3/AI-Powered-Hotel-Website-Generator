@@ -1,0 +1,8 @@
+schema: 1
+story: '11.6'
+gate: PASS
+status_reason: 'All acceptance criteria met within approved scope. English-only locale generation per Option C budget decision (Epic 13 for translations). 25/26 tests passing with 1 pre-existing unrelated failure.'
+reviewer: 'Claude'
+updated: '2026-01-21T00:00:00Z'
+top_issues: []
+waiver: { active: false }

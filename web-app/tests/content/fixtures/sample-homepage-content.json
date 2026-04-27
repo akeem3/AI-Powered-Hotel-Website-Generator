@@ -1,0 +1,76 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "generatedAt": "2026-01-19T18:00:00Z",
+    "hotelId": "hotel-sterling-123",
+    "locale": "en"
+  },
+  "navigation": {
+    "links": [
+      { "href": "/", "label": "Home" },
+      { "href": "/rooms", "label": "Rooms" },
+      { "href": "/contact", "label": "Contact" }
+    ],
+    "logo": {
+      "ariaLabel": "Go to homepage",
+      "text": "Sterling Executive",
+      "initials": "SE"
+    },
+    "cta": {
+      "text": "Book"
+    }
+  },
+  "hero": {
+    "tagline": "Experience Boutique Luxury",
+    "title": "The Sterling Executive",
+    "headline": "Where Comfort Meets Prestige",
+    "description": "Experience world-class hospitality in the heart of the city.",
+    "primaryCTA": {
+      "text": "View Rooms",
+      "href": "/rooms",
+      "ariaLabel": "View our luxury rooms"
+    },
+    "secondaryCTA": {
+      "text": "Contact Us",
+      "href": "/contact"
+    },
+    "imageAlt": "The Sterling Executive Hotel Exterior",
+    "backgroundImage": "@media:homepage.hero"
+  },
+  "sections": {
+    "amenities": {
+      "heading": "World-Class Amenities",
+      "subheading": "Everything you need for a perfect stay"
+    },
+    "testimonials": {
+      "heading": "Guest Reviews",
+      "subheading": "Hear what our guests say"
+    },
+    "contact": {
+      "title": "Get in Touch",
+      "fields": {
+        "name": { "label": "Name", "placeholder": "Your full name" },
+        "email": { "label": "Email", "placeholder": "you@example.com" },
+        "subject": { 
+          "label": "Subject", 
+          "placeholder": "Select subject",
+          "options": {
+            "General": "General Inquiry",
+            "Booking": "Reservation"
+          }
+        }
+      },
+      "submitButton": {
+        "text": "Send Message",
+        "loadingText": "Sending..."
+      },
+      "messages": {
+        "success": "Thank you! Your message has been sent.",
+        "error": "Something went wrong."
+      }
+    }
+  },
+  "footer": {
+    "copyright": "© 2026 The Sterling Executive. All rights reserved."
+  }
+}

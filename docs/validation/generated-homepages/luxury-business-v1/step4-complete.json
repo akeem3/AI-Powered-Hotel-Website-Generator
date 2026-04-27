@@ -1,0 +1,203 @@
+{
+  "generationId": "luxury-business-v1",
+  "timestamp": "2025-12-10T16:00:00Z",
+  "hotelParameters": {
+    "hotelType": "luxury",
+    "targetAudience": "business",
+    "brandPersonality": "professional",
+    "hotelName": "The Executive Heights",
+    "location": "New York, NY"
+  },
+  "layoutStructure": "mixed",
+  "emphasisComponents": ["hero", "booking", "rooms"],
+  "validationStatus": "PASS",
+  "components": [
+    {
+      "type": "navigation",
+      "order": 0,
+      "variant": {
+        "navStyle": "classic",
+        "navLayout": "split"
+      },
+      "props": {
+        "logoText": "The Executive Heights",
+        "links": [
+          { "text": "Suites", "href": "/rooms" },
+          { "text": "Dining", "href": "/dining" },
+          { "text": "Events", "href": "/events" },
+          { "text": "Contact", "href": "/contact" }
+        ]
+      }
+    },
+    {
+      "type": "hero",
+      "order": 1,
+      "variant": {
+        "style": "elegant",
+        "layout": "split",
+        "overlay": "dark",
+        "height": "medium"
+      },
+      "props": {
+        "heading": "The Executive Heights",
+        "subheading": "Where Ambition Meets Luxury",
+        "description": "Experience unparalleled sophistication in the heart of Manhattan. Designed for the modern executive who demands excellence in every detail.",
+        "ctaText": "Reserve Your Suite",
+        "ctaLink": "/rooms",
+        "secondaryCtaText": "Explore Amenities",
+        "secondaryCtaLink": "/amenities",
+        "backgroundImage": "/images/hero-luxury.webp"
+      }
+    },
+    {
+      "type": "gallery",
+      "order": 2,
+      "variant": {
+        "galleryLayout": "masonry",
+        "gallerySpacing": "normal",
+        "aspectRatio": "landscape",
+        "columns": 3
+      },
+      "props": {
+        "images": [
+          { "id": "g1", "src": "/images/lobby.jpg", "alt": "Grand Lobby with marble floors", "desktopUrl": "/images/lobby.jpg", "mobileUrl": "/images/lobby-m.jpg" },
+          { "id": "g2", "src": "/images/suite-view.jpg", "alt": "Executive Suite with skyline view", "desktopUrl": "/images/suite-view.jpg", "mobileUrl": "/images/suite-view-m.jpg" },
+          { "id": "g3", "src": "/images/meeting-room.jpg", "alt": "State-of-the-art Boardroom", "desktopUrl": "/images/meeting-room.jpg", "mobileUrl": "/images/meeting-room-m.jpg" },
+          { "id": "g4", "src": "/images/lounge.jpg", "alt": "Exclusive Executive Lounge", "desktopUrl": "/images/lounge.jpg", "mobileUrl": "/images/lounge-m.jpg" },
+          { "id": "g5", "src": "/images/restaurant.jpg", "alt": "Fine Dining Restaurant", "desktopUrl": "/images/restaurant.jpg", "mobileUrl": "/images/restaurant-m.jpg" },
+          { "id": "g6", "src": "/images/rooftop.jpg", "alt": "Rooftop Bar at sunset", "desktopUrl": "/images/rooftop.jpg", "mobileUrl": "/images/rooftop-m.jpg" }
+        ]
+      }
+    },
+    {
+      "type": "rooms",
+      "order": 3,
+      "variant": {
+        "roomCardStyle": "detailed",
+        "imageHeight": "large"
+      },
+      "props": {
+        "rooms": [
+          {
+            "id": "executive-suite",
+            "name": "Executive King Suite",
+            "type": "Suite",
+            "price": 450,
+            "currency": "USD",
+            "capacity": 2,
+            "amenities": ["City View", "Workspace", "Lounge Access", "High-Speed WiFi"],
+            "description": "A spacious sanctuary with panoramic city views, ergonomic workspace, and exclusive access to the Executive Lounge.",
+            "image": "/images/room-executive.jpg"
+          },
+          {
+            "id": "presidential-suite",
+            "name": "Presidential Penthouse",
+            "type": "Penthouse",
+            "price": 1200,
+            "currency": "USD",
+            "capacity": 4,
+            "amenities": ["Private Terrace", "Butler Service", "Meeting Room", "Jacuzzi"],
+            "description": "The ultimate expression of luxury. Features a private terrace, dedicated butler service, and an in-suite meeting room.",
+            "image": "/images/room-penthouse.jpg"
+          },
+          {
+            "id": "deluxe-king",
+            "name": "Deluxe King Room",
+            "type": "Room",
+            "price": 350,
+            "currency": "USD",
+            "capacity": 2,
+            "amenities": ["Smart TV", "Mini Bar", "Rain Shower", "Room Service"],
+            "description": "Refined comfort with modern amenities, perfect for the efficient business traveler.",
+            "image": "/images/room-deluxe.jpg"
+          }
+        ]
+      }
+    },
+    {
+      "type": "testimonials",
+      "order": 4,
+      "variant": {
+        "testimonialsLayout": "featured",
+        "testimonialsColumns": 2,
+        "cardStyle": "elevated"
+      },
+      "props": {
+        "testimonials": [
+          {
+            "id": "t1",
+            "customerName": "James Sterling",
+            "customerTitle": "CEO, TechGlobal",
+            "rating": 5,
+            "quote": "The Executive Heights redefines business travel. The meeting facilities are impeccable, and the service is flawless.",
+            "location": "London, UK"
+          },
+          {
+            "id": "t2",
+            "customerName": "Elena Rostova",
+            "customerTitle": "Director, Finance Corp",
+            "rating": 5,
+            "quote": "A perfect blend of luxury and functionality. The workspace in the suite allowed me to prepare for my keynote in absolute comfort.",
+            "location": "Dubai, UAE"
+          },
+          {
+            "id": "t3",
+            "customerName": "Michael Chen",
+            "customerTitle": "Entrepreneur",
+            "rating": 5,
+            "quote": "From the concierge to the housekeeping, every staff member anticipated my needs. Truly a five-star experience.",
+            "location": "San Francisco, USA"
+          }
+        ]
+      }
+    },
+    {
+      "type": "amenities",
+      "order": 5,
+      "variant": {
+        "amenitiesLayout": "featured",
+        "amenitiesColumns": 3,
+        "iconSize": "large",
+        "iconStyle": "colored"
+      },
+      "props": {
+        "amenities": [
+          { "id": "a1", "name": "Executive Lounge", "description": "Complimentary drinks and canapés", "category": "hotel", "icon": "coffee" },
+          { "id": "a2", "name": "Business Center", "description": "24/7 printing and tech support", "category": "services", "icon": "printer" },
+          { "id": "a3", "name": "Valet Parking", "description": "Secure underground parking", "category": "location", "icon": "car" },
+          { "id": "a4", "name": "Fitness Center", "description": "Technogym equipment and sauna", "category": "hotel", "icon": "dumbbell" },
+          { "id": "a5", "name": "Concierge", "description": "Personalized city recommendations", "category": "services", "icon": "user" },
+          { "id": "a6", "name": "High-Speed WiFi", "description": "Fiber optic connection", "category": "room", "icon": "wifi" },
+          { "id": "a7", "name": "Meeting Rooms", "description": "Video conferencing enabled", "category": "hotel", "icon": "users" },
+          { "id": "a8", "name": "Fine Dining", "description": "Michelin-starred chef", "category": "hotel", "icon": "utensils" }
+        ]
+      }
+    },
+    {
+      "type": "booking",
+      "order": 6,
+      "variant": {
+        "bookingStyle": "featured",
+        "bookingTheme": "brand"
+      },
+      "props": {
+        "title": "Book Your Stay",
+        "submitButtonText": "Check Availability"
+      }
+    },
+    {
+      "type": "contact",
+      "order": 7,
+      "variant": {
+        "contactLayout": "side-by-side",
+        "contactBackground": "subtle"
+      },
+      "props": {
+        "title": "Contact Us",
+        "subtitle": "We are here to assist you 24/7",
+        "submitButtonText": "Send Message",
+        "successMessage": "Thank you for contacting us. We will respond shortly."
+      }
+    }
+  ]
+}

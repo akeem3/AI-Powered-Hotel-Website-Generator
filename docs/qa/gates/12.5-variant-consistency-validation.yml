@@ -1,0 +1,8 @@
+schema: 1
+story: '12.5'
+gate: PASS
+status_reason: 'All acceptance criteria met. Both validation scripts functional with 0 critical errors. 1 INFO-level rgba shadow exception and 3 WARNING-level intentionally restrictive contracts are acceptable patterns.'
+reviewer: 'Claude'
+updated: '2026-01-23T12:08:46Z'
+top_issues: []
+waiver: { active: false }

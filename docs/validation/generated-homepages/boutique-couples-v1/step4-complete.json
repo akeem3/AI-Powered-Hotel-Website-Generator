@@ -1,0 +1,169 @@
+{
+  "generationId": "boutique-couples-v1",
+  "timestamp": "2025-12-10T16:45:00Z",
+  "hotelParameters": {
+    "hotelType": "boutique",
+    "targetAudience": "couples",
+    "brandPersonality": "romantic",
+    "hotelName": "The Secret Garden",
+    "location": "Savannah, GA"
+  },
+  "layoutStructure": "single-column",
+  "emphasisComponents": ["hero", "testimonials"],
+  "validationStatus": "PASS",
+  "components": [
+    {
+      "type": "navigation",
+      "order": 0,
+      "variant": {
+        "navStyle": "classic",
+        "navLayout": "centered"
+      },
+      "props": {
+        "logoText": "The Secret Garden",
+        "links": [
+          { "text": "Suites", "href": "/suites" },
+          { "text": "Dining", "href": "/dining" },
+          { "text": "Romance", "href": "/romance" },
+          { "text": "Contact", "href": "/contact" }
+        ]
+      }
+    },
+    {
+      "type": "hero",
+      "order": 1,
+      "variant": {
+        "style": "elegant",
+        "layout": "centered",
+        "overlay": "light",
+        "height": "large"
+      },
+      "props": {
+        "heading": "A Private Hideaway",
+        "subheading": "For Lovers of Life and Each Other",
+        "description": "Tucked away in the historic district, offering an intimate escape from the world. Rediscover romance in our garden sanctuary.",
+        "ctaText": "Reserve Your Stay",
+        "ctaLink": "/booking",
+        "backgroundImage": "/images/hero-garden.webp"
+      }
+    },
+    {
+      "type": "rooms",
+      "order": 2,
+      "variant": {
+        "roomCardStyle": "featured",
+        "imageHeight": "large"
+      },
+      "props": {
+        "rooms": [
+          {
+            "id": "garden-suite",
+            "name": "Garden Terrace Suite",
+            "type": "Suite",
+            "price": 280,
+            "currency": "USD",
+            "capacity": 2,
+            "amenities": ["Private Terrace", "Clawfoot Tub", "Garden View", "Premium Linens"],
+            "description": "Open your French doors to the scent of jasmine and the sound of the fountain.",
+            "image": "/images/room-terrace.jpg"
+          },
+          {
+            "id": "loft-room",
+            "name": "Artist's Loft",
+            "type": "Room",
+            "price": 220,
+            "currency": "USD",
+            "capacity": 2,
+            "amenities": ["Skylight", "King Bed", "Rain Shower", "Vinyl Player"],
+            "description": "A cozy, bohemian retreat under the eaves, perfect for dreaming.",
+            "image": "/images/room-loft.jpg"
+          },
+          {
+            "id": "courtyard-room",
+            "name": "Courtyard Room",
+            "type": "Room",
+            "price": 190,
+            "currency": "USD",
+            "capacity": 2,
+            "amenities": ["Direct Garden Access", "Queen Bed", "Sitting Area", "Espresso Machine"],
+            "description": "Steps away from our lush courtyard, blending indoor comfort with outdoor beauty.",
+            "image": "/images/room-courtyard.jpg"
+          }
+        ]
+      }
+    },
+    {
+      "type": "amenities",
+      "order": 3,
+      "variant": {
+        "amenitiesLayout": "list",
+        "amenitiesColumns": 2,
+        "iconSize": "small",
+        "iconStyle": "minimal"
+      },
+      "props": {
+        "amenities": [
+          { "id": "a1", "name": "Secret Garden", "description": "A lush oasis in the city", "category": "hotel", "icon": "tree" },
+          { "id": "a2", "name": "Champagne Breakfast", "description": "Served in bed or garden", "category": "services", "icon": "coffee" },
+          { "id": "a3", "name": "Couples Massage", "description": "In-room spa services", "category": "services", "icon": "spa" },
+          { "id": "a4", "name": "Evening Wine", "description": "Complimentary tasting hour", "category": "hotel", "icon": "wine" },
+          { "id": "a5", "name": "Concierge", "description": "Dinner reservations & flowers", "category": "services", "icon": "heart" },
+          { "id": "a6", "name": "Adults Only", "description": "Peaceful atmosphere guaranteed", "category": "hotel", "icon": "user" }
+        ]
+      }
+    },
+    {
+      "type": "testimonials",
+      "order": 4,
+      "variant": {
+        "testimonialsLayout": "featured",
+        "testimonialsColumns": 1,
+        "cardStyle": "elegant"
+      },
+      "props": {
+        "testimonials": [
+          {
+            "id": "t1",
+            "customerName": "Sophie & Marc",
+            "rating": 5,
+            "quote": "The most romantic place we've ever stayed. The private terrace was pure magic.",
+            "location": "Paris, France"
+          },
+          {
+            "id": "t2",
+            "customerName": "Emily J.",
+            "rating": 5,
+            "quote": "Quiet, beautiful, and the staff made our anniversary incredibly special with champagne on arrival.",
+            "location": "London, UK"
+          }
+        ]
+      }
+    },
+    {
+      "type": "booking",
+      "order": 5,
+      "variant": {
+        "bookingStyle": "classic",
+        "bookingTheme": "brand"
+      },
+      "props": {
+        "title": "Plan Your Escape",
+        "submitButtonText": "Check Availability"
+      }
+    },
+    {
+      "type": "contact",
+      "order": 6,
+      "variant": {
+        "contactLayout": "centered",
+        "contactBackground": "subtle"
+      },
+      "props": {
+        "title": "Contact Us",
+        "subtitle": "Let us help you plan the perfect surprise",
+        "submitButtonText": "Inquire",
+        "successMessage": "We will be in touch shortly."
+      }
+    }
+  ]
+}

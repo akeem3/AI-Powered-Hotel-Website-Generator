@@ -1,0 +1,10 @@
+---
+schema: 1
+story: '17.2'
+gate: PASS
+status_reason: 'All 5 acceptance criteria verified and passing. HeroCentered implements full-bleed background image with centered text overlay as specified.'
+reviewer: 'James (Dev Agent)'
+updated: '2026-02-21T12:00:00Z'
+top_issues: []
+waiver:
+  active: false

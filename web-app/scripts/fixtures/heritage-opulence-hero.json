@@ -1,0 +1,11 @@
+{
+  "blockType": "hero",
+  "archetype": "heritage-opulence",
+  "designRationale": "The heritage-opulence archetype demands deep navy and burgundy tones with gold accents, expressing luxury and tradition. The class choices use bg-brand-primary gradient for the rich brand color, text-text-inverted for contrast on dark backgrounds, generous spacing with gap-hero, and grid layout for formal two-column presentation. The before:absolute overlay with bg-brand-primary/60 adds depth and sophistication appropriate for luxury heritage properties.",
+  "variantClasses": {
+    "style": "bg-gradient-to-r from-brand-primary to-brand-primary/high text-text-inverted",
+    "layout": "grid md:grid-cols-2 gap-hero items-center",
+    "overlay": "before:absolute before:inset-0 before:bg-brand-primary/60",
+    "height": "min-h-hero-lg"
+  }
+}

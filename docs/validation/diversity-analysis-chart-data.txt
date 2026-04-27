@@ -1,0 +1,77 @@
+# Variant Diversity Analysis
+
+## Chart Type: Pie Chart
+## Title: Component Selection Distribution
+## Description: Shows the frequency of component inclusion across 10 generations
+
+## Component Inclusion Frequency
+
+| Component | Count | Percentage | Notes |
+|-----------|-------|------------|-------|
+| Hero Section | 10 | 100% | Required in all generations |
+| Navigation | 10 | 100% | Required in all generations |
+| Booking Widget | 10 | 100% | Required in all generations |
+| Room Cards | 10 | 100% | Selected in all generations |
+| Amenities | 10 | 100% | Selected in all generations |
+| Testimonials | 8 | 80% | Selected in most generations |
+| Gallery | 8 | 80% | Selected in most generations |
+| Contact Form | 5 | 50% | Optional component |
+
+## Chart Configuration
+```javascript
+const pieData = {
+  labels: ['Hero Section', 'Navigation', 'Booking Widget', 'Room Cards',
+           'Amenities', 'Testimonials', 'Gallery', 'Contact Form'],
+  datasets: [{
+    data: [100, 100, 100, 100, 100, 80, 80, 50],
+    backgroundColor: [
+      '#3b82f6', // Blue
+      '#10b981', // Green
+      '#f59e0b', // Yellow
+      '#ef4444', // Red
+      '#8b5cf6', // Purple
+      '#ec4899', // Pink
+      '#14b8a6', // Teal
+      '#6b7280'  // Gray
+    ]
+  }]
+};
+```
+
+## Layout Distribution
+
+| Layout Type | Count | Percentage |
+|-------------|-------|------------|
+| Mixed | 5 | 50% |
+| Single-column | 3 | 30% |
+| Grid | 2 | 20% |
+
+## Hotel Type Distribution
+
+| Hotel Type | Count | Percentage |
+|-------------|-------|------------|
+| Luxury | 2 | 20% |
+| Budget | 2 | 20% |
+| Boutique | 2 | 20% |
+| Resort | 2 | 20% |
+| Business | 2 | 20% |
+
+## Brand Personality Distribution
+
+| Personality | Count | Percentage |
+|-------------|-------|------------|
+| Professional | 3 | 30% |
+| Friendly | 2 | 20% |
+| Modern | 2 | 20% |
+| Elegant | 2 | 20% |
+| Adventurous | 1 | 10% |
+
+## Target Audience Distribution
+
+| Audience | Count | Percentage |
+|----------|-------|------------|
+| Business | 4 | 40% |
+| Leisure | 2 | 20% |
+| Family | 1 | 10% |
+| Couples | 1 | 10% |
+| Backpackers | 1 | 10% |

@@ -1,0 +1,37 @@
+{
+  "cdn": {
+    "baseUrl": "https://f000.backblazeb2.com/file/hotel-assets",
+    "transformPath": "/cdn-cgi/image"
+  },
+  "assets": {
+    "homepage": {
+      "hero": {
+        "id": "hero-001",
+        "path": "/hotel-sterling-123/hero.webp",
+        "mobilePath": "/hotel-sterling-123/hero-mobile.webp",
+        "alt": "The Sterling Executive Hotel Exterior",
+        "blurhash": "L6Pj0^jE.AyE_3t7t7R**0o#DgR4",
+        "width": 1920,
+        "height": 1080
+      },
+      "og-image": {
+        "id": "og-001",
+        "path": "/hotel-sterling-123/og-image.jpg",
+        "alt": "The Sterling Executive social preview",
+        "width": 1200,
+        "height": 630
+      }
+    },
+    "rooms": {
+      "deluxe-suite": {
+        "id": "room-001",
+        "path": "/hotel-sterling-123/rooms/deluxe-suite.webp",
+        "mobilePath": "/hotel-sterling-123/rooms/deluxe-suite-mobile.webp",
+        "alt": "Deluxe Suite with King Bed",
+        "blurhash": "LKO2?U%2Tw=w]~RBVZRi};RPxuwH",
+        "width": 1600,
+        "height": 1200
+      }
+    }
+  }
+}

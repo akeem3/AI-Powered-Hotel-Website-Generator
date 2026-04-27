@@ -1,0 +1,396 @@
+import { Meta, Canvas, Story } from '@storybook/addon-docs/blocks';
+
+<Meta title="Design System/Responsive Patterns" />
+
+# Responsive Design Patterns
+
+This page documents the responsive design patterns used across all components in the hotel website generator.
+
+## Breakpoints
+
+| Breakpoint | Width | Tailwind Prefix | Use Case |
+|------------|-------|-----------------|----------|
+| Mobile | 375px | (default) | Phones, portrait |
+| Tablet | 768px | sm: | Tablets, small laptops |
+| Desktop | 1280px | lg: | Standard desktops |
+| Wide | 1920px | xl: | Large monitors |
+
+**Note:** Our components use Tailwind's mobile-first approach, where base styles apply to mobile and higher breakpoints add enhancements.
+
+## Common Patterns
+
+### Responsive Grid
+
+The most common pattern for card layouts:
+
+```tsx
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+  {/* Grid items */}
+</div>
+```
+
+**Breakdown:**
+- `grid-cols-1`: Single column on mobile (375px)
+- `sm:grid-cols-2`: Two columns on tablet (768px+)
+- `lg:grid-cols-3`: Three columns on desktop (1280px+)
+- `gap-8`: Consistent spacing between items
+
+### Responsive Flex Layout
+
+For components that need to switch from vertical to horizontal:
+
+```tsx
+<div className="flex flex-col lg:flex-row gap-4">
+  {/* Flex items */}
+</div>
+```
+
+**Usage:**
+- Hero sections: stacked on mobile, side-by-side on desktop
+- Navigation: vertical drawer on mobile, horizontal bar on desktop
+- Card content: vertical stack on mobile, horizontal on desktop
+
+### Responsive Text
+
+Typography scales smoothly across breakpoints:
+
+```tsx
+<h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl">
+  Heading
+</h1>
+```
+
+**Typical scale:**
+- Mobile: `text-xl` (20px)
+- Tablet: `text-2xl` (24px)
+- Desktop: `text-3xl` (30px)
+- Wide: `text-4xl` (36px)
+
+### Responsive Spacing
+
+Padding and margins scale with viewport:
+
+```tsx
+<div className="px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+  {/* Content */}
+</div>
+```
+
+**Common patterns:**
+- Container padding: `px-4 sm:px-6 lg:px-8`
+- Section padding: `py-12 sm:py-16 lg:py-20`
+- Gap spacing: `gap-4 sm:gap-6 lg:gap-8`
+
+### Touch-Friendly Targets
+
+All interactive elements meet WCAG AA touch target size:
+
+```tsx
+<button className="min-h-11 px-4 py-2">
+  Touch-Friendly Button
+</button>
+```
+
+**Guidelines:**
+- Minimum touch target: 44px × 44px (`min-h-11`)
+- Adequate padding: `px-4 py-2` or `px-6 py-3`
+- No clickable elements too close together (min 8px gap)
+
+## Component-Specific Patterns
+
+### HeroSection
+
+**Layout Strategy:** Flexbox with responsive direction
+
+```tsx
+<div className="flex flex-col lg:flex-row items-center gap-8 px-6 sm:px-10 lg:px-16">
+  {/* Content on mobile/left, Image on desktop/right */}
+</div>
+```
+
+**Breakpoint Behavior:**
+- **Mobile (375px):** Stacked layout, full-width CTA buttons
+- **Tablet (768px):** Side-by-side content begins
+- **Desktop (1280px):** Full split layout, decorative side image visible
+- **Wide (1920px):** Content constrained with max-width container
+
+**Key Classes:**
+- Text: `text-2xl sm:text-3xl lg:text-4xl`
+- Padding: `px-6 sm:px-10 lg:px-16`
+- CTA: `flex-col sm:flex-row`
+
+### Navigation
+
+**Layout Strategy:** Conditional rendering
+
+```tsx
+{isMobile ? (
+  <MobileNavigationDrawer />  // Hamburger + slide-out
+) : (
+  <DesktopNavigationMenuBar />  // Horizontal menu
+)}
+```
+
+**Breakpoint Behavior:**
+- **Mobile (375px):** Hamburger menu, full-screen drawer
+- **Desktop (768px+):** Horizontal menu bar, visible links
+
+**Key Classes:**
+- Mobile trigger: `md:hidden`
+- Desktop menu: `hidden md:flex`
+- Drawer: `fixed inset-y-0 left-0 z-50`
+
+### RoomCard Grid
+
+**Layout Strategy:** CSS Grid with responsive columns
+
+```tsx
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+  <RoomCard />
+  <RoomCard />
+  <RoomCard />
+</div>
+```
+
+**Breakpoint Behavior:**
+- **Mobile (375px):** 1 column
+- **Tablet (768px):** 2 columns
+- **Desktop (1280px):** 3 columns
+- **Wide (1920px):** 3 columns (constrained with max-width)
+
+**Key Classes:**
+- Grid: `grid-cols-1 sm:grid-cols-2 lg:grid-cols-3`
+- Card aspect: `aspect-[4/3]` or `aspect-[3/2]`
+
+### BookingWidget
+
+**Layout Strategy:** Variant-based responsive components
+
+```tsx
+<BookingWidget variant={isMobile ? 'mobile' : 'desktop'} />
+```
+
+**Breakpoint Behavior:**
+- **Mobile (375px):** Compact form, stacked inputs
+- **Desktop (768px+):** Horizontal form, inline date pickers
+
+**Key Classes:**
+- Mobile variant: `flex-col gap-4`
+- Desktop variant: `flex-row gap-4`
+
+### ContactForm
+
+**Layout Strategy:** Responsive grid for form fields
+
+```tsx
+<form className="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <FormField name="name" className="col-span-1" />
+  <FormField name="email" className="col-span-1" />
+  <FormField name="message" className="col-span-1 md:col-span-2" />
+</form>
+```
+
+**Breakpoint Behavior:**
+- **Mobile (375px):** Single column, labels above inputs
+- **Desktop (768px+):** Two columns for name/email, full-width for message
+
+**Key Classes:**
+- Form: `grid grid-cols-1 md:grid-cols-2 gap-6`
+- Fields: `col-span-1` or `col-span-1 md:col-span-2`
+
+### ImageGallery
+
+**Layout Strategy:** Grid columns that scale with viewport
+
+```tsx
+<ImageGallery
+  variant={{
+    layout: 'grid',
+    columns: 3,  // Affects column count
+    aspectRatio: 'landscape'
+  }}
+/>
+```
+
+**Breakpoint Behavior:**
+- **Mobile (375px):** 1-2 columns
+- **Tablet (768px):** 2-3 columns
+- **Desktop (1280px):** 3-4 columns
+- **Wide (1920px):** 4 columns, max-width constrained
+
+**Key Classes:**
+- Grid: `grid-cols-1 sm:grid-cols-2 lg:grid-cols-3`
+- Image: `aspect-[4/3]` or `aspect-[16/9]`
+
+### Testimonials
+
+**Layout Strategy:** Grid that scales card count
+
+```tsx
+<Testimonials
+  variant={{
+    layout: 'grid',
+    columns: 3
+  }}
+/>
+```
+
+**Breakpoint Behavior:**
+- **Mobile (375px):** 1-2 columns or carousel
+- **Tablet (768px):** 2 columns
+- **Desktop (1280px):** 3 columns
+- **Wide (1920px):** 3 columns, centered with max-width
+
+**Key Classes:**
+- Grid: `grid-cols-1 md:grid-cols-2 lg:grid-cols-3`
+- Card: `min-h-[200px]` for equal heights
+
+### Amenities
+
+**Layout Strategy:** Icon grid with responsive columns
+
+```tsx
+<Amenities
+  variant={{
+    layout: 'grid',
+    columns: 4
+  }}
+/>
+```
+
+**Breakpoint Behavior:**
+- **Mobile (375px):** 2-3 columns
+- **Tablet (768px):** 3-4 columns
+- **Desktop (1280px):** 4 columns
+- **Wide (1920px):** 4+ columns, max-width constrained
+
+**Key Classes:**
+- Grid: `grid-cols-2 sm:grid-cols-3 lg:grid-cols-4`
+- Icon sizing: `w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12`
+
+## Testing Responsive Behavior
+
+### Using Storybook Viewport Addon
+
+1. Open the viewport addon in Storybook toolbar
+2. Select preset breakpoints or custom widths
+3. Test all component interactions at each size
+
+### Manual Testing Checklist
+
+For each component, verify:
+
+**Layout & Structure:**
+- [ ] No horizontal overflow at any breakpoint
+- [ ] Content doesn't get cut off
+- [ ] Grid/flex transitions are smooth
+- [ ] Max-width containers constrain content at wide breakpoints
+
+**Typography:**
+- [ ] Text remains readable at all sizes
+- [ ] Line length is comfortable (45-75 characters)
+- [ ] Headings scale appropriately
+- [ ] No text overlaps or collisions
+
+**Interactivity:**
+- [ ] Buttons and links are clickable (min 44×44px)
+- [ ] Touch targets have adequate spacing
+- [ ] Form fields are tappable on mobile
+- [ ] Dropdowns/menus work at all sizes
+
+**Performance:**
+- [ ] Components render quickly at each breakpoint
+- [ ] No layout shift during page load
+- [ ] Images are appropriately sized for viewport
+
+## Known Edge Cases
+
+### Long Text Content
+
+**Issue:** Very long titles or descriptions may overflow on mobile
+
+**Solution:**
+```tsx
+<h3 className="text-lg line-clamp-2">
+  {longTitle}
+</h3>
+```
+
+### Dynamic Content Heights
+
+**Issue:** Cards with varying content create uneven rows
+
+**Solution:**
+```tsx
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
+  {/* items-start prevents stretching */}
+</div>
+```
+
+### Fixed Width Elements
+
+**Issue:** Images or iframes with fixed width break mobile layout
+
+**Solution:**
+```tsx
+<img className="w-full h-auto" src="..." />
+<div className="w-full overflow-hidden">
+  <iframe className="w-full aspect-video" />
+</div>
+```
+
+### Form Select Dropdowns
+
+**Issue:** Native select dropdowns may be cut off on mobile
+
+**Solution:**
+```tsx
+<Select>
+  <SelectTrigger className="w-full">
+    <SelectValue placeholder="Select option" />
+  </SelectTrigger>
+  {/* Portal renders outside container */}
+</Select>
+```
+
+## Tailwind Breakpoint Reference
+
+| Prefix | Min Width | Max Width Target | Common Use |
+|--------|-----------|-------------------|-------------|
+| (none) | 0px | 375px | Mobile phones (portrait) |
+| sm: | 640px | 768px | Small tablets, landscape phones |
+| md: | 768px | 1024px | Tablets portrait, small laptops |
+| lg: | 1024px | 1280px | Desktops, large tablets landscape |
+| xl: | 1280px | 1536px | Large desktops |
+| 2xl: | 1536px | 1920px+ | Extra wide displays |
+
+**Our Component Targets:**
+- Mobile tests: 375px (iPhone SE, small Android)
+- Tablet tests: 768px (iPad portrait)
+- Desktop tests: 1280px (standard laptop)
+- Wide tests: 1920px (large monitors)
+
+## Mobile-First Best Practices
+
+1. **Start with mobile styles** - Write base CSS for mobile, add `sm:`, `lg:` for larger screens
+2. **Test on real devices** - Emulators are good, real devices are better
+3. **Touch target sizing** - Keep buttons and links at least 44×44px
+4. **Readable text** - Minimum 16px body text on mobile
+5. **Performance** - Large images can slow mobile; use responsive images
+
+## Responsive Testing Checklist
+
+Use this checklist when creating or modifying components:
+
+**File: web-app/tests/responsive/ResponsiveDesign.test.tsx**
+
+- [ ] Test at 375px (mobile)
+- [ ] Test at 768px (tablet)
+- [ ] Test at 1280px (desktop)
+- [ ] Test at 1920px (wide)
+- [ ] No horizontal overflow
+- [ ] Touch targets adequate
+- [ ] Text scales properly
+- [ ] Images resize correctly
+- [ ] Forms work on all devices
+- [ ] No layout shifts

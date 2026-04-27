@@ -1,0 +1,6 @@
+{
+  "selectedComponents": ["hero", "navigation", "rooms", "testimonials", "amenities", "booking", "contact"],
+  "layoutStructure": "single-column",
+  "emphasisComponents": ["hero", "testimonials"],
+  "reasoning": "Couples' getaways focus on intimacy and trust. 'Testimonials' are emphasized to show other couples' romantic experiences. Simple single-column layout keeps the focus on the narrative."
+}

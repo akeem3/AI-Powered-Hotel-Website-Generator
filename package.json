@@ -1,0 +1,15 @@
+{
+  "scripts": {
+    "cleanup": "node scripts/cleanup-tmp-files.js",
+    "precommit": "npm run cleanup"
+  },
+  "dependencies": {
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@storybook/addon-mcp": "^0.2.2",
+    "@types/node": "^24.10.2",
+    "cors": "^2.8.6",
+    "express": "^5.2.1"
+  }
+}

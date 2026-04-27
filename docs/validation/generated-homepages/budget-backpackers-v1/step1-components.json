@@ -1,0 +1,6 @@
+{
+  "selectedComponents": ["hero", "navigation", "gallery", "rooms", "amenities", "booking", "contact"],
+  "layoutStructure": "grid",
+  "emphasisComponents": ["gallery", "rooms"],
+  "reasoning": "Backpackers value social proof and vibes. 'Gallery' is emphasized to show the social atmosphere. 'Grid' layout allows for a dense, visually rich presentation of hostel life vs. amenities."
+}

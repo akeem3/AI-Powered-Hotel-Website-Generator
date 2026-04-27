@@ -1,0 +1,72 @@
+{
+  "cdn": {
+    "baseUrl": "https://cdn.example.com",
+    "transformPath": "/cdn-cgi/image"
+  },
+  "assets": {
+    "homepage": {
+      "hero": {
+        "id": "hero-001",
+        "path": "/test-hotel/hero.webp",
+        "mobilePath": "/test-hotel/hero-mobile.webp",
+        "alt": "Beautiful hotel exterior with modern architecture",
+        "blurhash": "L6Pj0^jE",
+        "width": 1920,
+        "height": 1080
+      },
+      "background": {
+        "id": "bg-001",
+        "path": "/test-hotel/background.webp",
+        "mobilePath": "/test-hotel/background-mobile.webp",
+        "alt": "Hotel lobby background",
+        "blurhash": "L5KZ^q~q",
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    "rooms": {
+      "featured": {
+        "id": "room-001",
+        "path": "/test-hotel/room-deluxe.webp",
+        "alt": "Deluxe room with king bed",
+        "blurhash": "L8Ez^t-;",
+        "width": 800,
+        "height": 600
+      },
+      "suite": {
+        "id": "room-002",
+        "path": "/test-hotel/room-suite.webp",
+        "alt": "Executive suite with city view",
+        "blurhash": "L6FQz%Xk",
+        "width": 800,
+        "height": 600
+      }
+    },
+    "amenities": {
+      "pool": {
+        "id": "amenity-001",
+        "path": "/test-hotel/pool.webp",
+        "alt": "Rooftop infinity pool",
+        "blurhash": "L3KZ^t-:",
+        "width": 600,
+        "height": 400
+      },
+      "spa": {
+        "id": "amenity-002",
+        "path": "/test-hotel/spa.webp",
+        "alt": "Luxury spa treatment room",
+        "blurhash": "L2FQz%Xj",
+        "width": 600,
+        "height": 400
+      },
+      "gym": {
+        "id": "amenity-003",
+        "path": "/test-hotel/gym.webp",
+        "alt": "Modern fitness center",
+        "blurhash": "L4EZ^t-;",
+        "width": 600,
+        "height": 400
+      }
+    }
+  }
+}

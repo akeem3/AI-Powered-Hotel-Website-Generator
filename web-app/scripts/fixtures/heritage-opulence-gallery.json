@@ -1,0 +1,12 @@
+{
+  "blockType": "gallery",
+  "archetype": "heritage-opulence",
+  "designRationale": "The heritage-opulence gallery uses grid layout with generous gap-gap-section spacing for formal presentation. The card style uses elevated shadows with border-brand-secondary/subtle for refined elegance. The aspect-[4/3] landscape aspect ratio and md:grid-cols-3 lg:grid-cols-4 responsive columns provide structured, gallery-like presentation appropriate for luxury heritage properties.",
+  "variantClasses": {
+    "layout": "grid",
+    "spacing": "gap-gap-section",
+    "aspectRatio": "aspect-[4/3]",
+    "columns": "grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
+    "cardStyle": "[&_figure]:bg-surface-elevated [&_figure]:shadow-xl [&_figure]:border-2 [&_figure]:border-brand-secondary/subtle [&_figure]:rounded-2xl [&_figure]:transition-all [&_figure]:duration-300 hover:[&_figure]:shadow-lg hover:[&_figure]:-translate-y-1"
+  }
+}

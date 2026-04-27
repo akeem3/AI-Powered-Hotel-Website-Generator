@@ -1,0 +1,85 @@
+{
+  "data": [
+    {
+      "collection": "hotels",
+      "field": "id",
+      "type": "integer",
+      "meta": {
+        "hidden": true,
+        "interface": "input",
+        "options": {}
+      }
+    },
+    {
+      "collection": "hotels",
+      "field": "slug",
+      "type": "string",
+      "schema": {
+        "is_unique": true,
+        "is_nullable": false
+      },
+      "meta": {
+        "hidden": false,
+        "interface": "input",
+        "options": {
+          "slug": true
+        }
+      }
+    },
+    {
+      "collection": "hotels",
+      "field": "status",
+      "type": "string",
+      "schema": {
+        "default_value": "draft"
+      },
+      "meta": {
+        "hidden": false,
+        "interface": "select-dropdown",
+        "options": {
+          "choices": [
+            { "text": "Draft", "value": "draft" },
+            { "text": "Published", "value": "published" },
+            { "text": "Archived", "value": "archived" }
+          ]
+        }
+      }
+    },
+    {
+      "collection": "hotels",
+      "field": "city",
+      "type": "string",
+      "meta": {
+        "hidden": false,
+        "interface": "input"
+      }
+    },
+    {
+      "collection": "hotels",
+      "field": "country",
+      "type": "string",
+      "meta": {
+        "hidden": false,
+        "interface": "input"
+      }
+    },
+    {
+      "collection": "hotels",
+      "field": "rating",
+      "type": "decimal",
+      "meta": {
+        "hidden": false,
+        "interface": "input"
+      }
+    },
+    {
+      "collection": "hotels",
+      "field": "price_range",
+      "type": "string",
+      "meta": {
+        "hidden": false,
+        "interface": "select-dropdown"
+      }
+    }
+  ]
+}

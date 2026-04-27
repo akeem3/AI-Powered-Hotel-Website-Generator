@@ -1,0 +1,198 @@
+{
+  "generationId": "luxury-leisure-v1",
+  "timestamp": "2025-12-10T16:15:00Z",
+  "hotelParameters": {
+    "hotelType": "luxury",
+    "targetAudience": "leisure",
+    "brandPersonality": "elegant",
+    "hotelName": "The Grand Azure",
+    "location": "Maldives"
+  },
+  "layoutStructure": "mixed",
+  "emphasisComponents": ["hero", "gallery", "amenities"],
+  "validationStatus": "PASS",
+  "components": [
+    {
+      "type": "navigation",
+      "order": 0,
+      "variant": {
+        "navStyle": "minimal",
+        "navLayout": "centered"
+      },
+      "props": {
+        "logoText": "The Grand Azure",
+        "links": [
+          { "text": "Villas", "href": "/villas" },
+          { "text": "Dining", "href": "/dining" },
+          { "text": "Spa", "href": "/spa" },
+          { "text": "Gallery", "href": "/gallery" }
+        ]
+      }
+    },
+    {
+      "type": "hero",
+      "order": 1,
+      "variant": {
+        "style": "bold",
+        "layout": "fullscreen",
+        "overlay": "light",
+        "height": "fullscreen"
+      },
+      "props": {
+        "heading": "Paradise Found",
+        "subheading": "An Island Sanctuary for the Soul",
+        "description": "Escape to a world of turquoise waters, pristine beaches, and timeless elegance in the heart of the Maldives.",
+        "ctaText": "Book Your Escape",
+        "ctaLink": "/booking",
+        "secondaryCtaText": "Discover Experiences",
+        "secondaryCtaLink": "/experiences",
+        "backgroundImage": "/images/hero-maldives.webp"
+      }
+    },
+    {
+      "type": "gallery",
+      "order": 2,
+      "variant": {
+        "galleryLayout": "carousel",
+        "gallerySpacing": "loose",
+        "aspectRatio": "landscape",
+        "columns": 2
+      },
+      "props": {
+        "images": [
+          { "id": "g1", "src": "/images/aerial-view.jpg", "alt": "Aerial view of the resort islands", "desktopUrl": "/images/aerial-view.jpg", "mobileUrl": "/images/aerial-view-m.jpg" },
+          { "id": "g2", "src": "/images/sunset-pool.jpg", "alt": "Infinity pool at sunset", "desktopUrl": "/images/sunset-pool.jpg", "mobileUrl": "/images/sunset-pool-m.jpg" },
+          { "id": "g3", "src": "/images/spa-treatment.jpg", "alt": "Overwater spa pavilion", "desktopUrl": "/images/spa-treatment.jpg", "mobileUrl": "/images/spa-treatment-m.jpg" },
+          { "id": "g4", "src": "/images/underwater-dining.jpg", "alt": "Underwater restaurant experience", "desktopUrl": "/images/underwater-dining.jpg", "mobileUrl": "/images/underwater-dining-m.jpg" },
+          { "id": "g5", "src": "/images/bedroom-view.jpg", "alt": "Villa bedroom opening to ocean", "desktopUrl": "/images/bedroom-view.jpg", "mobileUrl": "/images/bedroom-view-m.jpg" },
+          { "id": "g6", "src": "/images/snorkeling.jpg", "alt": "Guests snorkeling with turtles", "desktopUrl": "/images/snorkeling.jpg", "mobileUrl": "/images/snorkeling-m.jpg" }
+        ]
+      }
+    },
+    {
+      "type": "rooms",
+      "order": 3,
+      "variant": {
+        "roomCardStyle": "detailed",
+        "imageHeight": "large"
+      },
+      "props": {
+        "rooms": [
+          {
+            "id": "ocean-villa",
+            "name": "Overwater Ocean Villa",
+            "type": "Villa",
+            "price": 1200,
+            "currency": "USD",
+            "capacity": 2,
+            "amenities": ["Private Pool", "Direct Ocean Access", "Glass Floor", "Butler Service"],
+            "description": "Suspended over the lagoon, offering uninterrupted views of the horizon and direct access to the vibrant coral reef.",
+            "image": "/images/villa-ocean.jpg"
+          },
+          {
+            "id": "beach-bungalow",
+            "name": "Sunset Beach Bungalow",
+            "type": "Bungalow",
+            "price": 850,
+            "currency": "USD",
+            "capacity": 3,
+            "amenities": ["Private Garden", "Outdoor Shower", "Hammock", "Beach Access"],
+            "description": "Nestled in lush foliage steps from the white sand beach, perfect for sunset lovers.",
+            "image": "/images/bungalow.jpg"
+          },
+          {
+            "id": "royal-residence",
+            "name": "The Royal Residence",
+            "type": "Residence",
+            "price": 3500,
+            "currency": "USD",
+            "capacity": 6,
+            "amenities": ["3 Bedrooms", "Private Chef", "Cinema Room", "Private Spa"],
+            "description": "The epitome of island luxury, designed for families or friends seeking ultimate privacy and indulgence.",
+            "image": "/images/residence.jpg"
+          }
+        ]
+      }
+    },
+    {
+      "type": "amenities",
+      "order": 4,
+      "variant": {
+        "amenitiesLayout": "featured",
+        "amenitiesColumns": 3,
+        "iconSize": "large",
+        "iconStyle": "colored"
+      },
+      "props": {
+        "amenities": [
+          { "id": "a1", "name": "Overwater Spa", "description": "Holistic treatments with ocean views", "category": "hotel", "icon": "spa" },
+          { "id": "a2", "name": "Infinity Pool", "description": "Blending seamlessly with the horizon", "category": "hotel", "icon": "waves" },
+          { "id": "a3", "name": "Dive Center", "description": "PADI certified diving courses", "category": "services", "icon": "fish" },
+          { "id": "a4", "name": "Private Dining", "description": "Candlelit dinners on the beach", "category": "hotel", "icon": "utensils" },
+          { "id": "a5", "name": "Yoga Pavilion", "description": "Sunrise and sunset yoga sessions", "category": "hotel", "icon": "sun" },
+          { "id": "a6", "name": "Kids Club", "description": "Educational marine biology programs", "category": "services", "icon": "users" }
+        ]
+      }
+    },
+    {
+      "type": "testimonials",
+      "order": 5,
+      "variant": {
+        "testimonialsLayout": "carousel",
+        "testimonialsColumns": 2,
+        "cardStyle": "minimal"
+      },
+      "props": {
+        "testimonials": [
+          {
+            "id": "t1",
+            "customerName": "Isabella Rossi",
+            "rating": 5,
+            "quote": "A dream come true. The overwater villa was magical, and the staff made us feel like royalty.",
+            "location": "Milan, Italy"
+          },
+          {
+            "id": "t2",
+            "customerName": "David & Sarah",
+            "rating": 5,
+            "quote": "The perfect honeymoon destination. We never wanted to leave.",
+            "location": "Sydney, Australia"
+          },
+          {
+            "id": "t3",
+            "customerName": "The Tanaka Family",
+            "rating": 5,
+            "quote": "Exquisite dining and incredible snorkeling right from our deck.",
+            "location": "Tokyo, Japan"
+          }
+        ]
+      }
+    },
+    {
+      "type": "booking",
+      "order": 6,
+      "variant": {
+        "bookingStyle": "minimal",
+        "bookingTheme": "brand"
+      },
+      "props": {
+        "title": "Begin Your Journey",
+        "submitButtonText": "Check Availability"
+      }
+    },
+    {
+      "type": "contact",
+      "order": 7,
+      "variant": {
+        "contactLayout": "centered",
+        "contactBackground": "featured"
+      },
+      "props": {
+        "title": "Get in Touch",
+        "subtitle": "Let us plan your perfect stay",
+        "submitButtonText": "Inquire Now",
+        "successMessage": "We look forward to welcoming you."
+      }
+    }
+  ]
+}

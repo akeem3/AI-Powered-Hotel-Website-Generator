@@ -1,0 +1,11 @@
+{
+  "blockType": "hero",
+  "archetype": "coastal-resort",
+  "designRationale": "The coastal-resort archetype uses ocean blue tones with sand and terracotta accents. The bg-gradient-to-t from-brand-primary/70 to-transparent creates a beach-to-sky gradient effect. Text-text-primary provides readability on the lighter coastal background. The min-h-hero-lg height emphasizes spaciousness and horizontal airy layout. The before:gradient overlay mimics ocean depth with the gradient-to-t pattern.",
+  "variantClasses": {
+    "style": "bg-surface-primary text-text-primary",
+    "layout": "flex items-center justify-center text-center",
+    "overlay": "before:absolute before:inset-0 before:bg-gradient-to-t before:from-brand-primary/70 before:to-transparent",
+    "height": "min-h-hero-lg"
+  }
+}

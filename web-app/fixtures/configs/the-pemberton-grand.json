@@ -1,0 +1,586 @@
+{
+  "generationId": "pemberton-grand-test-v1773801043593",
+  "timestamp": "2025-12-05T10:30:00Z",
+  "hotelParameters": {
+    "hotelType": "luxury",
+    "targetAudience": "couples",
+    "brandPersonality": "elegant",
+    "hotelName": "The Pemberton Grand",
+    "location": "London, United Kingdom"
+  },
+  "components": [
+    {
+      "type": "navigation",
+      "variant": {
+        "navStyle": "solid",
+        "navLayout": "classic"
+      },
+      "props": {
+        "brandName": "The Pemberton Grand",
+        "links": [
+          {
+            "label": "Our Story",
+            "href": "#about"
+          },
+          {
+            "label": "Suites",
+            "href": "#rooms"
+          },
+          {
+            "label": "Experiences",
+            "href": "#amenities"
+          },
+          {
+            "label": "Gallery",
+            "href": "#gallery"
+          },
+          {
+            "label": "Reservations",
+            "href": "#booking"
+          }
+        ],
+        "ctaButton": {
+          "text": "Reserve",
+          "href": "#booking"
+        }
+      },
+      "order": 0
+    },
+    {
+      "type": "hero",
+      "variant": {
+        "style": "heritage-opulence",
+        "layout": "split",
+        "overlay": "dark",
+        "height": "large"
+      },
+      "props": {
+        "title": "The Pemberton Grand",
+        "tagline": "Timeless Elegance in the Heart of London",
+        "headline": "Where Refinement Meets Romance",
+        "description": "Nestled in prestigious Mayfair, The Pemberton Grand offers an unparalleled escape for discerning couples. Our meticulously restored Victorian mansion blends heritage grandeur with contemporary luxury, creating an intimate sanctuary where every detail is curated for your pleasure. Experience bespoke service, exquisite dining, and moments of pure enchantment.",
+        "primaryCTA": {
+          "text": "Begin Your Journey",
+          "href": "/booking",
+          "ariaLabel": "Start your booking journey at The Pemberton Grand"
+        },
+        "secondaryCTA": {
+          "text": "Explore Our Suites",
+          "href": "/rooms",
+          "ariaLabel": "View our luxury suites and accommodations"
+        },
+        "backgroundImage": "https://cdn.example.com/the-pemberton-grand-hero-1.webp",
+        "backgroundImageMobile": "https://cdn.example.com/the-pemberton-grand-hero-1.m.webp",
+        "imageAlt": "Grand hotel facade at twilight with warm golden light streaming through sash windows"
+      },
+      "order": 1
+    },
+    {
+      "type": "about",
+      "variant": {
+        "aboutLayout": "side-by-side",
+        "aboutImagePosition": "left",
+        "aboutOverlay": "dark",
+        "aboutTextAlign": "left"
+      },
+      "props": {
+        "aboutHeading": "A Legacy of Unparalleled Excellence",
+        "aboutContent": "Since 1891, The Pemberton Grand has stood as a beacon of refined hospitality in London's most coveted address. What began as a private residence for the Earl of Pemberton has been lovingly transformed into an intimate retreat for couples seeking extraordinary moments.\n\nEvery corner of our hotel whispers stories of the past—hand-carved mahogany banisters, original oil paintings, and crystal chandeliers that have witnessed over a century of romance. Yet beneath this heritage lies a commitment to contemporary excellence: Egyptian cotton sheets with thread counts that invite endless mornings, bathrooms clad in Italian marble, and a concierge team who anticipates your desires before you voice them.\n\nOur philosophy is simple: luxury lies not in opulence alone, but in the curation of experiences that linger in memory. Whether it's champagne delivered to your suite as the sun sets over Hyde Park, a private after-hours tour of the National Gallery, or simply the perfect cup of Earl Grey prepared exactly as you prefer—excellence is in every detail.",
+        "aboutImage": "https://cdn.example.com/the-pemberton-grand-about-1.webp",
+        "aboutImageMobile": "https://cdn.example.com/the-pemberton-grand-about-1.m.webp",
+        "aboutImageAlt": "Ornate Victorian staircase with wrought iron railings and original stained glass dome",
+        "aboutHighlights": [
+          {
+            "label": "Established",
+            "value": "1891"
+          },
+          {
+            "label": "Location",
+            "value": "Exclusive Mayfair"
+          },
+          {
+            "label": "Suites",
+            "value": "24 Bespoke Rooms"
+          },
+          {
+            "label": "Recognition",
+            "value": "Forbes Five-Star"
+          }
+        ]
+      },
+      "order": 2
+    },
+    {
+      "type": "rooms",
+      "variant": {
+        "roomCardStyle": "detailed",
+        "imageHeight": "tall"
+      },
+      "props": {
+        "rooms": [
+          {
+            "id": "room-deluxe",
+            "name": "The Mayfair Suite",
+            "type": "Deluxe Suite",
+            "price": 385,
+            "capacity": 2,
+            "amenities": [
+              "King-size four-poster bed",
+              "Marble bathroom with rainfall shower",
+              "Private balcony",
+              "Butler service",
+              "Champagne on arrival"
+            ],
+            "description": "A sanctuary of sophistication featuring soaring ceilings, antique furnishings, and views over our private gardens. The Mayfair Suite offers 45 square metres of curated luxury with a hand-carved four-poster bed draped in 600-thread-count Egyptian cotton.",
+            "image": "https://cdn.example.com/the-pemberton-grand-rooms-1.webp",
+            "imageMobile": "https://cdn.example.com/the-pemberton-grand-rooms-1.m.webp"
+          },
+          {
+            "id": "room-grand",
+            "name": "The Pemberton Room",
+            "type": "Grand Room",
+            "price": 295,
+            "capacity": 2,
+            "amenities": [
+              "Super-king bed",
+              "Freestanding soaking tub",
+              "Working fireplace",
+              "24-hour room service",
+              "Fresh flowers daily"
+            ],
+            "description": "Named after our founding family, this grand room captures the essence of Victorian romance. Original cornicing frames walls adorned with curated artwork, while a working fireplace casts a warm glow over intimate evenings.",
+            "image": "https://cdn.example.com/the-pemberton-grand-rooms-2.webp",
+            "imageMobile": "https://cdn.example.com/the-pemberton-grand-rooms-2.m.webp"
+          },
+          {
+            "id": "room-heritage",
+            "name": "The Hyde Park View",
+            "type": "Heritage Room",
+            "price": 245,
+            "capacity": 2,
+            "amenities": [
+              "Queen-size bed",
+              "En-suite bathroom",
+              "Park views",
+              "Nespresso machine",
+              "Turndown service"
+            ],
+            "description": "Floor-to-ceiling sash windows frame sweeping views of Hyde Park, bathing this elegant room in natural light. Heritage features blend seamlessly with modern comforts in this quintessentially British retreat.",
+            "image": "https://cdn.example.com/the-pemberton-grand-rooms-3.webp",
+            "imageMobile": "https://cdn.example.com/the-pemberton-grand-rooms-3.m.webp"
+          },
+          {
+            "id": "room-royal",
+            "name": "The Royal Penthouse",
+            "type": "Penthouse Suite",
+            "price": 495,
+            "capacity": 2,
+            "amenities": [
+              "Private terrace",
+              "Panoramic London views",
+              "Personal butler",
+              "In-suite dining room",
+              "Spa bath"
+            ],
+            "description": "Our crowning jewel occupies the entire top floor, offering unparalleled views from the Thames to the London Eye. A private terrace, dedicated butler, and 85 square metres of bespoke luxury await the most discerning guests.",
+            "image": "https://cdn.example.com/the-pemberton-grand-rooms-4.webp",
+            "imageMobile": "https://cdn.example.com/the-pemberton-grand-rooms-4.m.webp"
+          }
+        ]
+      },
+      "order": 3
+    },
+    {
+      "type": "features",
+      "variant": {
+        "featuresLayout": "icon-grid",
+        "featuresColumns": 3
+      },
+      "props": {
+        "featuresHeading": "The Pemberton Difference",
+        "features": [
+          {
+            "title": "Curated Experiences",
+            "description": "From private gallery tours to helicopter rides over London, our concierge crafts bespoke moments tailored to your desires.",
+            "icon": "compass"
+          },
+          {
+            "title": "Heritage Grandeur",
+            "description": "Our meticulously restored Victorian mansion offers an authentic journey through time with every modern luxury.",
+            "icon": "landmark"
+          },
+          {
+            "title": "Intimate Scale",
+            "description": "With just 24 suites, we offer personalized attention impossible in larger establishments. Every guest is remembered.",
+            "icon": "heart"
+          },
+          {
+            "title": "Culinary Excellence",
+            "description": "Our Michelin-recommended restaurant celebrates British heritage with contemporary artistry and the finest ingredients.",
+            "icon": "star"
+          },
+          {
+            "title": "Romantic Sanctuary",
+            "description": "Designed exclusively for couples, every corner of The Pemberton Grand invites connection and intimacy.",
+            "icon": "gem"
+          },
+          {
+            "title": "Unrivaled Location",
+            "description": "Steps from Hyde Park, Bond Street, and the finest of Mayfair—London's treasures await at your doorstep.",
+            "icon": "map-pin"
+          }
+        ]
+      },
+      "order": 4
+    },
+    {
+      "type": "gallery",
+      "variant": {
+        "cardStyle": "elevated",
+        "galleryLayout": "grid",
+        "gallerySpacing": "normal",
+        "aspectRatio": "landscape",
+        "columns": 3
+      },
+      "props": {
+        "images": [
+          {
+            "id": "gallery-1",
+            "src": "https://cdn.example.com/the-pemberton-grand-gallery-1.webp",
+            "srcMobile": "https://cdn.example.com/the-pemberton-grand-gallery-1.m.webp",
+            "alt": "Victorian hotel facade at dusk",
+            "caption": "Our heritage exterior illuminated at twilight"
+          },
+          {
+            "id": "gallery-2",
+            "src": "https://cdn.example.com/the-pemberton-grand-gallery-2.webp",
+            "srcMobile": "https://cdn.example.com/the-pemberton-grand-gallery-2.m.webp",
+            "alt": "Grand lobby with crystal chandelier",
+            "caption": "The Pemberton Grand lobby"
+          },
+          {
+            "id": "gallery-3",
+            "src": "https://cdn.example.com/the-pemberton-grand-gallery-3.webp",
+            "srcMobile": "https://cdn.example.com/the-pemberton-grand-gallery-3.m.webp",
+            "alt": "Luxury suite four-poster bed",
+            "caption": "The Mayfair Suite"
+          },
+          {
+            "id": "gallery-4",
+            "src": "https://cdn.example.com/the-pemberton-grand-gallery-4.webp",
+            "srcMobile": "https://cdn.example.com/the-pemberton-grand-gallery-4.m.webp",
+            "alt": "Candlelit fine dining restaurant",
+            "caption": "The Earl's Table restaurant"
+          },
+          {
+            "id": "gallery-5",
+            "src": "https://cdn.example.com/the-pemberton-grand-gallery-5.webp",
+            "srcMobile": "https://cdn.example.com/the-pemberton-grand-gallery-5.m.webp",
+            "alt": "Private garden terrace seating",
+            "caption": "Our secluded garden terrace"
+          },
+          {
+            "id": "gallery-6",
+            "src": "https://cdn.example.com/the-pemberton-grand-gallery-6.webp",
+            "srcMobile": "https://cdn.example.com/the-pemberton-grand-gallery-6.m.webp",
+            "alt": "Marble bathroom with freestanding tub",
+            "caption": "En-suite luxury"
+          },
+          {
+            "id": "gallery-7",
+            "src": "https://cdn.example.com/the-pemberton-grand-gallery-7.webp",
+            "srcMobile": "https://cdn.example.com/the-pemberton-grand-gallery-7.m.webp",
+            "alt": "Afternoon tea with silver service",
+            "caption": "Traditional afternoon tea service"
+          },
+          {
+            "id": "gallery-8",
+            "src": "https://cdn.example.com/the-pemberton-grand-gallery-8.webp",
+            "srcMobile": "https://cdn.example.com/the-pemberton-grand-gallery-8.m.webp",
+            "alt": "Hyde Park view from suite window",
+            "caption": "Views across Hyde Park"
+          },
+          {
+            "id": "gallery-9",
+            "src": "https://cdn.example.com/the-pemberton-grand-gallery-9.webp",
+            "srcMobile": "https://cdn.example.com/the-pemberton-grand-gallery-9.m.webp",
+            "alt": "Ornate Victorian spiral staircase",
+            "caption": "Our original 1891 staircase"
+          }
+        ]
+      },
+      "order": 5
+    },
+    {
+      "type": "testimonials",
+      "variant": {
+        "testimonialsLayout": "featured",
+        "testimonialsColumns": 2
+      },
+      "props": {
+        "testimonials": [
+          {
+            "id": "testimonial-1",
+            "customerName": "Victoria & James",
+            "customerTitle": "Anniversary Stay, Surrey",
+            "rating": 5,
+            "quote": "We've stayed at luxury hotels worldwide, but The Pemberton Grand possesses something truly rare—an authenticity that cannot be manufactured. Our anniversary was transformed into an unforgettable experience. The staff remembered our names, our preferences, even the specific flowers I admired in the lobby. Bespoke excellence."
+          },
+          {
+            "id": "testimonial-2",
+            "customerName": "Eleanor Whitmore",
+            "customerTitle": "Honeymoon, New York",
+            "rating": 5,
+            "quote": "Every moment felt curated just for us. The surprise rose petals, the champagne, the private tour they arranged—it was beyond anything we imagined. This is not merely a hotel; it is a love letter to romance."
+          },
+          {
+            "id": "testimonial-3",
+            "customerName": "Thomas & Margaret",
+            "customerTitle": "Weekend Escape, Edinburgh",
+            "rating": 5,
+            "quote": "The attention to detail is unparalleled. From the handwritten welcome note to the perfectly drawn bath awaiting our return from dinner—The Pemberton Grand understands that true luxury lies in anticipation. We shall return."
+          },
+          {
+            "id": "testimonial-4",
+            "customerName": "Camilla Beaumont",
+            "customerTitle": "Birthday Celebration, Paris",
+            "rating": 5,
+            "quote": "Magnificent. The Royal Penthouse exceeded every expectation. Waking to panoramic views of London, breakfast on our private terrace, a butler who seemed to read our minds—this is excellence redefined."
+          }
+        ]
+      },
+      "order": 6
+    },
+    {
+      "type": "amenities",
+      "variant": {
+        "amenitiesLayout": "grid",
+        "amenitiesColumns": 3,
+        "iconSize": "medium",
+        "iconStyle": "colored"
+      },
+      "props": {
+        "amenities": [
+          {
+            "id": "amenity-1",
+            "name": "The Earl's Table",
+            "description": "Michelin-recommended fine dining",
+            "icon": "utensils",
+            "category": "hotel"
+          },
+          {
+            "id": "amenity-2",
+            "name": "Private Spa Suite",
+            "description": "Couples' treatments exclusively",
+            "icon": "spa",
+            "category": "hotel"
+          },
+          {
+            "id": "amenity-3",
+            "name": "Garden Terrace",
+            "description": "Secluded outdoor sanctuary",
+            "icon": "tree",
+            "category": "hotel"
+          },
+          {
+            "id": "amenity-4",
+            "name": "Afternoon Tea",
+            "description": "Traditional silver service",
+            "icon": "coffee",
+            "category": "hotel"
+          },
+          {
+            "id": "amenity-5",
+            "name": "Butler Service",
+            "description": "24-hour personal attention",
+            "icon": "concierge-bell",
+            "category": "services"
+          },
+          {
+            "id": "amenity-6",
+            "name": "Champagne Bar",
+            "description": "Rare vintages and cocktails",
+            "icon": "glass-cheers",
+            "category": "hotel"
+          },
+          {
+            "id": "amenity-7",
+            "name": "Hyde Park",
+            "description": "Moments from our entrance",
+            "icon": "map-marker-alt",
+            "category": "location"
+          },
+          {
+            "id": "amenity-8",
+            "name": "Private Cinema",
+            "description": "Intimate screenings for two",
+            "icon": "film",
+            "category": "hotel"
+          },
+          {
+            "id": "amenity-9",
+            "name": "Concierge",
+            "description": "Bespoke London experiences",
+            "icon": "key",
+            "category": "services"
+          },
+          {
+            "id": "amenity-10",
+            "name": "In-Suite Dining",
+            "description": "Gourmet meals anytime",
+            "icon": "room-service",
+            "category": "room"
+          },
+          {
+            "id": "amenity-11",
+            "name": "Fireplace Suites",
+            "description": "Working Victorian fireplaces",
+            "icon": "fire",
+            "category": "room"
+          },
+          {
+            "id": "amenity-12",
+            "name": "Mayfair Location",
+            "description": "Heart of prestigious London",
+            "icon": "crown",
+            "category": "location"
+          }
+        ]
+      },
+      "order": 7
+    },
+    {
+      "type": "booking",
+      "variant": {
+        "bookingStyle": "desktop",
+        "bookingTheme": "dark"
+      },
+      "props": {
+        "bookingHeading": "Reserve Your Bespoke Experience",
+        "bookingDescription": "Begin your journey to unparalleled luxury. Our reservations team awaits to curate your perfect stay.",
+        "checkInLabel": "Arrival",
+        "checkOutLabel": "Departure",
+        "guestsLabel": "Guests",
+        "roomLabel": "Suite Preference",
+        "submitText": "Check Availability",
+        "phoneBooking": "Or call +44 20 7123 4567"
+      },
+      "order": 8
+    },
+    {
+      "type": "footer",
+      "variant": {
+        "footerLayout": "classic"
+      },
+      "props": {
+        "footerHotelName": "The Pemberton Grand",
+        "footerAddress": "42 Pemberton Square, Mayfair, London W1K 2HD, United Kingdom",
+        "footerPhone": "+44 20 7123 4567",
+        "footerEmail": "reservations@pembertongrand.co.uk",
+        "footerTagline": "Where Refinement Meets Romance Since 1891",
+        "footerSocialLinks": [
+          {
+            "platform": "instagram",
+            "url": "https://instagram.com/pembertongrand"
+          },
+          {
+            "platform": "facebook",
+            "url": "https://facebook.com/pembertongrand"
+          },
+          {
+            "platform": "tripadvisor",
+            "url": "https://tripadvisor.com/Hotel_Review-pembertongrand"
+          },
+          {
+            "platform": "twitter",
+            "url": "https://twitter.com/pembertongrand"
+          }
+        ],
+        "footerNavigationLinks": [
+          {
+            "label": "Our Story",
+            "href": "/about"
+          },
+          {
+            "label": "Suites & Rooms",
+            "href": "/rooms"
+          },
+          {
+            "label": "Dining",
+            "href": "/dining"
+          },
+          {
+            "label": "Experiences",
+            "href": "/experiences"
+          },
+          {
+            "label": "Gallery",
+            "href": "/gallery"
+          },
+          {
+            "label": "Gift Vouchers",
+            "href": "/vouchers"
+          },
+          {
+            "label": "Careers",
+            "href": "/careers"
+          },
+          {
+            "label": "Press",
+            "href": "/press"
+          },
+          {
+            "label": "Privacy Policy",
+            "href": "/privacy"
+          },
+          {
+            "label": "Terms & Conditions",
+            "href": "/terms"
+          }
+        ],
+        "copyright": "© 2026 The Pemberton Grand. All rights reserved."
+      },
+      "order": 9
+    }
+  ],
+  "layoutStructure": "mixed",
+  "emphasisComponents": [
+    "hero",
+    "gallery",
+    "about"
+  ],
+  "validationStatus": "PASS",
+  "designTokens": {
+    "archetype": "heritage-opulence",
+    "guestPersona": "Affluent couples seeking romantic grandeur and cultivated sophistication. They value tradition, impeccable service, and immersive historical ambiance. These guests appreciate fine details like fresh flowers, turndown service, and afternoon tea. They prefer intimate corners in majestic spaces and expect every touchpoint to feel considered and refined.",
+    "emotionalIntent": "Enveloped in refined warmth, timeless sophistication, and quiet indulgence that honors the grandeur of a bygone era",
+    "architecturalInspiration": "Grand Victorian railway hotels with sweeping marble staircases, domed reception halls, crystal chandeliers, mahogany paneling, and oil paintings in gilded frames",
+    "forbiddenElements": [
+      "bg-white",
+      "Inter as heading font",
+      "rounded-md",
+      "tracking-tight"
+    ],
+    "colorScheme": {
+      "primaryHue": 253,
+      "primaryChroma": 0.14,
+      "primaryLightness": 0.32,
+      "secondaryHue": 353,
+      "secondaryChroma": 0.16,
+      "secondaryLightness": 0.38,
+      "surfaceType": "warm-cream",
+      "accentStrategy": "warm-neutral"
+    },
+    "typography": {
+      "headingPersonality": "serif-elegant",
+      "bodyPersonality": "serif-readable",
+      "scaleRatio": "golden-ratio"
+    },
+    "spacing": {
+      "density": "spacious"
+    },
+    "borderRadius": {
+      "style": "sharp"
+    }
+  }
+}

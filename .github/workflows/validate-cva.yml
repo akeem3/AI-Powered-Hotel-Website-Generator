@@ -1,0 +1,50 @@
+name: CVA Validation
+
+on:
+  push:
+    branches: [main, Epic-*]
+    paths:
+      - 'web-app/lib/cva-variants.ts'
+      - 'web-app/lib/contracts/**'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'web-app/lib/cva-variants.ts'
+      - 'web-app/lib/contracts/**'
+
+jobs:
+  validate:
+    name: Validate CVA Variants
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./web-app
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Validate CVA Tokens
+        id: validate-tokens
+        run: bash ../scripts/validate-cva-tokens.sh
+
+      - name: Validate Contract-CVA Sync
+        id: validate-sync
+        run: npx tsx scripts/validate-contract-cva-sync.ts
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "## CVA Validation Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- CVA Token Validation: ${{ steps.validate-tokens.outcome || 'completed' }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Contract-CVA Sync: ${{ steps.validate-sync.outcome || 'completed' }}" >> $GITHUB_STEP_SUMMARY

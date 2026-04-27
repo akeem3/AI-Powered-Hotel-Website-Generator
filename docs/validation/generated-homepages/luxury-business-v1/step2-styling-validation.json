@@ -1,0 +1,48 @@
+{
+  "timestamp": "2025-12-10T14:54:57.096Z",
+  "status": "pass",
+  "data": {
+    "componentVariants": {
+      "hero": {
+        "style": "elegant",
+        "layout": "split",
+        "overlay": "dark",
+        "height": "medium"
+      },
+      "navigation": {
+        "navStyle": "classic",
+        "navLayout": "split"
+      },
+      "rooms": {
+        "roomCardStyle": "detailed",
+        "imageHeight": "large"
+      },
+      "gallery": {
+        "galleryLayout": "masonry",
+        "gallerySpacing": "normal",
+        "aspectRatio": "landscape",
+        "columns": 3
+      },
+      "testimonials": {
+        "testimonialsLayout": "featured",
+        "testimonialsColumns": 2,
+        "cardStyle": "elevated"
+      },
+      "amenities": {
+        "amenitiesLayout": "featured",
+        "amenitiesColumns": 3,
+        "iconSize": "large",
+        "iconStyle": "colored"
+      },
+      "booking": {
+        "bookingStyle": "featured",
+        "bookingTheme": "brand"
+      },
+      "contact": {
+        "contactLayout": "side-by-side",
+        "contactBackground": "subtle"
+      }
+    },
+    "reasoning": "Selected elegant and premium styling variants to reinforce the luxury business positioning. Split layouts for Hero and Navigation offer a sophisticated look. Detailed room cards and Featured amenities/testimonials showcase quality and build trust with high-value business travelers."
+  }
+}

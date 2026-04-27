@@ -1,0 +1,8 @@
+schema: 1
+story: '24.10'
+gate: PASS
+status_reason: 'All acceptance criteria met. FAQ page implemented with Epic 19 FAQ block (conditional), list-based fallback, 8 fallbackFAQs items, and JSON-LD FAQPage schema. 32/32 tests passing.'
+reviewer: 'James (Dev)'
+updated: '2026-03-23T16:30:00Z'
+top_issues: []
+waiver: { active: false }

@@ -1,0 +1,15 @@
+schema: 1
+story: '24.14'
+gate: WAIVED
+status_reason: 'Story superseded by Epic 25 Story 25.1. WebsiteConfigSchema will be defined in Epic 25 per architecture decision. NavigationContract validation AC already implemented (.max(8) links).'
+reviewer: 'James (Dev)'
+updated: '2026-03-23T16:30:00Z'
+top_issues:
+  - id: 'REQ-001'
+    severity: low
+    finding: 'Story superseded by Epic 25 - WebsiteConfigSchema deferred to post-processing architecture'
+    suggested_action: 'Implement in Epic 25 Story 25.1 per architectural decision'
+waiver:
+  active: true
+  reason: 'Story superseded by Epic 25 Story 25.1 - WebsiteConfigSchema moved to split-to-pages.ts post-processing function per Epic 25 architecture decision'
+  approved_by: 'Epic Owner'

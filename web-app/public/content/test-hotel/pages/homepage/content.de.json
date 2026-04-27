@@ -1,0 +1,126 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "generatedAt": "2026-01-20T00:00:00Z",
+    "hotelId": "test-hotel",
+    "locale": "de"
+  },
+  "hero": {
+    "tagline": "Erleben Sie Luxus",
+    "title": "The Sterling Executive",
+    "headline": "Wo Geschäft auf Boutique-Exzellenz trifft",
+    "description": "Erleben Sie die perfekte Kombination aus unternehmerischer Effizienz und Boutique-Luxus im Herzen des Geschäftsviertels.",
+    "backgroundImage": "@media:homepage.hero",
+    "primaryCTA": {
+      "text": "Jetzt Buchen",
+      "href": "/booking",
+      "ariaLabel": "Buchen Sie Ihren Aufenthalt im The Sterling Executive"
+    },
+    "secondaryCTA": {
+      "text": "Zimmer Erkunden",
+      "href": "/rooms",
+      "ariaLabel": "Erkunden Sie unsere Zimmeroptionen im The Sterling Executive"
+    },
+    "imageAlt": "Schöne Außenansicht des The Sterling Executive Hotels"
+  },
+  "navigation": {
+    "links": [
+      {
+        "href": "/rooms",
+        "label": "Zimmer"
+      },
+      {
+        "href": "/amenities",
+        "label": "Ausstattung"
+      },
+      {
+        "href": "/testimonials",
+        "label": "Bewertungen"
+      },
+      {
+        "href": "/contact",
+        "label": "Kontakt"
+      }
+    ],
+    "logo": {
+      "ariaLabel": "The Sterling Executive - Startseite",
+      "text": "TSE",
+      "initials": "TSE"
+    },
+    "cta": {
+      "text": "Jetzt Buchen"
+    }
+  },
+  "sections": {
+    "amenities": {
+      "heading": "Erstklassige Ausstattung",
+      "subheading": "Alles was Sie für einen perfekten Aufenthalt brauchen"
+    },
+    "testimonials": {
+      "heading": "Was Unsere Gäste Sagen",
+      "subheading": "Lesen Sie Bewertungen unserer zufriedenen Kunden"
+    },
+    "contact": {
+      "title": "Kontaktieren Sie Uns",
+      "fields": {
+        "name": {
+          "label": "Vollständiger Name",
+          "placeholder": "Geben Sie Ihren Namen ein"
+        },
+        "email": {
+          "label": "E-Mail-Adresse",
+          "placeholder": "ihre.email@beispiel.de"
+        },
+        "phone": {
+          "label": "Telefonnummer",
+          "placeholder": "+1 (555) 000-0000"
+        },
+        "subject": {
+          "label": "Betreff",
+          "placeholder": "Wie können wir Ihnen helfen?",
+          "options": {
+            "reservations": "Reservierungen",
+            "inquiry": "Allgemeine Anfrage",
+            "feedback": "Feedback",
+            "complaint": "Beschwerde",
+            "other": "Sonstiges"
+          }
+        },
+        "message": {
+          "label": "Nachricht",
+          "placeholder": "Geben Sie Ihre Nachricht hier ein..."
+        }
+      },
+      "submitButton": {
+        "text": "Nachricht Senden",
+        "loadingText": "Wird gesendet..."
+      },
+      "messages": {
+        "success": "Vielen Dank für Ihre Nachricht! Wir werden uns innerhalb von 24 Stunden bei Ihnen melden.",
+        "error": "Entschuldigung, bei senden Ihrer Nachricht ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
+      }
+    }
+  },
+  "footer": {
+    "copyright": "© 2026 The Sterling Executive. Alle Rechte vorbehalten."
+  },
+  "_mediaManifest": {
+    "cdn": {
+      "baseUrl": "https://cdn.example.com",
+      "transformPath": "/cdn-cgi/image"
+    },
+    "assets": {
+      "homepage": {
+        "hero": {
+          "id": "hero-001",
+          "path": "/test-hotel/hero.webp",
+          "mobilePath": "/test-hotel/hero-mobile.webp",
+          "alt": "Außenansicht des The Sterling Executive Hotels",
+          "blurhash": "L6Pj0^jE",
+          "width": 1920,
+          "height": 1080
+        }
+      }
+    }
+  }
+}

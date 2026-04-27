@@ -1,0 +1,10 @@
+---
+schema: 1
+story: '22.3'
+gate: PASS
+status_reason: 'All acceptance criteria met. Implementation complete with 52 passing tests. Report generator successfully produces JSON and markdown diversity reports with pairwise scores, mode collapse detection, and actionable recommendations. Low diversity scores (30.6%) are expected findings for Story 22.4 to address via prompt tuning.'
+reviewer: 'Quinn'
+updated: '2026-03-13T11:00:00Z'
+top_issues: []
+waiver:
+  active: false

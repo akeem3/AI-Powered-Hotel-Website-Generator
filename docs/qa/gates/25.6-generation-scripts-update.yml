@@ -1,0 +1,8 @@
+schema: 1
+story: '25.6'
+gate: PASS
+status_reason: 'All acceptance criteria met with 45/45 tests passing (100%). Both generation scripts output WebsiteConfig alongside HomepageConfig. Fixtures updated successfully. Graceful degradation implemented for backward compatibility.'
+reviewer: 'Dev Agent'
+updated: '2026-03-25T12:00:00Z'
+top_issues: []
+waiver: { active: false }

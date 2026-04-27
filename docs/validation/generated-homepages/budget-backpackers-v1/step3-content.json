@@ -1,0 +1,87 @@
+{
+  "componentContent": {
+    "hero": {
+      "title": "Urban Base Camp",
+      "headline": "Sleep Cheap, Dream Big",
+      "tagline": "The City is Your Playground",
+      "description": "Located in the heart of the arts district. Free WiFi, epic pub crawls, and friends you haven't met yet.",
+      "primaryCTA": {
+        "text": "Book a Bed",
+        "href": "/booking"
+      }
+    },
+    "navigation": {
+      "logoText": "UBC Hostel",
+      "links": [
+        { "text": "Dorms", "href": "/rooms" },
+        { "text": "Events", "href": "/events" },
+        { "text": "Guide", "href": "/guide" },
+        { "text": "Find Us", "href": "/contact" }
+      ]
+    },
+    "rooms": [
+      {
+        "id": "mixed-dorm",
+        "name": "8-Bed Mixed Dorm",
+        "type": "Dorm",
+        "price": 25,
+        "capacity": 1,
+        "amenities": ["Privacy Curtain", "Reading Light", "Locker", "USB Ports"],
+        "description": "Social and secure. Everything you need for a good night's sleep."
+      },
+      {
+        "id": "female-dorm",
+        "name": "6-Bed Female Dorm",
+        "type": "Dorm",
+        "price": 30,
+        "capacity": 1,
+        "amenities": ["Ensuite Bathroom", "Vanity Area", "Hair Dryer", "Full Mirror"],
+        "description": "A little extra comfort and privacy for female travelers."
+      },
+      {
+        "id": "private-double",
+        "name": "Private Double",
+        "type": "Private Room",
+        "price": 60,
+        "capacity": 2,
+        "amenities": ["Double Bed", "Shared Bath", "Towel Included", "Window"],
+        "description": "Your own space to recharge after a long night out."
+      }
+    ],
+    "gallery": {
+      "images": [
+        { "id": "g1", "src": "/images/common-room.jpg", "alt": "Travelers hanging out in the common room" },
+        { "id": "g2", "src": "/images/rooftop-party.jpg", "alt": "Rooftop BBQ night" },
+        { "id": "g3", "src": "/images/kitchen.jpg", "alt": "Fully equipped communal kitchen" },
+        { "id": "g4", "src": "/images/dorm-bed.jpg", "alt": "Cozy dorm pod with privacy curtain" },
+        { "id": "g5", "src": "/images/bar.jpg", "alt": "On-site bar happy hour" },
+        { "id": "g6", "src": "/images/street-art.jpg", "alt": "Local street art tour group" },
+        { "id": "g7", "src": "/images/game-night.jpg", "alt": "Board game night" },
+        { "id": "g8", "src": "/images/coffee.jpg", "alt": "Free morning coffee" }
+      ]
+    },
+    "amenities": {
+      "amenities": [
+        { "id": "a1", "name": "Superfast WiFi", "description": "Stream anywhere", "category": "services", "icon": "wifi" },
+        { "id": "a2", "name": "Lockers", "description": "Keep your gear safe", "category": "room", "icon": "lock" },
+        { "id": "a3", "name": "Guest Kitchen", "description": "Cook your own meals", "category": "hotel", "icon": "utensils" },
+        { "id": "a4", "name": "24/7 Reception", "description": "Late check-in ok", "category": "services", "icon": "clock" },
+        { "id": "a5", "name": "Happy Hour", "description": "Daily drink specials", "category": "hotel", "icon": "beer" },
+        { "id": "a6", "name": "Bike Rental", "description": "Explore the city", "category": "location", "icon": "bicycle" },
+        { "id": "a7", "name": "Laundry", "description": "Wash & fold service", "category": "services", "icon": "shirt" },
+        { "id": "a8", "name": "Tour Desk", "description": "Local expert tips", "category": "services", "icon": "map" }
+      ]
+    },
+    "booking": {
+      "title": "Secure Your Spot",
+      "submitButtonText": "Check Availability"
+    },
+    "contact": {
+      "title": "Drop By",
+      "subtitle": "We're in the center of the action",
+      "submitButtonText": "Email Us",
+      "successMessage": "Got it! See you soon."
+    }
+  },
+  "reasoning": "Youthful, energetic wording ('Epic', 'Base Camp'). Focus on social features ('Happy Hour', 'Pub crawls') and budget necessities ('Lockers', 'WiFi', 'Kitchen')."
+}

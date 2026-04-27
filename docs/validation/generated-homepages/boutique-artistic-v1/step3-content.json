@@ -1,0 +1,87 @@
+{
+  "componentContent": {
+    "hero": {
+      "title": "The Canvas",
+      "headline": "Sleep Inside a Masterpiece",
+      "tagline": "Curated Stays in Melbourne's Arts District",
+      "description": "More than a hotel—a living gallery. Featuring rotating installations by local artists and design-forward spaces.",
+      "primaryCTA": {
+        "text": "View Studios",
+        "href": "/studios"
+      },
+      "secondaryCTA": {
+        "text": "Current Exhibition",
+        "href": "/gallery"
+      }
+    },
+    "navigation": {
+      "logoText": "The Canvas",
+      "links": [
+        { "text": "Studios", "href": "/studios" },
+        { "text": "Exhibitions", "href": "/exhibitions" },
+        { "text": "Eat/Drink", "href": "/dining" },
+        { "text": "Book", "href": "/booking" }
+      ]
+    },
+    "rooms": [
+      {
+        "id": "studio-loft",
+        "name": "Artist Loft",
+        "type": "Loft",
+        "price": 240,
+        "capacity": 2,
+        "amenities": ["Easels Included", "North Facing Light", "Turntable", "Espresso Bar"],
+        "description": "Double-height ceilings and industrial chic design. Stocked with art supplies for when inspiration strikes."
+      },
+      {
+        "id": "gallery-suite",
+        "name": "Collector's Suite",
+        "type": "Suite",
+        "price": 350,
+        "capacity": 2,
+        "amenities": ["Original Artworks", "Lounge Area", "Free-standing Tub", "City Views"],
+        "description": "Surround yourself with curated pieces from our permanent collection in this expansive suite."
+      },
+      {
+        "id": "design-queen",
+        "name": "Design Queen",
+        "type": "Room",
+        "price": 180,
+        "capacity": 2,
+        "amenities": ["Queensize Bed", "Smart TV", "Rain Shower", "Minibar"],
+        "description": "Efficient design meets bold aesthetics. Perfect for the modern nomad."
+      }
+    ],
+    "gallery": {
+      "images": [
+        { "id": "g1", "src": "/images/lobby-installation.jpg", "alt": "Neon light installation in lobby" },
+        { "id": "g2", "src": "/images/mural.jpg", "alt": "Street art mural in courtyard" },
+        { "id": "g3", "src": "/images/sculpture.jpg", "alt": "Modern sculpture in garden" },
+        { "id": "g4", "src": "/images/cocktail.jpg", "alt": "Craft cocktails at The Palette Bar" },
+        { "id": "g5", "src": "/images/loft-interior.jpg", "alt": "Industrial loft interior design" },
+        { "id": "g6", "src": "/images/artist-residence.jpg", "alt": "Artist in residence at work" }
+      ]
+    },
+    "amenities": {
+      "amenities": [
+        { "id": "a1", "name": "Art Gallery", "description": "Rotating local exhibitions", "category": "hotel", "icon": "eye" },
+        { "id": "a2", "name": "Rooftop Cinema", "description": "Indie films under the stars", "category": "hotel", "icon": "film" },
+        { "id": "a3", "name": "Vinyl Library", "description": "Curated records for your room", "category": "services", "icon": "music" },
+        { "id": "a4", "name": "Coffee Roastery", "description": "Small batch brew on site", "category": "hotel", "icon": "coffee" },
+        { "id": "a5", "name": "Design Shop", "description": "Prints and goods by locals", "category": "services", "icon": "shopping-bag" },
+        { "id": "a6", "name": "Bike Share", "description": "Custom vintage bikes", "category": "location", "icon": "bicycle" }
+      ]
+    },
+    "booking": {
+      "title": "Stay Inspired",
+      "submitButtonText": "Find a Room"
+    },
+    "contact": {
+      "title": "Collaborate",
+      "subtitle": "Host an event or exhibition",
+      "submitButtonText": "Get in Touch",
+      "successMessage": "We love new ideas. Talk soon."
+    }
+  },
+  "reasoning": "Creative, stimulating language ('Masterpiece', 'Installations'). Focus on cultural amenities ('Cinema', 'Vinyl') appeals to the artistic persona."
+}

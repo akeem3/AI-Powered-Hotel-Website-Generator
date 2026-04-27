@@ -1,0 +1,1 @@
+{ "selectedComponents": ["hero", "navigation", "gallery", "amenities", "booking", "contact"], "layoutStructure": "mixed", "emphasisComponents": ["hero", "gallery"], "reasoning": "Adventure focused." }

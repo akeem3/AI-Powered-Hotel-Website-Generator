@@ -1,0 +1,8 @@
+schema: 1
+story: '11.5'
+gate: PASS
+status_reason: 'All acceptance criteria met. 54 tests passing. Per-page locale structure, browser detection, language selector, fallback mechanism, and schema validation all implemented correctly.'
+reviewer: 'Claude'
+updated: '2026-01-21T00:00:00Z'
+top_issues: []
+waiver: { active: false }

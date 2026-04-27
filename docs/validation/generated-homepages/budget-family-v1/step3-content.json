@@ -1,0 +1,73 @@
+{
+  "componentContent": {
+    "hero": {
+      "title": "Sunny Days Inn",
+      "headline": "Your Family's Home Base",
+      "tagline": "Comfortable, Affordable, and Fun",
+      "description": "Clean and spacious rooms perfect for your family adventure. Enjoy free breakfast and a pool everyone will love.",
+      "primaryCTA": {
+        "text": "See Rates",
+        "href": "/booking"
+      }
+    },
+    "navigation": {
+      "logoText": "Sunny Days Inn",
+      "links": [
+        { "text": "Rooms", "href": "/rooms" },
+        { "text": "Amenities", "href": "/amenities" },
+        { "text": "Offers", "href": "/offers" },
+        { "text": "Contact", "href": "/contact" }
+      ]
+    },
+    "rooms": [
+      {
+        "id": "family-suite",
+        "name": "Family Suite",
+        "type": "Suite",
+        "price": 120,
+        "capacity": 4,
+        "amenities": ["2 Queen Beds", "Sofa Bed", "Mini Fridge", "Microwave"],
+        "description": "Plenty of space for the whole crew, plus a kitchenette for snack time."
+      },
+      {
+        "id": "standard-double",
+        "name": "standard Double Room",
+        "type": "Room",
+        "price": 89,
+        "capacity": 4,
+        "amenities": ["2 Double Beds", "Free WiFi", "Cable TV", "Coffee Maker"],
+        "description": "A cozy and clean spot to rest after a day of exploring."
+      },
+      {
+        "id": "budget-king",
+        "name": "Economy King",
+        "type": "Room",
+        "price": 79,
+        "capacity": 2,
+        "amenities": ["King Bed", "Work Desk", "Showe/Tub Combo"],
+        "description": "Great value for couples or solo travelers."
+      }
+    ],
+    "amenities": {
+      "amenities": [
+        { "id": "a1", "name": "Free Breakfast", "description": "Hot waffles and cereal daily", "category": "services", "icon": "coffee" },
+        { "id": "a2", "name": "Outdoor Pool", "description": "Splash around and cool off", "category": "hotel", "icon": "sun" },
+        { "id": "a3", "name": "Free WiFi", "description": "Stay connected everywhere", "category": "services", "icon": "wifi" },
+        { "id": "a4", "name": "Free Parking", "description": "Right outside your door", "category": "location", "icon": "car" },
+        { "id": "a5", "name": "Guest Laundry", "description": "Coin-operated machines", "category": "services", "icon": "shirt" },
+        { "id": "a6", "name": "Pet Friendly", "description": "Bring your furry friends", "category": "hotel", "icon": "dog" }
+      ]
+    },
+    "booking": {
+      "title": "Check Availability",
+      "submitButtonText": "Search Rooms"
+    },
+    "contact": {
+      "title": "Have Questions?",
+      "subtitle": "Call us anytime",
+      "submitButtonText": "Send Message",
+      "successMessage": "Thanks! We'll get back to you soon."
+    }
+  },
+  "reasoning": "Tone is friendly, simple, and direct. Focus words: 'Free', 'Family', 'Fun', 'Clean'. Perfect for budget-conscious families."
+}

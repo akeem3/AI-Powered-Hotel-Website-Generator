@@ -1,0 +1,41 @@
+/* ==========================================================================
+   Typography Tokens - Fluid Semantic Font Sizes
+   Follows the OKLCH color token pattern with -val suffix
+   Viewport range: 375px (sm) → 768px (md)
+   ========================================================================== */
+
+@layer base {
+  :root {
+    /* Display - Hero titles (36px → 60px) */
+    --font-size-display-val: clamp(2.25rem, 1.0153rem + 5.2749vw, 3.75rem);
+    --line-height-display-val: 1.1;
+
+    /* H1 - Page headings (24px → 36px) */
+    --font-size-h1-val: clamp(1.5rem, 0.8931rem + 2.5954vw, 2.25rem);
+    --line-height-h1-val: 1.2;
+
+    /* H2 - Section headings (28px → 40px) - Increased for better visual hierarchy */
+    --font-size-h2-val: clamp(1.75rem, 1.2rem + 2.5vw, 2.5rem);
+    --line-height-h2-val: 1.3;
+
+    /* H3 - Subsection headings (18px → 22px) */
+    --font-size-h3-val: clamp(1.125rem, 0.9275rem + 0.8473vw, 1.375rem);
+    --line-height-h3-val: 1.4;
+
+    /* Body Large - Emphasized body (18px → 20px) */
+    --font-size-body-large-val: clamp(1.125rem, 1.0260rem + 0.4237vw, 1.25rem);
+    --line-height-body-large-val: 1.6;
+
+    /* Body - Default body (16px → 18px) */
+    --font-size-body-val: clamp(1rem, 0.9008rem + 0.4237vw, 1.125rem);
+    --line-height-body-val: 1.6;
+
+    /* Caption - Small labels (14px → 16px) */
+    --font-size-caption-val: clamp(0.875rem, 0.7760rem + 0.4237vw, 1rem);
+    --line-height-caption-val: 1.5;
+
+    /* Overline - Tiny text (12px → 14px) */
+    --font-size-overline-val: clamp(0.75rem, 0.6512rem + 0.4237vw, 0.875rem);
+    --line-height-overline-val: 1.4;
+  }
+}

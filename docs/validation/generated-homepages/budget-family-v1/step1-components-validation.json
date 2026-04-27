@@ -1,0 +1,21 @@
+{
+  "timestamp": "2025-12-10T15:06:06.288Z",
+  "status": "pass",
+  "data": {
+    "selectedComponents": [
+      "hero",
+      "navigation",
+      "rooms",
+      "amenities",
+      "booking",
+      "contact"
+    ],
+    "layoutStructure": "single-column",
+    "emphasisComponents": [
+      "hero",
+      "rooms",
+      "booking"
+    ],
+    "reasoning": "Budget family travelers focus on value and practicality. Single-column layout is simple and mobile-friendly. Emphasis on 'rooms' (capacity/price) and 'amenities' (pool, breakfast). Keeping it simple to reduce cognitive load."
+  }
+}

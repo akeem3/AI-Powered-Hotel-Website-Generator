@@ -1,0 +1,8 @@
+schema: 1
+story: '20.4a'
+gate: PASS
+status_reason: 'All acceptance criteria met. 35/35 tests passing (3 skipped browser tests). Font injection properly implemented.'
+reviewer: 'Quinn'
+updated: '2026-03-06T10:30:00Z'
+top_issues: []
+waiver: { active: false }

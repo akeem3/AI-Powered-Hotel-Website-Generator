@@ -1,0 +1,309 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`Story 1.4 Integration Tests Snapshot Integration matches snapshot for complete integrated layout: Story14-IntegratedLayout 1`] = `
+<div>
+  <div>
+    <section
+      aria-labelledby="hero-title"
+      class="relative w-full overflow-hidden bg-gradient-to-r from-brand-primary to-brand-primary/high text-text-inverted flex items-center justify-center text-center min-h-hero-md [&_.hero-cta]:px-8 [&_.hero-cta]:py-6 [&_.hero-cta]:text-base [&_.hero-cta]:font-medium"
+      data-mode="modern"
+    >
+      <div
+        class="relative w-full h-full rounded-none overflow-hidden"
+      >
+        <img
+          alt="Where Business Meets Boutique Excellence"
+          class="object-cover object-center"
+          src="/images/hotel-img.jpg"
+        />
+        <div
+          aria-hidden="true"
+          class="absolute inset-0 z-base opacity-0"
+        />
+        <div
+          class="relative z-elevated max-w-screen-xl mx-auto flex items-center justify-center h-full py-hero px-container text-center"
+        >
+          <div
+            class="w-full space-y-gap-card"
+          >
+            <p
+              class="text-size-overline font-semibold uppercase tracking-wider text-brand-secondary"
+            >
+              Where Business Meets Boutique Excellence
+            </p>
+            <h2
+              class="text-on-brand text-size-body-large font-display"
+              id="hero-title"
+            >
+              The Sterling Executive
+            </h2>
+            <h1
+              class="text-brand-secondary text-size-display leading-tight font-display"
+            >
+              Experience bespoke service, quiet workspaces, and luxurious rooms in the heart of the business district.
+            </h1>
+            <p
+              class="mt-gap-card text-on-brand text-size-body max-w-2xl mx-auto leading-relaxed"
+            >
+              Experience the perfect blend of corporate efficiency and boutique luxury in the heart of the business district.
+            </p>
+            <div
+              class="mt-gap-section flex flex-col sm:flex-row justify-center gap-gap-card"
+            >
+              <a
+                aria-label="View Rooms"
+                class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm focus-ring disabled:pointer-events-none disabled:opacity-mid [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow h-9 px-4 py-2 hero-cta bg-brand-secondary text-on-brand hover:bg-brand-secondary-hover hover:text-brand-primary font-semibold rounded-lg transition-colors border-2 border-transparent"
+                href="/rooms"
+              >
+                View Rooms
+              </a>
+              <a
+                aria-label="Contact Us"
+                class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm focus-ring disabled:pointer-events-none disabled:opacity-mid [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow h-9 px-4 py-2 hero-cta bg-transparent border-2 border-on-brand text-on-brand hover:bg-brand-secondary-hover hover:text-brand-primary hover:border-transparent font-semibold rounded-lg transition-colors"
+                href="/contact"
+              >
+                Contact Us
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+    >
+      <div
+        data-testid="room-card-exec-suite-001"
+      >
+        <h3>
+          Executive Suite
+        </h3>
+        <p>
+          Variant: 
+          detailed
+        </p>
+        <p>
+          Type: 
+          Suite
+        </p>
+        <p>
+          Price: $
+          350
+        </p>
+        <p>
+          Capacity: 
+          4
+        </p>
+        <p>
+          Spacious suite with separate living area.
+        </p>
+        <ul>
+          <li>
+            WiFi
+          </li>
+          <li>
+            Workspace
+          </li>
+          <li>
+            Mini Bar
+          </li>
+          <li>
+            City View
+          </li>
+        </ul>
+      </div>
+      <div
+        data-testid="room-card-deluxe-king-002"
+      >
+        <h3>
+          Deluxe King Room
+        </h3>
+        <p>
+          Variant: 
+          detailed
+        </p>
+        <p>
+          Type: 
+          Standard
+        </p>
+        <p>
+          Price: $
+          225
+        </p>
+        <p>
+          Capacity: 
+          2
+        </p>
+        <p>
+          Comfortable room with king-size bed.
+        </p>
+        <ul>
+          <li>
+            WiFi
+          </li>
+          <li>
+            Workspace
+          </li>
+          <li>
+            Coffee Maker
+          </li>
+        </ul>
+      </div>
+      <div
+        data-testid="room-card-business-twin-003"
+      >
+        <h3>
+          Business Twin Room
+        </h3>
+        <p>
+          Variant: 
+          detailed
+        </p>
+        <p>
+          Type: 
+          Standard
+        </p>
+        <p>
+          Price: $
+          195
+        </p>
+        <p>
+          Capacity: 
+          2
+        </p>
+        <p>
+          Perfect for business travelers.
+        </p>
+        <ul>
+          <li>
+            WiFi
+          </li>
+          <li>
+            Workspace
+          </li>
+          <li>
+            Desk
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Story 1.4 Integration Tests Snapshot Integration matches snapshot with different data variations: Story14-DataVariations 1`] = `
+<div>
+  <div>
+    <section
+      aria-labelledby="hero-title"
+      class="relative w-full overflow-hidden bg-gradient-to-r from-brand-primary to-brand-primary/high text-text-inverted flex items-center justify-center text-center min-h-hero-md [&_.hero-cta]:px-8 [&_.hero-cta]:py-6 [&_.hero-cta]:text-base [&_.hero-cta]:font-medium"
+      data-mode="modern"
+    >
+      <div
+        class="relative w-full h-full rounded-none overflow-hidden"
+      >
+        <img
+          alt="Where Business Meets Boutique Excellence"
+          class="object-cover object-center"
+          src="/images/hotel-img.jpg"
+        />
+        <div
+          aria-hidden="true"
+          class="absolute inset-0 z-base opacity-0"
+        />
+        <div
+          class="relative z-elevated max-w-screen-xl mx-auto flex items-center justify-center h-full py-hero px-container text-center"
+        >
+          <div
+            class="w-full space-y-gap-card"
+          >
+            <p
+              class="text-size-overline font-semibold uppercase tracking-wider text-brand-secondary"
+            >
+              Where Business Meets Boutique Excellence
+            </p>
+            <h2
+              class="text-on-brand text-size-body-large font-display"
+              id="hero-title"
+            >
+              Different Hotel
+            </h2>
+            <h1
+              class="text-brand-secondary text-size-display leading-tight font-display"
+            >
+              Different Headline
+            </h1>
+            <p
+              class="mt-gap-card text-on-brand text-size-body max-w-2xl mx-auto leading-relaxed"
+            >
+              Experience the perfect blend of corporate efficiency and boutique luxury in the heart of the business district.
+            </p>
+            <div
+              class="mt-gap-section flex flex-col sm:flex-row justify-center gap-gap-card"
+            >
+              <a
+                aria-label="View Rooms"
+                class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm focus-ring disabled:pointer-events-none disabled:opacity-mid [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow h-9 px-4 py-2 hero-cta bg-brand-secondary text-on-brand hover:bg-brand-secondary-hover hover:text-brand-primary font-semibold rounded-lg transition-colors border-2 border-transparent"
+                href="/rooms"
+              >
+                View Rooms
+              </a>
+              <a
+                aria-label="Contact Us"
+                class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm focus-ring disabled:pointer-events-none disabled:opacity-mid [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow h-9 px-4 py-2 hero-cta bg-transparent border-2 border-on-brand text-on-brand hover:bg-brand-secondary-hover hover:text-brand-primary hover:border-transparent font-semibold rounded-lg transition-colors"
+                href="/contact"
+              >
+                Contact Us
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+    >
+      <div
+        data-testid="room-card-exec-suite-001"
+      >
+        <h3>
+          Executive Suite
+        </h3>
+        <p>
+          Variant: 
+          detailed
+        </p>
+        <p>
+          Type: 
+          Suite
+        </p>
+        <p>
+          Price: $
+          350
+        </p>
+        <p>
+          Capacity: 
+          4
+        </p>
+        <p>
+          Spacious suite with separate living area.
+        </p>
+        <ul>
+          <li>
+            WiFi
+          </li>
+          <li>
+            Workspace
+          </li>
+          <li>
+            Mini Bar
+          </li>
+          <li>
+            City View
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+`;

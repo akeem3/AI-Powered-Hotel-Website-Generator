@@ -1,0 +1,6 @@
+{
+  "selectedComponents": ["hero", "navigation", "gallery", "rooms", "amenities", "booking", "contact"],
+  "layoutStructure": "mixed",
+  "emphasisComponents": ["gallery", "hero"],
+  "reasoning": "For an artistic audience, visuals are paramount. 'Gallery' needs to be prominent to showcase art/decor. A 'Mixed' layout allows for creative breaking of the grid, fitting the 'Modern' personality."
+}

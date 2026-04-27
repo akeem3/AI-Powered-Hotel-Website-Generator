@@ -1,0 +1,44 @@
+{
+  "componentVariants": {
+    "hero": {
+      "style": "bold",
+      "layout": "fullscreen",
+      "overlay": "light",
+      "height": "fullscreen"
+    },
+    "navigation": {
+      "navStyle": "minimal",
+      "navLayout": "centered"
+    },
+    "gallery": {
+      "galleryLayout": "carousel",
+      "gallerySpacing": "loose",
+      "aspectRatio": "landscape",
+      "columns": 2
+    },
+    "rooms": {
+      "roomCardStyle": "detailed",
+      "imageHeight": "large"
+    },
+    "amenities": {
+      "amenitiesLayout": "featured",
+      "amenitiesColumns": 3,
+      "iconSize": "large",
+      "iconStyle": "colored"
+    },
+    "testimonials": {
+      "testimonialsLayout": "carousel",
+      "testimonialsColumns": 2,
+      "cardStyle": "minimal"
+    },
+    "booking": {
+      "bookingStyle": "minimal",
+      "bookingTheme": "brand"
+    },
+    "contact": {
+      "contactLayout": "centered",
+      "contactBackground": "featured"
+    }
+  },
+  "reasoning": "Fullscreen Hero and Carousel Gallery maximize visual impact for leisure travelers. Minimal navigation and booking widgets keep the focus on the imagery. Colored icons and detailed room cards emphasize the premium nature of the resort."
+}

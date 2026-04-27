@@ -1,0 +1,426 @@
+{
+  "generationId": "the-grand-azure-v1",
+  "timestamp": "2025-12-05T10:30:00Z",
+  "hotelParameters": {
+    "hotelType": "luxury",
+    "targetAudience": "couples",
+    "brandPersonality": "elegant",
+    "hotelName": "The Grand Azure",
+    "location": "Maldives"
+  },
+  "components": [
+    {
+      "type": "navigation",
+      "variant": {
+        "navStyle": "transparent",
+        "navLayout": "classic"
+      },
+      "props": {
+        "logoText": "THE",
+        "logoAlt": "The Grand Azure - Home",
+        "navigationLinks": [
+          {
+            "text": "Rooms",
+            "href": "/rooms",
+            "isActive": false
+          },
+          {
+            "text": "Amenities",
+            "href": "/amenities",
+            "isActive": false
+          },
+          {
+            "text": "Reviews",
+            "href": "/testimonials",
+            "isActive": false
+          },
+          {
+            "text": "Book Now",
+            "href": "/booking",
+            "isActive": false
+          }
+        ],
+        "cta": {
+          "text": "Book Now"
+        }
+      },
+      "order": 0
+    },
+    {
+      "type": "hero",
+      "variant": {
+        "style": "elegant",
+        "layout": "split",
+        "overlay": "dark",
+        "height": "large"
+      },
+      "props": {
+        "heading": "The Grand Azure",
+        "subheading": "An Intimate Escape for Two",
+        "headline": "Paradise Found in the Maldives",
+        "description": "Discover the pinnacle of luxury in our overwater villas. Experience unparalleled privacy, world-class dining, and the crystal-clear waters of the Indian Ocean.",
+        "ctaText": "Reserve Your Villa",
+        "ctaLink": "/booking",
+        "secondaryCtaText": "View Villas",
+        "secondaryCtaLink": "/rooms",
+        "backgroundImage": "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=1920&q=80"
+      },
+      "order": 1
+    },
+    {
+      "type": "about",
+      "variant": {
+        "layout": "side-by-side",
+        "imagePosition": "right",
+        "overlay": "none",
+        "textAlign": "left"
+      },
+      "props": {
+        "heading": "A Sanctuary of Serenity",
+        "content": "Nestled in the heart of the Maldives, The Grand Azure redefines the concept of a romantic getaway. Our exclusive resort features just 30 private overwater villas, each designed to blend seamlessly with the breathtaking natural surroundings. From the moment you arrive, you are enveloped in an atmosphere of tranquility and sophistication.\n\nOur philosophy is simple: to provide an unforgettable experience where time stands still and every detail is crafted to perfection. Whether you are watching the sunset from your private deck, enjoying a candlelit dinner on the beach, or indulging in a couples spa treatment, every moment at The Grand Azure is designed to create lasting memories.",
+        "image": "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=1200&q=80",
+        "highlights": [
+          {
+            "label": "Villas",
+            "value": "30 Private Retreats"
+          },
+          {
+            "label": "Location",
+            "value": "North Male Atoll"
+          },
+          {
+            "label": "Award",
+            "value": "World's Best Romance 2024"
+          },
+          {
+            "label": "Experience",
+            "value": "All-Inclusive Luxury"
+          }
+        ]
+      },
+      "order": 2
+    },
+    {
+      "type": "gallery",
+      "variant": {
+        "layout": "masonry",
+        "spacing": "normal",
+        "aspectRatio": "landscape",
+        "columns": 3
+      },
+      "props": {
+        "images": [
+          {
+            "id": "gal-1",
+            "desktopUrl": "https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=800&q=80",
+            "mobileUrl": "https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=400&q=80",
+            "alt": "Aerial view of The Grand Azure overwater villas in the Maldives"
+          },
+          {
+            "id": "gal-2",
+            "desktopUrl": "https://images.unsplash.com/photo-1540541338287-41700207dee6?w=800&q=80",
+            "mobileUrl": "https://images.unsplash.com/photo-1540541338287-41700207dee6?w=400&q=80",
+            "alt": "Luxury bedroom with panoramic ocean view through glass floor panels"
+          },
+          {
+            "id": "gal-3",
+            "desktopUrl": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80",
+            "mobileUrl": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=400&q=80",
+            "alt": "Couple enjoying a private candlelit dinner on the beach at sunset"
+          },
+          {
+            "id": "gal-4",
+            "desktopUrl": "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&q=80",
+            "mobileUrl": "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=400&q=80",
+            "alt": "Infinity pool overlooking the crystal clear turquoise waters"
+          },
+          {
+            "id": "gal-5",
+            "desktopUrl": "https://images.unsplash.com/photo-1607631568010-a87245c0daf8?w=800&q=80",
+            "mobileUrl": "https://images.unsplash.com/photo-1607631568010-a87245c0daf8?w=400&q=80",
+            "alt": "Couple receiving a relaxing massage treatment at the overwater spa"
+          },
+          {
+            "id": "gal-6",
+            "desktopUrl": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80",
+            "mobileUrl": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=400&q=80",
+            "alt": "Exterior view of a private villa with deck and direct ocean access"
+          }
+        ]
+      },
+      "order": 3
+    },
+    {
+      "type": "rooms",
+      "variant": {
+        "roomCardStyle": "detailed",
+        "imageHeight": "wide"
+      },
+      "props": {
+        "rooms": [
+          {
+            "id": "room-ocean",
+            "name": "Ocean Pavilion Villa",
+            "type": "Overwater Villa",
+            "price": 450,
+            "currency": "USD",
+            "description": "Our most exclusive accommodation featuring a private infinity pool, panoramic ocean views, and dedicated butler service for the ultimate romantic escape.",
+            "features": [
+              "Private Infinity Pool",
+              "Glass Floor Panels",
+              "Direct Ocean Access",
+              "Sunset Deck",
+              "Butler Service"
+            ],
+            "images": [
+              {
+                "desktopUrl": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80",
+                "mobileUrl": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=400&q=80",
+                "alt": "Ocean Pavilion Villa"
+              }
+            ]
+          },
+          {
+            "id": "room-beach",
+            "name": "Beachfront Retreat",
+            "type": "Beach Villa",
+            "price": 380,
+            "currency": "USD",
+            "description": "Nestled along pristine white sands, this villa offers direct beach access, a private plunge pool, and an outdoor shower surrounded by lush tropical gardens.",
+            "features": [
+              "Private Beach Access",
+              "Outdoor Rain Shower",
+              "Plunge Pool",
+              "Hammock",
+              "Daily Champagne Breakfast"
+            ],
+            "images": [
+              {
+                "desktopUrl": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=80",
+                "mobileUrl": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=400&q=80",
+                "alt": "Beachfront Retreat"
+              }
+            ]
+          },
+          {
+            "id": "room-lagoon",
+            "name": "Lagoon Suite",
+            "type": "Overwater Suite",
+            "price": 320,
+            "currency": "USD",
+            "description": "A serene overwater sanctuary featuring a spacious deck perfect for dolphin watching, a deep soaking tub overlooking the lagoon, and elegant contemporary decor.",
+            "features": [
+              "Overwater Deck",
+              "Bathtub with Ocean View",
+              "Espresso Machine",
+              "Turndown Service",
+              "Free Wi-Fi"
+            ],
+            "images": [
+              {
+                "desktopUrl": "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80",
+                "mobileUrl": "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&q=80",
+                "alt": "Lagoon Suite"
+              }
+            ]
+          }
+        ]
+      },
+      "order": 4
+    },
+    {
+      "type": "amenities",
+      "variant": {
+        "amenitiesLayout": "featured",
+        "amenitiesColumns": 3,
+        "iconSize": "large",
+        "iconStyle": "colored"
+      },
+      "props": {
+        "heading": "World-Class Amenities",
+        "subheading": "Everything you need for a perfect stay",
+        "amenities": [
+          {
+            "id": "ame-spa",
+            "name": "Azure Spa",
+            "description": "Overwater treatment rooms for couples",
+            "icon": "spa",
+            "category": "hotel"
+          },
+          {
+            "id": "ame-dining",
+            "name": "The Coral Restaurant",
+            "description": "Fine dining with underwater views",
+            "icon": "utensils",
+            "category": "hotel"
+          },
+          {
+            "id": "ame-bar",
+            "name": "Sunset Lounge",
+            "description": "Handcrafted cocktails at dusk",
+            "icon": "wine",
+            "category": "hotel"
+          },
+          {
+            "id": "ame-snorkel",
+            "name": "House Reef",
+            "description": "Pristine snorkeling from your deck",
+            "icon": "water",
+            "category": "location"
+          },
+          {
+            "id": "ame-yoga",
+            "name": "Yoga Pavilion",
+            "description": "Morning meditation sessions",
+            "icon": "activity",
+            "category": "services"
+          },
+          {
+            "id": "ame-excursion",
+            "name": "Private Yacht",
+            "description": "Sunset cruises and island hopping",
+            "icon": "anchor",
+            "category": "services"
+          },
+          {
+            "id": "ame-concierge",
+            "name": "Personal Concierge",
+            "description": "24/7 dedicated assistance",
+            "icon": "bell",
+            "category": "services"
+          },
+          {
+            "id": "ame-dive",
+            "name": "PADI Dive Center",
+            "description": "Certified diving experiences",
+            "icon": "ship",
+            "category": "location"
+          },
+          {
+            "id": "ame-gym",
+            "name": "Fitness Center",
+            "description": "State-of-the-art equipment",
+            "icon": "dumbbell",
+            "category": "hotel"
+          }
+        ]
+      },
+      "order": 5
+    },
+    {
+      "type": "testimonials",
+      "variant": {
+        "testimonialsLayout": "featured",
+        "testimonialsColumns": 2
+      },
+      "props": {
+        "heading": "What Our Guests Say",
+        "subheading": "Read reviews from our satisfied customers",
+        "testimonials": [
+          {
+            "id": "test-1",
+            "customerName": "Alexandra & James",
+            "rating": 5,
+            "quote": "Our honeymoon at The Grand Azure was beyond anything we could have imagined. The private villa was stunning, the staff anticipated our every need, and the sunset dinner on the beach was a moment we will cherish forever. Truly paradise on earth."
+          },
+          {
+            "id": "test-2",
+            "customerName": "Sophie Laurent",
+            "rating": 5,
+            "quote": "We celebrated our 10th anniversary here and it was pure magic. The attention to detail, from the rose petals on our bed to the personalized couples massage, made us feel like royalty. The underwater restaurant is an absolute must-experience."
+          },
+          {
+            "id": "test-3",
+            "customerName": "Michael Chen",
+            "rating": 5,
+            "quote": "This was our second visit, and it was even better than the first. The new renovations are exquisite. The privacy here is unmatched - we spent days barely seeing another soul. The butler service elevates the entire experience to a new level of luxury."
+          },
+          {
+            "id": "test-4",
+            "customerName": "Isabella Romano",
+            "rating": 5,
+            "quote": "I traveled alone seeking peace and found it here in abundance. The spa treatments are world-class, the yoga sessions at sunrise were transformative, and the staff made me feel completely safe and pampered. A sanctuary for the soul."
+          }
+        ]
+      },
+      "order": 6
+    },
+    {
+      "type": "booking",
+      "variant": {
+        "bookingStyle": "desktop",
+        "bookingTheme": "glass"
+      },
+      "props": {
+        "title": "Reserve Your Paradise",
+        "submitButtonText": "Check Availability"
+      },
+      "order": 7
+    },
+    {
+      "type": "footer",
+      "variant": {
+        "layout": "classic"
+      },
+      "props": {
+        "hotelName": "The Grand Azure",
+        "address": "North Male Atoll, Republic of Maldives",
+        "phone": "+960 666 1234",
+        "email": "reservations@thegrandazure.com",
+        "socialLinks": [
+          {
+            "platform": "instagram",
+            "url": "https://instagram.com/thegrandazure"
+          },
+          {
+            "platform": "facebook",
+            "url": "https://facebook.com/thegrandazure"
+          },
+          {
+            "platform": "tripadvisor",
+            "url": "https://tripadvisor.com/Hotel_Review-g297953-d1234567-Reviews-The_Grand_Azure-Maldives"
+          },
+          {
+            "platform": "google",
+            "url": "https://google.com/maps/thegrandazure"
+          }
+        ],
+        "navigationLinks": [
+          {
+            "label": "Our Story",
+            "href": "/about"
+          },
+          {
+            "label": "Villas & Suites",
+            "href": "/rooms"
+          },
+          {
+            "label": "Experiences",
+            "href": "/amenities"
+          },
+          {
+            "label": "Dining",
+            "href": "/dining"
+          },
+          {
+            "label": "Gallery",
+            "href": "/gallery"
+          },
+          {
+            "label": "Contact",
+            "href": "/contact"
+          }
+        ],
+        "copyright": "© 2026 The Grand Azure. All rights reserved."
+      },
+      "order": 8
+    }
+  ],
+  "layoutStructure": "mixed",
+  "emphasisComponents": [
+    "hero",
+    "gallery",
+    "booking"
+  ],
+  "validationStatus": "PASS"
+}

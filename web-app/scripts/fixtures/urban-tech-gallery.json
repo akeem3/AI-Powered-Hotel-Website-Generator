@@ -1,0 +1,12 @@
+{
+  "blockType": "gallery",
+  "archetype": "urban-tech",
+  "designRationale": "The urban-tech gallery uses tight spacing with gap-2 md:gap-3 for efficient space usage. The card style is flat with border-border-default for clean tech-forward presentation. The aspect-square ratio and md:grid-cols-3 columns provide grid-based layout. Minimal shadow and border styling reflect the modern, functional aesthetic of tech-forward properties.",
+  "variantClasses": {
+    "layout": "grid",
+    "spacing": "gap-2 md:gap-3",
+    "aspectRatio": "aspect-square",
+    "columns": "grid-cols-1 md:grid-cols-3",
+    "cardStyle": "[&_figure]:bg-surface-primary [&_figure]:border [&_figure]:border-border-default [&_figure]:shadow-sm [&_figure]:rounded-xl"
+  }
+}

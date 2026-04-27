@@ -1,0 +1,236 @@
+{
+  "datasetName": "hero-section-golden-v1",
+  "component": "HeroSection",
+  "contractSchema": "HeroSectionContract",
+  "createdAt": "2025-12-03T20:45:00Z",
+  "lastUpdated": "2025-12-03T20:45:00Z",
+  "version": "1.0",
+  "testCases": [
+    {
+      "id": "luxury-business-1",
+      "description": "Elegant hero for luxury business hotel",
+      "hotelContext": {
+        "type": "luxury",
+        "targetAudience": "business",
+        "brandPersonality": "professional",
+        "location": "downtown-financial-district"
+      },
+      "expectedOutput": {
+        "variant": {
+          "style": "elegant",
+          "layout": "split",
+          "overlay": "dark",
+          "height": "medium"
+        },
+        "title": "The Sterling Executive",
+        "tagline": "Experience Boutique Luxury in the Financial District",
+        "headline": "Excellence in Every Detail",
+        "description": "Discover sophisticated accommodations with personalized service, premium amenities, and breathtaking city views from our executive suites.",
+        "primaryCTA": {
+          "text": "Reserve Your Suite",
+          "href": "/rooms",
+          "ariaLabel": "Reserve your luxury suite at The Sterling Executive"
+        },
+        "secondaryCTA": {
+          "text": "Virtual Tour",
+          "href": "/tour",
+          "ariaLabel": "Take a virtual tour of our luxury hotel"
+        },
+        "image": "https://cdn.example.com/hotel/luxury-business-lobby.webp",
+        "background": "image"
+      },
+      "qualityThresholds": {
+        "relevanceScore": 0.90,
+        "creativityScore": 0.70,
+        "brandAlignmentScore": 0.95,
+        "humanRating": 9
+      },
+      "validationRules": {
+        "mustPassZOD": true,
+        "mustMeetA11y": true,
+        "mustRenderWithoutErrors": true
+      }
+    },
+    {
+      "id": "budget-family-1",
+      "description": "Minimal hero for budget family hotel",
+      "hotelContext": {
+        "type": "budget",
+        "targetAudience": "family",
+        "brandPersonality": "friendly",
+        "location": "suburban-near-attractions"
+      },
+      "expectedOutput": {
+        "variant": {
+          "style": "minimal",
+          "layout": "centered",
+          "overlay": "none",
+          "height": "small"
+        },
+        "title": "Cityside Inn",
+        "tagline": "Comfortable Stays Without Compromising Quality",
+        "headline": "Smart Comfort for Smart Travelers",
+        "description": "Clean, comfortable rooms with essential amenities, free WiFi, and convenient access to public transportation make us the perfect base for your city exploration.",
+        "primaryCTA": {
+          "text": "Check Availability",
+          "href": "/rooms",
+          "ariaLabel": "Check room availability at Cityside Inn"
+        },
+        "secondaryCTA": {
+          "text": "View Rates",
+          "href": "/rates",
+          "ariaLabel": "View our affordable room rates"
+        },
+        "image": "https://cdn.example.com/hotel/budget-family-exterior.webp",
+        "background": "image"
+      },
+      "qualityThresholds": {
+        "relevanceScore": 0.85,
+        "creativityScore": 0.60,
+        "brandAlignmentScore": 0.90,
+        "humanRating": 8
+      },
+      "validationRules": {
+        "mustPassZOD": true,
+        "mustMeetA11y": true,
+        "mustRenderWithoutErrors": true
+      }
+    },
+    {
+      "id": "boutique-couples-1",
+      "description": "Modern hero for boutique couples hotel",
+      "hotelContext": {
+        "type": "boutique",
+        "targetAudience": "couples",
+        "brandPersonality": "artistic",
+        "location": "historic-district"
+      },
+      "expectedOutput": {
+        "variant": {
+          "style": "modern",
+          "layout": "split",
+          "overlay": "gradient",
+          "height": "medium"
+        },
+        "title": "Artist's Loft Hotel",
+        "tagline": "Where Artistic Design Meets Personalized Service",
+        "headline": "Curated Experiences in Historic Surroundings",
+        "description": "Immerse yourself in our unique blend of contemporary art, historic architecture, and personalized hospitality designed for discerning couples and creative professionals.",
+        "primaryCTA": {
+          "text": "Explore Rooms",
+          "href": "/rooms",
+          "ariaLabel": "Explore our uniquely designed boutique rooms"
+        },
+        "secondaryCTA": {
+          "text": "Art Gallery",
+          "href": "/gallery",
+          "ariaLabel": "Visit our in-house art gallery"
+        },
+        "image": "https://cdn.example.com/hotel/boutique-artistic-lobby.webp",
+        "background": "image"
+      },
+      "qualityThresholds": {
+        "relevanceScore": 0.88,
+        "creativityScore": 0.85,
+        "brandAlignmentScore": 0.92,
+        "humanRating": 9
+      },
+      "validationRules": {
+        "mustPassZOD": true,
+        "mustMeetA11y": true,
+        "mustRenderWithoutErrors": true
+      }
+    },
+    {
+      "id": "resort-leisure-1",
+      "description": "Bold fullscreen hero for resort hotel",
+      "hotelContext": {
+        "type": "resort",
+        "targetAudience": "leisure",
+        "brandPersonality": "adventurous",
+        "location": "beachfront-tropical"
+      },
+      "expectedOutput": {
+        "variant": {
+          "style": "bold",
+          "layout": "centered",
+          "overlay": "light",
+          "height": "fullscreen"
+        },
+        "title": "Paradise Beach Resort",
+        "tagline": "Your Tropical Paradise Awaits",
+        "headline": "Escape to Your Perfect Getaway",
+        "description": "Experience pristine beaches, luxurious spa treatments, and world-class dining in our beachfront paradise designed for ultimate relaxation and adventure.",
+        "primaryCTA": {
+          "text": "Plan Your Escape",
+          "href": "/packages",
+          "ariaLabel": "Plan your tropical escape vacation package"
+        },
+        "secondaryCTA": {
+          "text": "View Resort",
+          "href": "/tour",
+          "ariaLabel": "Take a virtual tour of Paradise Beach Resort"
+        },
+        "image": "https://cdn.example.com/hotel/resort-beach-aerial.webp",
+        "background": "image"
+      },
+      "qualityThresholds": {
+        "relevanceScore": 0.92,
+        "creativityScore": 0.80,
+        "brandAlignmentScore": 0.88,
+        "humanRating": 9
+      },
+      "validationRules": {
+        "mustPassZOD": true,
+        "mustMeetA11y": true,
+        "mustRenderWithoutErrors": true
+      }
+    },
+    {
+      "id": "business-corporate-1",
+      "description": "Classic hero for business corporate hotel",
+      "hotelContext": {
+        "type": "business",
+        "targetAudience": "corporate",
+        "brandPersonality": "professional",
+        "location": "business-district"
+      },
+      "expectedOutput": {
+        "variant": {
+          "style": "classic",
+          "layout": "centered",
+          "overlay": "none",
+          "height": "medium"
+        },
+        "title": "Corporate Towers Hotel",
+        "tagline": "Where Productivity Meets Prestige",
+        "headline": "Efficiency and Elegance for the Modern Traveler",
+        "description": "Strategically located in the business district with state-of-the-art meeting facilities, high-speed internet, and executive services designed for corporate success.",
+        "primaryCTA": {
+          "text": "Reserve Now",
+          "href": "/booking",
+          "ariaLabel": "Reserve your room at Corporate Towers Hotel"
+        },
+        "secondaryCTA": {
+          "text": "Meeting Facilities",
+          "href": "/meetings",
+          "ariaLabel": "View our meeting and conference facilities"
+        },
+        "image": "https://cdn.example.com/hotel/business-modern-lobby.webp",
+        "background": "image"
+      },
+      "qualityThresholds": {
+        "relevanceScore": 0.87,
+        "creativityScore": 0.65,
+        "brandAlignmentScore": 0.94,
+        "humanRating": 8
+      },
+      "validationRules": {
+        "mustPassZOD": true,
+        "mustMeetA11y": true,
+        "mustRenderWithoutErrors": true
+      }
+    }
+  ],
+  "notes": "Golden dataset for regression testing. Update when component schema changes. All test cases cover different hotel types, target audiences, and brand personalities to validate comprehensive HeroSection functionality."
+}

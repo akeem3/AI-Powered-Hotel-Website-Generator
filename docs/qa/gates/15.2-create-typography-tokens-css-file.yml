@@ -1,0 +1,8 @@
+schema: 1
+story: '15.2'
+gate: PASS
+status_reason: 'All acceptance criteria met. Build passes, tests passing, typography tokens properly implemented with -val suffix pattern.'
+reviewer: 'James (Dev Agent)'
+updated: '2026-02-06T12:00:00Z'
+top_issues: []
+waiver: { active: false }

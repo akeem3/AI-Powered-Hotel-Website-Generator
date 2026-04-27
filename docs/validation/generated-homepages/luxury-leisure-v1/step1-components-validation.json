@@ -1,0 +1,23 @@
+{
+  "timestamp": "2025-12-10T15:01:08.912Z",
+  "status": "pass",
+  "data": {
+    "selectedComponents": [
+      "hero",
+      "navigation",
+      "gallery",
+      "rooms",
+      "amenities",
+      "testimonials",
+      "booking",
+      "contact"
+    ],
+    "layoutStructure": "mixed",
+    "emphasisComponents": [
+      "hero",
+      "gallery",
+      "amenities"
+    ],
+    "reasoning": "Luxury leisure travelers prioritize visual experience and facilities. Emphasis on 'hero' and 'gallery' to showcase the destination. 'Amenities' highlighted to show spa/pool features. Standard 'rooms' and 'booking' included."
+  }
+}

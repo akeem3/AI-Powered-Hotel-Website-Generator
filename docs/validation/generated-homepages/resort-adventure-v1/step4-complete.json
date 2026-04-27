@@ -1,0 +1,16 @@
+{
+  "generationId": "resort-adventure-v1",
+  "timestamp": "2025-12-10T17:10:00Z",
+  "hotelParameters": { "hotelType": "resort", "targetAudience": "leisure", "brandPersonality": "adventurous", "hotelName": "Wild Coast Lodge", "location": "Costa Rica" },
+  "layoutStructure": "mixed",
+  "emphasisComponents": ["hero", "gallery"],
+  "validationStatus": "PASS",
+  "components": [
+    { "type": "navigation", "order": 0, "variant": { "navStyle": "transparent", "navLayout": "split" }, "props": { "logoText": "Wild Coast", "links": [{ "text": "Tours", "href": "/tours" }, { "text": "Cabins", "href": "/cabins" }] } },
+    { "type": "hero", "order": 1, "variant": { "style": "bold", "layout": "fullscreen", "overlay": "dark", "height": "fullscreen" }, "props": { "heading": "Adventure Awaits", "subheading": "Wild Coast Lodge", "description": "Zip-line through the canopy and surf the Pacific breaks.", "ctaText": "Start Adventure", "ctaLink": "/booking", "backgroundImage": "/images/hero-jungle.webp" } },
+    { "type": "gallery", "order": 2, "variant": { "galleryLayout": "carousel", "gallerySpacing": "loose", "aspectRatio": "landscape", "columns": 1 }, "props": { "images": [{ "id": "g1", "src": "/images/surf.jpg", "alt": "Surfing", "desktopUrl": "/images/surf.jpg", "mobileUrl": "/images/surf.jpg" }] } },
+    { "type": "amenities", "order": 3, "variant": { "amenitiesLayout": "grid", "amenitiesColumns": 3, "iconSize": "large", "iconStyle": "colored" }, "props": { "amenities": [{ "id": "a1", "name": "Surf School", "description": "Pro instructors", "icon": "waves", "category": "hotel" }, { "id": "a2", "name": "Zip Lining", "description": "Canopy tours", "icon": "tree", "category": "hotel" }] } },
+    { "type": "booking", "order": 4, "variant": { "bookingStyle": "classic", "bookingTheme": "brand" }, "props": { "title": "Book Now", "submitButtonText": "Search" } },
+    { "type": "contact", "order": 5, "variant": { "contactLayout": "centered", "contactBackground": "none" }, "props": { "title": "Find Us", "subtitle": "Deep in the jungle", "submitButtonText": "Email", "successMessage": "Sent" } }
+  ]
+}

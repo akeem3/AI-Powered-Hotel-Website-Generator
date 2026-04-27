@@ -1,0 +1,8 @@
+schema: 1
+story: '23.3'
+gate: PASS
+status_reason: 'All acceptance criteria met. Single spacing key in config, unused x-1/x-2 entries removed, documentation added. Build succeeds, spacing tests passing (4/4).'
+reviewer: 'Quinn'
+updated: '2026-03-17T00:00:00Z'
+top_issues: []
+waiver: { active: false }

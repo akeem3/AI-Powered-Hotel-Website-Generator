@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`Button Component Snapshot Tests matches snapshot for default button 1`] = `
+<button
+  class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-colors focus-ring disabled:pointer-events-none disabled:opacity-mid [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground shadow hover:bg-primary/strong h-9 px-4 py-2"
+>
+  Default Button
+</button>
+`;
+
+exports[`Button Component Snapshot Tests matches snapshot for different sizes: Button-size-default 1`] = `
+<button
+  class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-colors focus-ring disabled:pointer-events-none disabled:opacity-mid [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground shadow hover:bg-primary/strong h-9 px-4 py-2"
+>
+  default
+   Button
+</button>
+`;
+
+exports[`Button Component Snapshot Tests matches snapshot for different sizes: Button-size-icon 1`] = `
+<button
+  class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-colors focus-ring disabled:pointer-events-none disabled:opacity-mid [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground shadow hover:bg-primary/strong h-9 w-9"
+>
+  icon
+   Button
+</button>
+`;
+
+exports[`Button Component Snapshot Tests matches snapshot for different sizes: Button-size-lg 1`] = `
+<button
+  class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors focus-ring disabled:pointer-events-none disabled:opacity-mid [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground shadow hover:bg-primary/strong h-10 rounded-lg px-8"
+>
+  lg
+   Button
+</button>
+`;
+
+exports[`Button Component Snapshot Tests matches snapshot for different sizes: Button-size-sm 1`] = `
+<button
+  class="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-ring disabled:pointer-events-none disabled:opacity-mid [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground shadow hover:bg-primary/strong h-8 rounded-lg px-3 text-xs"
+>
+  sm
+   Button
+</button>
+`;
+
+exports[`Button Component Snapshot Tests matches snapshot for different variants: Button-default 1`] = `
+<button
+  class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-colors focus-ring disabled:pointer-events-none disabled:opacity-mid [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground shadow hover:bg-primary/strong h-9 px-4 py-2"
+>
+  default
+   Button
+</button>
+`;
+
+exports[`Button Component Snapshot Tests matches snapshot for different variants: Button-destructive 1`] = `
+<button
+  class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-colors focus-ring disabled:pointer-events-none disabled:opacity-mid [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/strong h-9 px-4 py-2"
+>
+  destructive
+   Button
+</button>
+`;
+
+exports[`Button Component Snapshot Tests matches snapshot for different variants: Button-ghost 1`] = `
+<button
+  class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-colors focus-ring disabled:pointer-events-none disabled:opacity-mid [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+>
+  ghost
+   Button
+</button>
+`;
+
+exports[`Button Component Snapshot Tests matches snapshot for different variants: Button-link 1`] = `
+<button
+  class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-colors focus-ring disabled:pointer-events-none disabled:opacity-mid [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 text-primary underline-offset-4 hover:underline h-9 px-4 py-2"
+>
+  link
+   Button
+</button>
+`;
+
+exports[`Button Component Snapshot Tests matches snapshot for different variants: Button-outline 1`] = `
+<button
+  class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-colors focus-ring disabled:pointer-events-none disabled:opacity-mid [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+>
+  outline
+   Button
+</button>
+`;
+
+exports[`Button Component Snapshot Tests matches snapshot for different variants: Button-secondary 1`] = `
+<button
+  class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-colors focus-ring disabled:pointer-events-none disabled:opacity-mid [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/high h-9 px-4 py-2"
+>
+  secondary
+   Button
+</button>
+`;
+
+exports[`Button Component Snapshot Tests matches snapshot with additional props: Button-with-props 1`] = `
+<button
+  class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-colors focus-ring disabled:pointer-events-none disabled:opacity-mid [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground shadow hover:bg-primary/strong h-9 px-4 py-2 custom-class"
+  data-testid="test-button"
+  disabled=""
+>
+  Custom Button
+</button>
+`;

@@ -1,0 +1,22 @@
+---
+schema: 1
+story: '22.2'
+gate: CONCERNS
+status_reason: 'Framework implementation complete with 38 passing tests. 9 of 12 archetypes successfully generated. 3 archetypes fail due to LLM issues (AssemblyAgent JSON parsing, CVA validation) documented as outside story scope.'
+reviewer: 'Quinn'
+updated: '2026-03-13T10:15:00Z'
+top_issues:
+  - id: 'GEN-001'
+    severity: medium
+    finding: 'Only 9 of 12 archetypes successfully generated (75% success rate)'
+    suggested_action: 'Investigate AssemblyAgent JSON parsing failures for Heritage Cultural, Eco Lodge, and Design/Art Hotel archetypes'
+  - id: 'GEN-002'
+    severity: medium
+    finding: 'CVA validation errors prevent generation of certain hotel profiles'
+    suggested_action: 'Review CVA variant validation rules and agent prompt guidance for edge cases'
+  - id: 'TEST-001'
+    severity: low
+    finding: 'Tests validate framework but do not catch LLM generation failures at runtime'
+    suggested_action: 'Consider integration tests that run actual generation workflow'
+waiver:
+  active: false

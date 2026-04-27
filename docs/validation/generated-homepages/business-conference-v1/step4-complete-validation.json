@@ -1,0 +1,126 @@
+{
+  "timestamp": "2025-12-10T15:24:32.384Z",
+  "status": "pass",
+  "data": {
+    "generationId": "business-conference-v1",
+    "timestamp": "2025-12-10T17:25:00Z",
+    "hotelParameters": {
+      "hotelType": "business",
+      "targetAudience": "business",
+      "brandPersonality": "modern",
+      "hotelName": "The Grand Hall",
+      "location": "Chicago"
+    },
+    "components": [
+      {
+        "type": "navigation",
+        "variant": {
+          "navStyle": "classic",
+          "navLayout": "split"
+        },
+        "props": {
+          "logoText": "Grand Hall",
+          "links": [
+            {
+              "text": "Venues",
+              "href": "/venues"
+            }
+          ]
+        }
+      },
+      {
+        "type": "hero",
+        "variant": {
+          "style": "bold",
+          "layout": "centered",
+          "overlay": "dark",
+          "height": "large"
+        },
+        "props": {
+          "heading": "Where Leaders Meet",
+          "subheading": "The Grand Hall",
+          "description": "100,000 sq ft of event space.",
+          "ctaText": "Plan Event",
+          "ctaLink": "/events",
+          "backgroundImage": "/images/hero-conf.webp"
+        }
+      },
+      {
+        "type": "gallery",
+        "variant": {
+          "galleryLayout": "carousel",
+          "gallerySpacing": "tight",
+          "aspectRatio": "landscape",
+          "columns": 1
+        },
+        "props": {
+          "images": [
+            {
+              "id": "g1",
+              "src": "/images/hall.jpg",
+              "alt": "Conference Hall",
+              "desktopUrl": "/images/hall.jpg",
+              "mobileUrl": "/images/hall.jpg"
+            }
+          ]
+        }
+      },
+      {
+        "type": "amenities",
+        "variant": {
+          "amenitiesLayout": "list",
+          "amenitiesColumns": 2,
+          "iconSize": "medium",
+          "iconStyle": "colored"
+        },
+        "props": {
+          "amenities": [
+            {
+              "id": "a1",
+              "name": "Grand Ballroom",
+              "description": "Capacity 4000",
+              "icon": "users",
+              "category": "hotel"
+            },
+            {
+              "id": "a2",
+              "name": "Catering",
+              "description": "Michelin star chefs",
+              "icon": "utensils",
+              "category": "services"
+            }
+          ]
+        }
+      },
+      {
+        "type": "booking",
+        "variant": {
+          "bookingStyle": "classic",
+          "bookingTheme": "brand"
+        },
+        "props": {
+          "title": "Group Blocks",
+          "submitButtonText": "Inquire"
+        }
+      },
+      {
+        "type": "contact",
+        "variant": {
+          "contactLayout": "stacked",
+          "contactBackground": "featured"
+        },
+        "props": {
+          "title": "Sales Team",
+          "subtitle": "Direct line",
+          "submitButtonText": "Call Now",
+          "successMessage": "Connected"
+        }
+      }
+    ],
+    "layoutStructure": "grid",
+    "emphasisComponents": [
+      "hero",
+      "gallery"
+    ]
+  }
+}

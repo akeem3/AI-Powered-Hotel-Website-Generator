@@ -1,0 +1,142 @@
+{
+  "generationId": "budget-family-v1",
+  "timestamp": "2025-12-10T16:25:00Z",
+  "hotelParameters": {
+    "hotelType": "budget",
+    "targetAudience": "family",
+    "brandPersonality": "friendly",
+    "hotelName": "Sunny Days Inn",
+    "location": "Orlando, FL"
+  },
+  "layoutStructure": "single-column",
+  "emphasisComponents": ["hero", "rooms", "booking"],
+  "validationStatus": "PASS",
+  "components": [
+    {
+      "type": "navigation",
+      "order": 0,
+      "variant": {
+        "navStyle": "minimal",
+        "navLayout": "minimal"
+      },
+      "props": {
+        "logoText": "Sunny Days Inn",
+        "links": [
+          { "text": "Rooms", "href": "/rooms" },
+          { "text": "Amenities", "href": "/amenities" },
+          { "text": "Offers", "href": "/offers" },
+          { "text": "Contact", "href": "/contact" }
+        ]
+      }
+    },
+    {
+      "type": "hero",
+      "order": 1,
+      "variant": {
+        "style": "minimal",
+        "layout": "centered",
+        "overlay": "none",
+        "height": "medium"
+      },
+      "props": {
+        "heading": "Your Family's Home Base",
+        "subheading": "Comfortable, Affordable, and Fun",
+        "description": "Clean and spacious rooms perfect for your family adventure. Enjoy free breakfast and a pool everyone will love.",
+        "ctaText": "See Rates",
+        "ctaLink": "/booking",
+        "backgroundImage": "/images/hero-family.webp"
+      }
+    },
+    {
+      "type": "rooms",
+      "order": 2,
+      "variant": {
+        "roomCardStyle": "compact",
+        "imageHeight": "medium"
+      },
+      "props": {
+        "rooms": [
+          {
+            "id": "family-suite",
+            "name": "Family Suite",
+            "type": "Suite",
+            "price": 120,
+            "currency": "USD",
+            "capacity": 4,
+            "amenities": ["2 Queen Beds", "Sofa Bed", "Mini Fridge", "Microwave"],
+            "description": "Plenty of space for the whole crew, plus a kitchenette for snack time.",
+            "image": "/images/room-suite.jpg"
+          },
+          {
+            "id": "standard-double",
+            "name": "standard Double Room",
+            "type": "Room",
+            "price": 89,
+            "currency": "USD",
+            "capacity": 4,
+            "amenities": ["2 Double Beds", "Free WiFi", "Cable TV", "Coffee Maker"],
+            "description": "A cozy and clean spot to rest after a day of exploring.",
+            "image": "/images/room-double.jpg"
+          },
+          {
+            "id": "budget-king",
+            "name": "Economy King",
+            "type": "Room",
+            "price": 79,
+            "currency": "USD",
+            "capacity": 2,
+            "amenities": ["King Bed", "Work Desk", "Showe/Tub Combo"],
+            "description": "Great value for couples or solo travelers.",
+            "image": "/images/room-king.jpg"
+          }
+        ]
+      }
+    },
+    {
+      "type": "amenities",
+      "order": 3,
+      "variant": {
+        "amenitiesLayout": "list",
+        "amenitiesColumns": 2,
+        "iconSize": "small",
+        "iconStyle": "colored"
+      },
+      "props": {
+        "amenities": [
+          { "id": "a1", "name": "Free Breakfast", "description": "Hot waffles and cereal daily", "category": "services", "icon": "coffee" },
+          { "id": "a2", "name": "Outdoor Pool", "description": "Splash around and cool off", "category": "hotel", "icon": "sun" },
+          { "id": "a3", "name": "Free WiFi", "description": "Stay connected everywhere", "category": "services", "icon": "wifi" },
+          { "id": "a4", "name": "Free Parking", "description": "Right outside your door", "category": "location", "icon": "car" },
+          { "id": "a5", "name": "Guest Laundry", "description": "Coin-operated machines", "category": "services", "icon": "shirt" },
+          { "id": "a6", "name": "Pet Friendly", "description": "Bring your furry friends", "category": "hotel", "icon": "dog" }
+        ]
+      }
+    },
+    {
+      "type": "booking",
+      "order": 4,
+      "variant": {
+        "bookingStyle": "default",
+        "bookingTheme": "brand"
+      },
+      "props": {
+        "title": "Check Availability",
+        "submitButtonText": "Search Rooms"
+      }
+    },
+    {
+      "type": "contact",
+      "order": 5,
+      "variant": {
+        "contactLayout": "stacked",
+        "contactBackground": "none"
+      },
+      "props": {
+        "title": "Have Questions?",
+        "subtitle": "Call us anytime",
+        "submitButtonText": "Send Message",
+        "successMessage": "Thanks! We'll get back to you soon."
+      }
+    }
+  ]
+}

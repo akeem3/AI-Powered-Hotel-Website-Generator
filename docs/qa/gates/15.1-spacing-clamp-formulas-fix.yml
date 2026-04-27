@@ -1,0 +1,8 @@
+schema: 1
+story: '15.1'
+gate: PASS
+status_reason: 'All acceptance criteria verified. Spacing formulas now scale smoothly across 375px-768px viewport range using proper base+coefficient*vw pattern.'
+reviewer: 'James (Dev Agent)'
+updated: '2026-02-05T12:30:00Z'
+top_issues: []
+waiver: { active: false }

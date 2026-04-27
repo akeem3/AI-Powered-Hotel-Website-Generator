@@ -1,0 +1,8 @@
+schema: 1
+story: '24.2'
+gate: PASS
+status_reason: 'All acceptance criteria met with 83 tests passing. Homepage refactored to curated landing with teaser sections.'
+reviewer: 'Quinn (QA)'
+updated: '2026-03-19T00:00:00Z'
+top_issues: []
+waiver: { active: false }

@@ -1,0 +1,23 @@
+{
+  "timestamp": "2025-12-10T14:54:10.078Z",
+  "status": "pass",
+  "data": {
+    "selectedComponents": [
+      "hero",
+      "navigation",
+      "rooms",
+      "gallery",
+      "testimonials",
+      "amenities",
+      "booking",
+      "contact"
+    ],
+    "layoutStructure": "mixed",
+    "emphasisComponents": [
+      "hero",
+      "booking",
+      "rooms"
+    ],
+    "reasoning": "Selected components prioritize clarity, efficiency, and premium presentation suitable for luxury business travelers. A mixed layout offers professional sophistication. Key conversion drivers (booking, rooms) are emphasized."
+  }
+}

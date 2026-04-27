@@ -1,0 +1,9 @@
+{
+  "blockType": "navigation",
+  "archetype": "coastal-resort",
+  "designRationale": "The coastal-resort navigation uses transparent style for beach integration with backdrop-blur-md for readability. The h-nav-classic height provides standard navigation. The text-text-inverted ensures visibility on transparent backgrounds. The border-b border-border-default adds subtle definition.",
+  "variantClasses": {
+    "style": "bg-surface-primary/high backdrop-blur-md text-text-primary border-b border-border-default",
+    "layout": "h-nav-classic"
+  }
+}

@@ -1,0 +1,8 @@
+schema: 1
+story: '17.5'
+gate: PASS
+status_reason: 'All 7 acceptance criteria verified and passing. Three Epic 16 fixtures updated with distinct hero layouts (centered, minimal, split). All fixtures pass HomepageConfigSchema validation in STRICT mode. ComponentRenderer unchanged - router pattern already working correctly. 7 new tests PASS with no regressions in existing test suites.'
+reviewer: 'James (Dev Agent)'
+updated: '2026-02-23T00:00:00Z'
+top_issues: []
+waiver: { active: false }

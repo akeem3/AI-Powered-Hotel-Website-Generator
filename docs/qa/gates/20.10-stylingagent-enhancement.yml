@@ -1,0 +1,9 @@
+schema: 1
+story: '20.10'
+gate: PASS
+status_reason: 'All 18 tests pass. All 12 archetype names verified correct. Archetype variants implemented for Hero, Gallery, Navigation blocks. Fallback mechanism working.'
+reviewer: 'Quinn'
+updated: '2026-03-10T12:00:00Z'
+top_issues: []
+waiver:
+  active: false

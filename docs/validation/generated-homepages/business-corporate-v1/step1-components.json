@@ -1,0 +1,1 @@
+{ "selectedComponents": ["hero", "navigation", "amenities", "booking", "contact"], "layoutStructure": "single-column", "emphasisComponents": ["amenities"], "reasoning": "Efficiency first." }

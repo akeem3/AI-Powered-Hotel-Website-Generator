@@ -1,0 +1,33 @@
+{
+  "componentVariants": {
+    "hero": {
+      "style": "minimal",
+      "layout": "centered",
+      "overlay": "none",
+      "height": "medium"
+    },
+    "navigation": {
+      "navStyle": "minimal",
+      "navLayout": "minimal"
+    },
+    "rooms": {
+      "roomCardStyle": "compact",
+      "imageHeight": "medium"
+    },
+    "amenities": {
+      "amenitiesLayout": "list",
+      "amenitiesColumns": 2,
+      "iconSize": "small",
+      "iconStyle": "colored"
+    },
+    "booking": {
+      "bookingStyle": "default",
+      "bookingTheme": "brand"
+    },
+    "contact": {
+      "contactLayout": "stacked",
+      "contactBackground": "none"
+    }
+  },
+  "reasoning": "Minimal styling aligns with 'Budget' type, feeling clean and accessible rather than opulent. Colored icons in Amenities add a 'Friendly' touch. Compact room cards allow easy comparison of prices."
+}

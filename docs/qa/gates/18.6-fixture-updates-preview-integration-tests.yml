@@ -1,0 +1,9 @@
+schema: 1
+story: '18.6'
+gate: PASS
+status_reason: 'All acceptance criteria verified. Fixtures updated with distinct nav layouts and wrapper styles. All 111 tests passing.'
+reviewer: 'James (Dev Agent)'
+updated: '2026-02-27T14:00:00Z'
+top_issues: []
+waiver:
+  active: false

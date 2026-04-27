@@ -1,0 +1,137 @@
+import { Meta, Title, Subtitle, Description, Primary, Stories, Heading } from '@storybook/addon-docs/blocks';
+
+<Meta title="Introduction/Welcome" />
+
+<Title>ET Hotel AI - Storybook Design System</Title>
+
+<Subtitle>Component Documentation & Visual Testing Platform</Subtitle>
+
+<Description>
+Welcome to the ET Hotel AI Storybook instance. This Storybook serves as the comprehensive
+design system documentation and visual testing platform for the LLM-driven hotel website generator.
+
+## Project Overview
+
+**ET Hotel AI** is an autonomous platform capable of generating 10,000+ unique hotel websites
+at approximately $2 per site using LangGraph workflows and component-based architecture.
+
+This reference implementation demonstrates the complete feature set, component architecture,
+and technical infrastructure required for autonomous LLM-based website generation.
+
+### Key Architecture Principles
+
+- **4-Tier Component System**: Section → Block → Primitive → UI
+- **CVA Variant System**: Consistent styling with Class Variance Authority
+- **Semantic Design Tokens**: Brand, surface, and text colors from Story 1.11
+- **Responsive-First**: Mobile-first design with breakpoint variants
+- **LLM-Driven Generation**: Agents select and configure, not generate code
+
+## What's in This Storybook
+
+This Storybook documents the 8 homepage components that form the foundation of every generated hotel website:
+
+- **HeroSection**: Full-featured hero with 240 variant combinations
+- **ImageGallery**: Visual showcase with 324 variant combinations
+- **RoomCard**: Room display with detailed/compact/grid variants
+- **Navigation**: Desktop and mobile navigation variants
+- **BookingWidget**: Integration with Effective Tours booking platform
+- **ContactForm**: Lead generation for corporate inquiries
+- **Testimonials**: Social proof with multiple layout options
+- **Amenities**: Hotel features with icon-based display
+
+Each component story demonstrates:
+- All CVA variant combinations
+- Responsive design at 4 breakpoints (375px, 768px, 1280px, 1920px)
+- Accessibility compliance (WCAG AA)
+- Dark mode support
+- Design token usage
+
+## Design System Documentation
+
+Explore our design tokens and visual standards:
+
+- **[Design Tokens](/docs/design-system-design-tokens--docs)** - Complete color, typography, and spacing reference
+- **[Color Palette](/docs/design-system-color-palette--docs)** - Semantic color tokens
+- **[Typography](/docs/design-system-typography--docs)** - Fluid typography scale
+- **[Spacing](/docs/design-system-spacing--docs)** - Layout and spacing tokens
+- **[Shadows & Borders](/docs/design-system-shadows-borders--docs)** - Visual depth and radius tokens
+
+## Getting Started
+
+### Running Storybook Locally
+
+```bash
+# From the web-app directory
+npm run storybook
+```
+
+Storybook will open at [http://localhost:6006](http://localhost:6006)
+
+### Building Static Storybook
+
+```bash
+npm run build-storybook
+```
+
+Output is generated in `.storybook-static/`
+
+### Testing Components
+
+1. Navigate to any component in the sidebar
+2. Use the **Canvas** tab to interact with component variants
+3. Use the **Docs** tab for auto-generated documentation
+4. Toggle **Viewport** to test responsive design
+5. Toggle **Theme** to switch between light/dark mode
+
+### Accessibility Testing
+
+Each story includes accessibility tests powered by axe-core. Check the **Accessibility**
+panel in the Storybook addon toolbar to verify WCAG compliance.
+
+## Epic 12: Visual Excellence & Design System
+
+This Storybook is part of Epic 12, which focuses on visual polish and design system maturity.
+
+**Epic Goals:**
+- Comprehensive Storybook documentation for all homepage components
+- Visual polish with micro-interactions and hover states
+- Variant consistency validation across CVA definitions
+- Responsive design validation at all breakpoints
+- Chromatic visual regression integration for CI/CD
+
+### Related Documentation
+
+- **[Epic 12 Documentation](/docs/epics/epic-12-visual-excellence_design-system_storybook_needs-review_2025-01-14.md)** - Full epic specification
+- **[CVA Architecture](/docs/architecture/CVA-ARCHITECTURE.md)** - Variant patterns and conventions
+- **[Design Token Reference](/docs/design-system/design-tokens.md)** - Complete design token documentation
+- **[Coding Standards](/docs/project-context/react/coding-standards.md)** - Style and consistency patterns
+
+## Component Preview
+
+Explore our component library by clicking through the sidebar categories:
+
+- **Design System** - Foundation tokens and visual standards
+- **Components** - All 8 homepage components with variant stories
+
+Each component demonstrates:
+- Multiple variant combinations
+- Responsive behavior
+- Accessibility compliance
+- Dark mode support
+
+---
+
+**Generated with [Claude Code](https://claude.com/claude-code)**
+</Description>
+
+<Primary />
+
+<Stories title="Example Stories" />
+
+<Heading>Next Steps</Heading>
+
+Explore the design system documentation or dive into specific component stories to see
+the full range of variant combinations available for LLM-driven website generation.
+
+For questions about Epic 12 implementation, refer to the Epic 12 documentation or
+contact the development team.

@@ -1,0 +1,8 @@
+schema: 1
+story: '11.1'
+gate: PASS
+status_reason: 'All acceptance criteria met. Schemas implemented, tests passing, exports complete.'
+reviewer: 'Quinn'
+updated: '2026-01-20T00:00:00Z'
+top_issues: []
+waiver: { active: false }

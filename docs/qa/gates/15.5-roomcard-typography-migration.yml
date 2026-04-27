@@ -1,0 +1,8 @@
+schema: 1
+story: '15.5'
+gate: PASS
+status_reason: 'All acceptance criteria met. 17 typography instances migrated to semantic tokens across 4 RoomCard files with tabular-nums for price alignment. All 125 tests passing.'
+reviewer: 'James (Dev Agent)'
+updated: '2026-02-06T18:00:00Z'
+top_issues: []
+waiver: { active: false }

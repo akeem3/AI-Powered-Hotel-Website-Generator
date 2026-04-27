@@ -1,0 +1,8 @@
+schema: 1
+story: '18.1'
+gate: PASS
+status_reason: 'All acceptance criteria met with 28 passing tests. Router delegation and backward compatibility verified.'
+reviewer: 'Quinn'
+updated: '2026-02-26T22:00:00Z'
+top_issues: []
+waiver: { active: false }

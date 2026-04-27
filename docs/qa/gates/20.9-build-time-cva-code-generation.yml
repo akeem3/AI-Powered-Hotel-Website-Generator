@@ -1,0 +1,24 @@
+schema: 1
+story: '20.9'
+gate: PASS_WITH_CONCERNS
+status_reason: 'Tests pass (38/38) after ts-morph install. Manual integration path accepted for MVP. 3 enforcement layers verified in sync. Build passes.'
+reviewer: 'Verification Agent'
+updated: '2026-03-10T12:00:00Z'
+top_issues:
+  - id: 'STORY-20.9-001'
+    severity: medium
+    finding: 'AST script dry-run mode fails with complex Zod chains; manual integration path used successfully'
+    suggested_action: 'Accept manual integration approach for MVP; enhance AST script when adding more archetypes'
+  - id: 'STORY-20.9-002'
+    severity: low
+    finding: 'Only 3 of 12 archetypes have CVA variants (heritage-opulence, urban-tech, coastal-resort)'
+    suggested_action: 'Phased implementation documented; remaining 9 archetypes added incrementally as needed'
+  - id: 'STORY-20.9-003'
+    severity: low
+    finding: 'ts-morph was missing from node_modules despite being in package.json; fixed during review'
+    suggested_action: 'Verify npm install runs cleanly in CI pipeline'
+waiver:
+  active: true
+  reason: 'Manual integration path delivers equivalent functionality. All 3 enforcement layers verified in sync. 38/38 tests pass. Build succeeds.'
+  approved_by: 'Epic Completion Review'
+  approved_at: '2026-03-10T12:00:00Z'

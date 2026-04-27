@@ -1,0 +1,8 @@
+schema: 1
+story: '11.2'
+gate: PASS
+status_reason: 'All acceptance criteria met. SWR hooks implemented, skeleton components complete, retry logic configured.'
+reviewer: 'Quinn'
+updated: '2026-01-20T00:00:00Z'
+top_issues: []
+waiver: { active: false }

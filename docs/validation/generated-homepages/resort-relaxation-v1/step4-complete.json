@@ -1,0 +1,15 @@
+{
+  "generationId": "resort-relaxation-v1",
+  "timestamp": "2025-12-10T17:15:00Z",
+  "hotelParameters": { "hotelType": "resort", "targetAudience": "couples", "brandPersonality": "elegant", "hotelName": "The Azure Calm", "location": "Santorini" },
+  "layoutStructure": "single-column",
+  "emphasisComponents": ["hero"],
+  "validationStatus": "PASS",
+  "components": [
+    { "type": "navigation", "order": 0, "variant": { "navStyle": "minimal", "navLayout": "centered" }, "props": { "logoText": "Azure", "links": [{ "text": "Spa", "href": "/spa" }] } },
+    { "type": "hero", "order": 1, "variant": { "style": "elegant", "layout": "centered", "overlay": "light", "height": "large" }, "props": { "heading": "Breathe Deep", "subheading": "The Azure Calm", "description": "A sanctuary for peace.", "ctaText": "Relax", "ctaLink": "/spa", "backgroundImage": "/images/hero-calm.webp" } },
+    { "type": "gallery", "order": 2, "variant": { "galleryLayout": "masonry", "gallerySpacing": "loose", "aspectRatio": "portrait", "columns": 3 }, "props": { "images": [{ "id": "g1", "src": "/images/pool.jpg", "alt": "Pool", "desktopUrl": "/images/pool.jpg", "mobileUrl": "/images/pool.jpg" }] } },
+    { "type": "amenities", "order": 3, "variant": { "amenitiesLayout": "list", "amenitiesColumns": 1, "iconSize": "small", "iconStyle": "minimal" }, "props": { "amenities": [{ "id": "a1", "name": "Silence", "description": "Quiet zones", "icon": "moon", "category": "hotel" }] } },
+    { "type": "booking", "order": 4, "variant": { "bookingStyle": "minimal", "bookingTheme": "brand" }, "props": { "title": "Reserve", "submitButtonText": "Book" } }
+  ]
+}

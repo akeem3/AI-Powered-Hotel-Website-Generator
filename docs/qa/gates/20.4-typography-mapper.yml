@@ -1,0 +1,8 @@
+schema: 1
+story: '20.4'
+gate: PASS
+status_reason: 'All acceptance criteria met. 66/66 tests passing. Typography mapper fully implemented with useHotelTheme integration.'
+reviewer: 'Quinn'
+updated: '2026-03-06T10:30:00Z'
+top_issues: []
+waiver: { active: false }

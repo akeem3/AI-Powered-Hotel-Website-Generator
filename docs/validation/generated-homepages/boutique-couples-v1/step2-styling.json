@@ -1,0 +1,38 @@
+{
+  "componentVariants": {
+    "hero": {
+      "style": "elegant",
+      "layout": "centered",
+      "overlay": "light",
+      "height": "large"
+    },
+    "navigation": {
+      "navStyle": "classic",
+      "navLayout": "centered"
+    },
+    "rooms": {
+      "roomCardStyle": "featured",
+      "imageHeight": "large"
+    },
+    "testimonials": {
+      "testimonialsLayout": "featured",
+      "testimonialsColumns": 1,
+      "cardStyle": "elegant"
+    },
+    "amenities": {
+      "amenitiesLayout": "list",
+      "amenitiesColumns": 2,
+      "iconSize": "small",
+      "iconStyle": "minimal"
+    },
+    "booking": {
+      "bookingStyle": "classic",
+      "bookingTheme": "brand"
+    },
+    "contact": {
+      "contactLayout": "centered",
+      "contactBackground": "subtle"
+    }
+  },
+  "reasoning": "Elegant and Classic styles evoke timeless romance. Centered layout feels balanced and intimate. Featured testimonials with single column focus heavily on the emotional aspect of the stay."
+}

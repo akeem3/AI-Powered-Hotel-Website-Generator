@@ -1,0 +1,8 @@
+schema: 1
+story: '12.7'
+gate: PASS
+status_reason: 'Chromatic visual regression testing fully integrated with GitHub Actions. All 6 acceptance criteria met with comprehensive documentation and configuration.'
+reviewer: 'Claude'
+updated: '2026-01-27T11:54:50Z'
+top_issues: []
+waiver: { active: false }

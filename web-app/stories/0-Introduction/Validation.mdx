@@ -1,0 +1,66 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Introduction/Variant Validation" />
+
+# Variant Validation
+
+This project uses automated validation to ensure CVA variant consistency.
+
+## Why Validation?
+
+- **Design Token Compliance:** Ensure no hardcoded colors slip into CVA
+- **Contract-CVA Sync:** Ensure contracts reference valid variants
+- **CI/CD Integration:** Catch issues before they reach production
+
+## Validation Scripts
+
+### 1. CVA Token Validation
+
+Checks that all CVA variants use semantic tokens.
+
+```bash
+npm run validate:cva-tokens
+```
+
+**What it catches:**
+- ❌ `bg-blue-500` (hardcoded color)
+- ✅ `bg-brand-primary` (semantic token)
+
+### 2. Contract-CVA Sync
+
+Checks that contract enums match CVA variant definitions.
+
+```bash
+npm run validate:contract-sync
+```
+
+**What it catches:**
+- ❌ Contract references `style: 'ultrawide'` but CVA has no `ultrawide` variant
+- ✅ Contract and CVA both define `style: 'modern' | 'classic' | 'minimal'`
+
+## Running All Validations
+
+```bash
+npm run validate:all
+```
+
+## CI/CD
+
+Validation runs automatically on:
+- Pull requests to main
+- When CVA or contract files change
+
+See `.github/workflows/validate-cva.yml` for details.
+
+## Component-CVA Mapping
+
+| Contract File | CVA Export |
+|--------------|------------|
+| hero.contract.ts | heroVariants |
+| gallery.contract.ts | galleryVariants |
+| navigation.contract.ts | navigationVariants |
+| room.contract.ts | roomCardVariants |
+| booking.contract.ts | bookingWidgetVariants |
+| contact.contract.ts | contactFormVariants |
+| testimonials.contract.ts | testimonialsVariants |
+| amenities.contract.ts | amenitiesVariants |

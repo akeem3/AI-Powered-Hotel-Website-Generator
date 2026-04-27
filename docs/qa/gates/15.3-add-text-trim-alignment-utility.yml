@@ -1,0 +1,8 @@
+schema: 1
+story: '15.3'
+gate: PASS
+status_reason: 'All acceptance criteria met. CSS utilities verified, documented in Storybook, all tests passing (595 component + 195 contract).'
+reviewer: 'James (Dev Agent)'
+updated: '2026-02-06T14:30:00Z'
+top_issues: []
+waiver: { active: false }

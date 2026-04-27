@@ -1,0 +1,8 @@
+schema: 1
+story: '23.2'
+gate: PASS
+status_reason: 'All acceptance criteria met. Spacing mapper updated with -val suffix on all 6 variables across 4 density levels. Story 15.1 formula applied to comfortable density. All tests passing, no useHotelTheme changes needed.'
+reviewer: 'Quinn'
+updated: '2026-03-17T00:00:00Z'
+top_issues: []
+waiver: { active: false }

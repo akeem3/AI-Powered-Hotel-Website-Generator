@@ -1,0 +1,8 @@
+schema: 1
+story: '17.1'
+gate: PASS
+status_reason: 'All acceptance criteria met. Router correctly delegates to 3 sub-components with full backward compatibility. 36 new tests passing.'
+reviewer: 'James (Dev Agent)'
+updated: '2026-02-20T00:00:00Z'
+top_issues: []
+waiver: { active: false }

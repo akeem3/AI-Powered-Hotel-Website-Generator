@@ -1,0 +1,45 @@
+{
+  "data": [
+    {
+      "code": "en-US",
+      "name": "English (United States)",
+      "direction": "ltr",
+      "enabled": true,
+      "default": true
+    },
+    {
+      "code": "fr-FR",
+      "name": "French (France)",
+      "direction": "ltr",
+      "enabled": true,
+      "default": false
+    },
+    {
+      "code": "de-DE",
+      "name": "German (Germany)",
+      "direction": "ltr",
+      "enabled": true,
+      "default": false
+    },
+    {
+      "code": "es-ES",
+      "name": "Spanish (Spain)",
+      "direction": "ltr",
+      "enabled": false,
+      "default": false
+    },
+    {
+      "code": "ar-SA",
+      "name": "Arabic (Saudi Arabia)",
+      "direction": "rtl",
+      "enabled": false,
+      "default": false
+    }
+  ],
+  "meta": {
+    "page": 1,
+    "limit": 50,
+    "total_count": 5,
+    "filter_count": 5
+  }
+}

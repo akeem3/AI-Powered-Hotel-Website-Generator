@@ -1,0 +1,11 @@
+{
+  "blockType": "hero",
+  "archetype": "urban-tech",
+  "designRationale": "The urban-tech archetype requires bold primary colors on dark backgrounds with geometric sans typography and tight spacing. Using bg-brand-primary for maximum contrast, text-text-inverted for readability, rounded-lg corners for modern aesthetic, and tight spacing with gap-2 md:gap-3 reflects the efficient tech-forward design. The min-h-hero-md provides standard hero height without excess vertical space.",
+  "variantClasses": {
+    "style": "bg-brand-primary text-text-inverted",
+    "layout": "flex items-center justify-center text-center",
+    "overlay": "",
+    "height": "min-h-hero-md"
+  }
+}

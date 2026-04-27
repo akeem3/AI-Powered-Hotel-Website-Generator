@@ -1,0 +1,54 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "slug": "grand-hotel-paris",
+      "status": "published",
+      "city": "Paris",
+      "country": "France",
+      "rating": 4.5,
+      "price_range": "$$$",
+      "created_at": "2024-01-15T10:00:00Z",
+      "updated_at": "2024-01-20T14:30:00Z"
+    },
+    {
+      "id": 2,
+      "slug": "seaside-resort-maldives",
+      "status": "published",
+      "city": "Malé",
+      "country": "Maldives",
+      "rating": 4.8,
+      "price_range": "$$$$",
+      "created_at": "2024-01-10T08:00:00Z",
+      "updated_at": "2024-01-18T16:45:00Z"
+    },
+    {
+      "id": 3,
+      "slug": "alpine-lodge-swiss",
+      "status": "published",
+      "city": "Zermatt",
+      "country": "Switzerland",
+      "rating": 4.7,
+      "price_range": "$$$$",
+      "created_at": "2024-01-05T12:00:00Z",
+      "updated_at": "2024-01-22T09:15:00Z"
+    },
+    {
+      "id": 4,
+      "slug": "tokyo-boutique-inn",
+      "status": "draft",
+      "city": "Tokyo",
+      "country": "Japan",
+      "rating": 4.6,
+      "price_range": "$$",
+      "created_at": "2024-01-12T15:30:00Z",
+      "updated_at": "2024-01-19T11:20:00Z"
+    }
+  ],
+  "meta": {
+    "page": 1,
+    "limit": 50,
+    "total_count": 4,
+    "filter_count": 4
+  }
+}

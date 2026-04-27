@@ -1,0 +1,1426 @@
+diff --git a/.claude/settings.local.json b/.claude/settings.local.json
+index 443ac91..0833f04 100644
+--- a/.claude/settings.local.json
++++ b/.claude/settings.local.json
+@@ -79,7 +79,9 @@
+       "Bash(npx markdownlint-cli2:*)",
+       "Bash(npx markdown-toc:*)",
+       "Bash(1)",
+-      "Bash(git rm:*)"
++      "Bash(git rm:*)",
++      "Bash(netstat:*)",
++      "Bash(xargs:*)"
+     ],
+     "deny": [],
+     "ask": []
+diff --git a/web-app/app/[lang]/hotels/[slug]/page.tsx b/web-app/app/[lang]/hotels/[slug]/page.tsx
+index 5bd17df..ef1aef7 100644
+--- a/web-app/app/[lang]/hotels/[slug]/page.tsx
++++ b/web-app/app/[lang]/hotels/[slug]/page.tsx
+@@ -38,6 +38,21 @@ import ImageGallery from '@/components/blocks/ImageGallery';
+ import { Testimonials } from '@/components/blocks/Testimonials';
+ import Navigation from '@/components/blocks/Navigation';
+ 
++/**
++ * ISR Time-Based Revalidation
++ *
++ * Revalidates this page at most once per hour (3600 seconds).
++ * Combined with on-demand revalidation via webhook (/api/revalidate).
++ *
++ * Story 14.5, AC1: Time-based ISR revalidation for hotel detail pages.
++ *
++ * This ensures:
++ * - Content stays fresh with hourly checks
++ * - Fast response times with cached static pages
++ * - On-demand updates when CMS content changes (via webhook)
++ */
++export const revalidate = 3600;
++
+ /**
+  * Return type for generateStaticParams
+  *
+@@ -147,7 +162,7 @@ export async function generateMetadata(
+   // AC6: Build hreflang URLs for all available languages
+   const hreflangUrls: Record<string, string> = {};
+   for (const availableLang of availableLanguages) {
+-    const extendedLocale = getExtendedLocaleCode(availableLang as any);
++    const extendedLocale = getExtendedLocaleCode(availableLang);
+     hreflangUrls[extendedLocale] = `${siteUrl.replace(/\/$/, '')}/${availableLang}/hotels/${slug}`;
+   }
+ 
+@@ -163,7 +178,7 @@ export async function generateMetadata(
+   } = {
+     title: metaTitle,
+     description: metaDescription,
+-    locale: getExtendedLocaleCode(lang as any),
++    locale: getExtendedLocaleCode(lang),
+     type: 'website',
+     url: canonicalUrl,
+   };
+diff --git a/web-app/app/[lang]/page.tsx b/web-app/app/[lang]/page.tsx
+index 9277085..9a2f597 100644
+--- a/web-app/app/[lang]/page.tsx
++++ b/web-app/app/[lang]/page.tsx
+@@ -6,7 +6,10 @@
+  * build homepages for all available languages.
+  *
+  * Route Pattern: /{lang}
+- * Example: /en, /th, /ja
++ * Example: /en, /th, /tr, /ru
++ *
++ * Story 14.7: Hybrid Architecture - Uses Server Components for
++ * SEO-critical content and Client Components for interactive features.
+  *
+  * @module app/[lang]/page
+  */
+@@ -14,22 +17,40 @@
+ import { getHotelFull } from '@/lib/cms-api';
+ import { getAvailableLanguages } from '@/lib/cms-api/transformers';
+ import { getHotelPageData, hasValidImages } from '@/lib/loaders/hotel-page';
+-import type {
+-  HeroSectionProps,
+-  AmenitiesSectionProps,
+-  RoomsSectionProps,
+-} from '@/lib/loaders/hotel-page';
++
++// Server Components (SEO-critical content)
++import HeroSection from '@/components/sections/HeroSection';
++import { Amenities } from '@/components/blocks/Amenities';
++import FeaturedRooms from '@/components/sections/RoomsGrid';
++import HotelInfo from '@/components/sections/HotelInfo';
++import ContactMap from '@/components/sections/ContactMap';
++
++// Client Components (interactive features)
++import BookingWidget from '@/components/blocks/BookingWidget';
++import ImageGallery from '@/components/blocks/ImageGallery';
++import { Testimonials } from '@/components/blocks/Testimonials';
++import Navigation from '@/components/blocks/Navigation';
+ 
+ /**
+  * Return type for generateStaticParams
+  *
+  * Each object represents a single route with the language segment:
+- * - lang: The language code (e.g., 'en', 'th', 'ja')
++ * - lang: The language code (e.g., 'en', 'th', 'ja', 'tr', 'ru')
+  */
+ type HomepageParams = {
+   lang: string;
+ }[];
+ 
++/**
++ * ISR Time-Based Revalidation
++ *
++ * Revalidates this page at most once per hour (3600 seconds).
++ * Combined with on-demand revalidation via webhook (/api/revalidate).
++ *
++ * Story 14.5, AC1: Time-based ISR revalidation
++ */
++export const revalidate = 3600;
++
+ /**
+  * generateStaticParams for Homepage
+  *
+@@ -47,16 +68,6 @@ type HomepageParams = {
+  * @returns Array of params objects, one for each language variant
+  * @throws Error if HOTEL_ID is missing or hotel has no content
+  */
+-/**
+- * ISR Time-Based Revalidation
+- *
+- * Revalidates this page at most once per hour (3600 seconds).
+- * Combined with on-demand revalidation via webhook (/api/revalidate).
+- *
+- * Story 14.5, AC1: Time-based ISR revalidation
+- */
+-export const revalidate = 3600;
+-
+ export async function generateStaticParams(): Promise<HomepageParams> {
+   // Read HOTEL_ID from env and fail with clear error if missing
+   const hotelId = process.env.HOTEL_ID;
+@@ -101,10 +112,34 @@ export async function generateStaticParams(): Promise<HomepageParams> {
+   return params;
+ }
+ 
++/**
++ * Homepage Component
++ *
++ * Story 14.7: Hybrid Architecture Implementation
++ *
++ * Server Components (SEO Content):
++ * - Navigation (Client Component - menu state)
++ * - HeroSection (Server Component with optional Client animations)
++ * - Amenities (Server Component)
++ * - FeaturedRooms (Server Component)
++ * - HotelInfo (Server Component)
++ * - ImageGallery (Client Component - lightbox interactions)
++ * - ContactMap (Client Component - map with SSR guard)
++ * - BookingWidget (Client Component - form interactions)
++ * - Testimonials (Client Component - carousel) - Currently commented out until CMS data available
++ *
++ * Data Flow:
++ * 1. Page fetches all data server-side via getHotelPageData()
++ * 2. Data is transformed to match component contracts
++ * 3. Server Components render initial HTML (SEO-optimized)
++ * 4. Client Components hydrate for interactivity
++ *
++ * @param params - Route params (lang from URL)
++ */
+ export default async function LangHomepage({ params }: { params: Promise<{ lang: string }> }) {
+   const { lang } = await params;
+ 
+-  // Fetch hotel page data using the loader (Story 14.4)
++  // Fetch hotel page data using the loader (server-side)
+   // This uses React cache to memoize requests during build time
+   const hotelPageData = await getHotelPageData(process.env.HOTEL_ID!, lang);
+ 
+@@ -114,213 +149,274 @@ export default async function LangHomepage({ params }: { params: Promise<{ lang:
+   // Handle graceful image degradation
+   const hasImages = hasValidImages(images);
+ 
+-  // Render star rating as visual stars
+-  const starDisplay = '★'.repeat(hero.starRating) + '☆'.repeat(5 - hero.starRating);
+-
+   // Generate the hotel detail page link
+   const hotelDetailPath = `/${lang}/hotels/${hotel.slug}`;
+ 
++  // Build site URL for image links
++  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
++
++  // ============================================
++  // DATA TRANSFORMATION FOR COMPONENTS
++  // ============================================
++
++  // Transform for HeroSection component
++  const heroSectionProps = {
++    title: hero.title,
++    headline: hero.headline, // Extended variant
++    tagline: hero.tagline,   // Standard variant
++    description: hero.description, // Concise variant
++    primaryCTA: {
++      text: 'Book Now',
++      href: `/${lang}/booking`,
++      ariaLabel: `Book a room at ${hero.title}`,
++    },
++    secondaryCTA: {
++      text: 'Explore Our Hotel',
++      href: hotelDetailPath,
++      ariaLabel: `View details about ${hero.title}`,
++    },
++    image: hasImages && images && images.length > 0 ? `${siteUrl}/images/${images[0].id}` : undefined,
++    background: 'gradient' as const,
++    enableAnimations: false, // Keep false for SEO (Story 14.7 AC4)
++    variant: {
++      style: 'bold' as const,
++      layout: 'centered' as const,
++      overlay: 'gradient' as const,
++      height: 'fullscreen' as const,
++    },
++  };
++
++  // Category mapping for Amenities component
++  // Maps CMS categories to contract's expected values: 'room', 'hotel', 'location', 'services'
++  const categoryMap: Record<string, 'room' | 'hotel' | 'location' | 'services'> = {
++    'room_amenity': 'room',
++    'Activities': 'services',
++    'Wellness': 'services',
++    'Food & Drink': 'services',
++    'Bathroom': 'room',
++    'Outdoors': 'location',
++    'Internet': 'services',
++    'Parking': 'location',
++    'Reception services': 'hotel',
++    'Safety & security': 'hotel',
++    'General': 'hotel',
++    'Cleaning services': 'services',
++    'Entertainment and family services': 'services',
++    'Great for your stay': 'services',
++  };
++
++  // Transform facilities to Amenity format (take first 6 categories as preview)
++  const allAmenities = Object.entries(amenities.facilitiesByCategory)
++    .slice(0, 6)
++    .flatMap(([category, facilities]) =>
++      facilities.slice(0, 4).map((facility) => ({
++        id: facility.id,
++        name: facility.name,
++        description: facility.description || undefined,
++        icon: 'CircleCheck', // Placeholder icon
++        category: categoryMap[category] || 'hotel',
++        featured: false,
++      }))
++    );
++
++  // Transform for Amenities component
++  const amenitiesProps = {
++    amenities: allAmenities,
++    variant: {
++      layout: 'grid' as const,
++      columns: 3 as const, // Literal type: 2 | 3 | 4
++      iconSize: 'medium' as const,
++      iconStyle: 'default' as const,
++      cardStyle: 'elevated' as const,
++    },
++    heading: 'Amenities & Facilities',
++    subheading: `Discover our ${amenities.totalFacilities || 0} facilities`,
++  };
++
++  // Transform for FeaturedRooms component
++  const roomCards = rooms.rooms.slice(0, 3).map((room) => ({
++    id: room.id,
++    name: room.name,
++    type: room.room_type,
++    price: 100 + Math.floor(Math.random() * 500), // Placeholder price
++    capacity: room.capacity_adults,
++    amenities: [],
++    image: room.featured_image || undefined,
++    description: room.description,
++    variant: 'detailed' as const,
++    imageHeight: 'default' as const,
++  }));
++
++  // Transform for HotelInfo component
++  const hotelInfoProps = {
++    hotel: hotel,
++    heading: 'About ' + hotel.name,
++  };
++
++  // Transform for ContactMap component
++  const contactMapProps = {
++    address: hotel.parsedAddress,
++  };
++
++  // Transform for ImageGallery component
++  const galleryImages = hasImages && images && images.length > 0
++    ? images.slice(0, 6).map((img) => ({
++        id: img.id,
++        desktopUrl: `${siteUrl}/images/${img.id}`,
++        mobileUrl: `${siteUrl}/images/${img.id}`,
++        alt: `${hotel.name} - View`,
++        caption: hotel.name,
++      }))
++    : [];
++
+   return (
+-    <main role="main" className="min-h-screen">
+-      {/* Hero Section */}
+-      <section className="relative bg-liner-to-b from-brand-primary to-surface-elevated text-on-brand py-hero px-container">
+-        <div className="container mx-auto max-w-7xl">
+-          <div className="text-center">
+-            {/* Hotel Name */}
+-            <h1 className="text-size-display font-bold mb-card">{hero.title}</h1>
+-
+-            {/* Star Rating */}
+-            <div className="flex items-center justify-center gap-2 mb-card">
+-              <span
+-                className="text-size-h1 text-interactive-primary"
+-                aria-label={`${hero.starRating} star rating`}
++    <>
++      {/* Story 14.7: Navigation - Client Component for menu state */}
++      <Navigation
++        variant={{ style: 'glass', layout: 'default' }}
++      />
++
++      {/* Main homepage content */}
++      <main role="main" className="min-h-screen">
++        {/* Story 14.7 AC1: HeroSection - Server Component */}
++        <HeroSection {...heroSectionProps} />
++
++        {/* Story 14.7 AC1: Amenities - Server Component (Featured Preview) */}
++        <section className="py-section px-container">
++          <div className="container mx-auto max-w-7xl">
++            <Amenities {...amenitiesProps} />
++            <div className="text-center mt-8">
++              <a
++                href={hotelDetailPath + '#amenities'}
++                className="text-interactive-primary hover:text-interactive-primary-hover font-semibold inline-flex items-center gap-2"
+               >
+-                {starDisplay}
+-              </span>
++                View All Amenities
++                <span aria-hidden="true">→</span>
++              </a>
+             </div>
+-
+-            {/* Headline - Extended variant */}
+-            <p className="text-size-body text-text-inverted max-w-4xl mx-auto mb-gap-section">
+-              {hero.headline}
+-            </p>
+-
+-            {/* Call to Action */}
+-            <a
+-              href={hotelDetailPath}
+-              className="inline-block bg-interactive-primary hover:bg-interactive-primary-hover text-on-brand-secondary font-semibold px-inline py-card rounded-lg transition-colors duration-200"
+-            >
+-              Explore Our Hotel
+-            </a>
+           </div>
+-        </div>
+-      </section>
+-
+-      {/* About Section */}
+-      {hero.tagline && (
+-        <section className="py-section px-container bg-surface-primary">
+-          <div className="container mx-auto max-w-4xl text-center">
+-            <h2 className="text-size-h2 font-bold text-text-primary mb-card">
+-              Welcome to {hero.title}
+-            </h2>
+-            <p className="text-size-body text-text-secondary leading-relaxed">{hero.tagline}</p>
++        </section>
++
++        {/* Story 14.7 AC1: FeaturedRooms - Server Component (First 3 rooms) */}
++        <section className="py-section px-container">
++          <div className="container mx-auto max-w-7xl">
++            <div className="text-center mb-gap-section">
++              <h2 className="text-size-h2 font-bold text-text-primary">
++                Our Rooms & Accommodations
++              </h2>
++            </div>
++            <FeaturedRooms
++              rooms={roomCards}
++              variant="detailed"
++              className="bg-surface-primary"
++            />
++            <div className="text-center mt-8">
++              <a
++                href={hotelDetailPath + '#rooms'}
++                className="text-interactive-primary hover:text-interactive-primary-hover font-semibold inline-flex items-center gap-2"
++              >
++                View All Rooms
++                <span aria-hidden="true">→</span>
++              </a>
++            </div>
+           </div>
+         </section>
+-      )}
+-
+-      {/* Featured Amenities Preview */}
+-      <section className="py-section px-container bg-surface-muted">
+-        <div className="container mx-auto max-w-7xl">
+-          <h2 className="text-size-h2 font-bold text-text-primary mb-gap-section text-center">
+-            Amenities & Facilities
+-          </h2>
+-
+-          {Object.keys(amenities.facilitiesByCategory).length > 0 ? (
+-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-card">
+-              {Object.entries(amenities.facilitiesByCategory)
+-                .slice(0, 6) // Show first 6 categories as preview
+-                .map(([category, facilities]) => (
+-                  <div key={category} className="bg-surface-primary rounded-lg p-card shadow-sm">
+-                    <h3 className="text-size-h3 font-semibold text-text-primary mb-card capitalize">
+-                      {category}
+-                    </h3>
+-                    <ul className="space-y-1">
+-                      {facilities.slice(0, 4).map((facility) => (
+-                        <li
+-                          key={facility.id}
+-                          className="flex items-center gap-2 text-sm text-text-secondary"
+-                        >
+-                          <span className="text-status-success">✓</span>
+-                          <span>{facility.name}</span>
+-                        </li>
+-                      ))}
+-                      {facilities.length > 4 && (
+-                        <li className="text-sm text-text-muted italic">
+-                          +{facilities.length - 4} more
+-                        </li>
+-                      )}
+-                    </ul>
+-                  </div>
+-                ))}
++
++        {/* Story 14.7 AC2: ImageGallery - Client Component */}
++        {hasImages && galleryImages.length > 0 && (
++          <section className="py-section px-container bg-surface-muted">
++            <div className="container mx-auto max-w-7xl">
++              <div className="text-center mb-gap-section">
++                <h2 className="text-size-h2 font-bold text-text-primary">
++                  Gallery
++                </h2>
++                <p className="text-text-secondary">
++                  Explore our beautiful property
++                </p>
++              </div>
++              <ImageGallery
++                images={galleryImages}
++              />
+             </div>
+-          ) : (
+-            <p className="text-center text-text-secondary">No facilities listed.</p>
+-          )}
+-
+-          <div className="text-center mt-8">
+-            <a
+-              href={hotelDetailPath + '#amenities'}
+-              className="text-interactive-primary hover:text-interactive-primary-hover font-semibold inline-flex items-center gap-2"
+-            >
+-              View All Amenities
+-              <span aria-hidden="true">→</span>
+-            </a>
++          </section>
++        )}
++
++        {/* Story 14.7 AC2: Testimonials - Client Component */}
++        {/* Note: Testimonials requires testimonials array prop. Uncomment when testimonials data is available from CMS */}
++        {/* <section className="py-section px-container bg-surface-primary">
++          <div className="container mx-auto max-w-7xl">
++            <Testimonials
++              testimonials={[]} // TODO: Add testimonials from CMS when available
++              variant={{ layout: 'grid', columns: 3 }}
++              heading="Guest Reviews"
++              subheading="What our guests say"
++            />
+           </div>
+-        </div>
+-      </section>
+-
+-      {/* Featured Rooms Preview */}
+-      <section className="py-section px-container bg-surface-primary">
+-        <div className="container mx-auto max-w-7xl">
+-          <h2 className="text-size-h2 font-bold text-text-primary mb-gap-section text-center">
+-            Our Rooms & Accommodations
+-          </h2>
+-
+-          {rooms.rooms.length > 0 ? (
+-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-section">
+-              {rooms.rooms.slice(0, 3).map((room) => (
+-                <div
+-                  key={room.id}
+-                  className="bg-surface-muted rounded-lg overflow-hidden shadow-sm"
+-                >
+-                  {/* Image placeholder */}
+-                  {hasImages ? (
+-                    <div className="aspect-video bg-surface-secondary flex items-center justify-center">
+-                      <span className="text-text-muted text-sm">Room image</span>
+-                    </div>
+-                  ) : null}
+-
+-                  <div className="p-card">
+-                    <h3 className="text-size-h3 font-semibold text-text-primary mb-card">
+-                      {room.name}
+-                    </h3>
+-
+-                    {room.description && (
+-                      <p className="text-text-secondary mb-card line-clamp-2">{room.description}</p>
+-                    )}
+-
+-                    <div className="flex flex-wrap gap-card text-sm text-text-muted">
+-                      {room.capacity_adults > 0 && <span>Adults: {room.capacity_adults}</span>}
+-                      {room.capacity_children > 0 && (
+-                        <span>Children: {room.capacity_children}</span>
+-                      )}
+-                    </div>
+-                  </div>
+-                </div>
+-              ))}
++        </section> */}
++
++        {/* Story 14.7 AC1: HotelInfo - Server Component */}
++        <section className="py-section px-container">
++          <div className="container mx-auto max-w-4xl">
++            <HotelInfo {...hotelInfoProps} />
++          </div>
++        </section>
++
++        {/* Story 14.7 AC2: ContactMap - Client Component with SSR guard */}
++        <section className="py-section px-container bg-surface-muted">
++          <div className="container mx-auto max-w-4xl">
++            <div className="text-center mb-gap-section">
++              <h2 className="text-size-h2 font-bold text-text-primary mb-card">
++                Find Us
++              </h2>
+             </div>
+-          ) : (
+-            <p className="text-center text-text-secondary">No rooms available.</p>
+-          )}
+-
+-          <div className="text-center mt-8">
+-            <a
+-              href={hotelDetailPath + '#rooms'}
+-              className="text-interactive-primary hover:text-interactive-primary-hover font-semibold inline-flex items-center gap-2"
+-            >
+-              View All Rooms
+-              <span aria-hidden="true">→</span>
+-            </a>
++            <ContactMap {...contactMapProps} />
+           </div>
+-        </div>
+-      </section>
+-
+-      {/* Location/Contact Section */}
+-      <section className="py-section px-container bg-surface-secondary">
+-        <div className="container mx-auto max-w-4xl text-center">
+-          <h2 className="text-size-h2 font-bold text-text-primary mb-card">Visit Us</h2>
+-          <address className="not-italic text-text-secondary mb-gap-section">
+-            {hero.address.street && <div>{hero.address.street}</div>}
+-            <div>
+-              {hero.address.city && <span>{hero.address.city}</span>}
+-              {hero.address.state && <span>, {hero.address.state}</span>}
+-              {hero.address.postal_code && <span> {hero.address.postal_code}</span>}
++        </section>
++
++        {/* Story 14.7 AC2: BookingWidget - Client Component */}
++        <section className="py-section px-container bg-surface-elevated">
++          <div className="container mx-auto max-w-4xl">
++            <div className="text-center mb-gap-section">
++              <h2 className="text-size-h2 font-bold text-text-primary mb-card">
++                Book Your Stay
++              </h2>
++              <p className="text-text-secondary">
++                Check availability and reserve your room
++              </p>
+             </div>
+-            {hero.address.country && <div>{hero.address.country}</div>}
+-          </address>
+-
+-          <a
+-            href={hotelDetailPath}
+-            className="inline-block bg-brand-primary hover:bg-brand-primary-hover text-on-brand font-semibold px-inline py-card rounded-lg transition-colors duration-200"
+-          >
+-            Get Directions
+-          </a>
+-        </div>
+-      </section>
+-
+-      {/* Metadata Section (for debugging/dev visibility) */}
+-      {process.env.NODE_ENV === 'development' && (
+-        <section className="py-section px-container bg-surface-muted border-t border-border-default">
+-          <div className="container mx-auto max-w-7xl">
+-            <details className="text-sm">
+-              <summary className="cursor-pointer text-text-secondary font-semibold mb-card">
+-                Debug Information (Development Only)
+-              </summary>
+-              <div className="bg-surface-primary p-card rounded space-y-2 font-mono text-sm">
+-                <div>Hotel ID: {metadata.hotelId}</div>
+-                <div>Fetched At: {metadata.fetchedAt}</div>
+-                <div>Processing Time: {metadata.processingTimeMs}ms</div>
+-                <div>Has Errors: {metadata.hasErrors ? 'Yes' : 'No'}</div>
+-                <div>Available Languages: {hotelPageData.availableLanguages.join(', ')}</div>
+-                <div>Current Language: {lang}</div>
+-                <div>Hotel Slug: {hotel.slug}</div>
+-                <div>Total Facilities: {amenities.totalFacilities}</div>
+-                <div>Total Rooms: {rooms.roomCount}</div>
+-                <div>Images Available: {hasImages ? 'Yes' : 'No (graceful degradation)'}</div>
+-              </div>
+-            </details>
++            <BookingWidget
++              variant="desktop"
++              theme="light"
++            />
+           </div>
+         </section>
+-      )}
+-    </main>
++
++        {/* Metadata Section (for debugging/dev visibility) */}
++        {process.env.NODE_ENV === 'development' && (
++          <section className="py-section px-container bg-surface-muted border-t border-border-default">
++            <div className="container mx-auto max-w-7xl">
++              <details className="text-sm">
++                <summary className="cursor-pointer text-text-secondary font-semibold mb-card">
++                  Debug Information (Development Only)
++                </summary>
++                <div className="bg-surface-primary p-card rounded space-y-2 font-mono text-sm">
++                  <div>Hotel ID: {metadata.hotelId}</div>
++                  <div>Fetched At: {metadata.fetchedAt}</div>
++                  <div>Processing Time: {metadata.processingTimeMs}ms</div>
++                  <div>Has Errors: {metadata.hasErrors ? 'Yes' : 'No'}</div>
++                  <div>Available Languages: {hotelPageData.availableLanguages.join(', ')}</div>
++                  <div>Current Language: {lang}</div>
++                  <div>Hotel Slug: {hotel.slug}</div>
++                  <div>Total Facilities: {amenities.totalFacilities}</div>
++                  <div>Total Rooms: {rooms.roomCount}</div>
++                  <div>Images Available: {hasImages ? 'Yes' : 'No (graceful degradation)'}</div>
++                  <div>Component Library: ✅ Using Server/Client Components</div>
++                </div>
++              </details>
++            </div>
++          </section>
++        )}
++      </main>
++    </>
+   );
+ }
+diff --git a/web-app/app/sitemap.ts b/web-app/app/sitemap.ts
+index 4d6556f..1e7504f 100644
+--- a/web-app/app/sitemap.ts
++++ b/web-app/app/sitemap.ts
+@@ -78,15 +78,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+   // This creates the hreflang mappings for SEO
+   const alternatesLanguages: Record<string, string> = {};
+   for (const lang of languages) {
+-    const extendedLocale = getExtendedLocaleCode(
+-      lang as 'en' | 'es' | 'fr' | 'de' | 'th' | 'ja' | 'ar',
+-    );
++    const extendedLocale = getExtendedLocaleCode(lang);
+     alternatesLanguages[extendedLocale] = `${baseUrl.replace(/\/$/, '')}/${lang}`;
+   }
+ 
+-  // Add x-default pointing to English homepage
+-  // This tells search engines to use English as default language
+-  alternatesLanguages['x-default'] = `${baseUrl.replace(/\/$/, '')}/en`;
++  // Add x-default pointing to the first available language
++  // This tells search engines which language to use as default
++  // Important: Use first available language from CMS, not hardcoded 'en'
++  // (CMS may not have English content - e.g., only has 'tr' and 'ru')
++  alternatesLanguages['x-default'] = `${baseUrl.replace(/\/$/, '')}/${languages[0]}`;
+ 
+   // Create homepage sitemap entries for each language
+   // Pattern: /{lang}
+@@ -102,14 +102,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+   // Each detail page needs alternates pointing to all detail page variants
+   const detailAlternatesLanguages: Record<string, string> = {};
+   for (const lang of languages) {
+-    const extendedLocale = getExtendedLocaleCode(
+-      lang as 'en' | 'es' | 'fr' | 'de' | 'th' | 'ja' | 'ar',
+-    );
++    const extendedLocale = getExtendedLocaleCode(lang);
+     detailAlternatesLanguages[extendedLocale] = `${baseUrl.replace(/\/$/, '')}/${lang}/hotels/${slug}`;
+   }
+ 
+-  // Add x-default pointing to English hotel detail page
+-  detailAlternatesLanguages['x-default'] = `${baseUrl.replace(/\/$/, '')}/en/hotels/${slug}`;
++  // Add x-default pointing to the first available language hotel detail page
++  detailAlternatesLanguages['x-default'] = `${baseUrl.replace(/\/$/, '')}/${languages[0]}/hotels/${slug}`;
+ 
+   // Create hotel detail page sitemap entries for each language
+   // Pattern: /{lang}/hotels/{slug}
+diff --git a/web-app/lib/cms-api/index.ts b/web-app/lib/cms-api/index.ts
+index 12ef545..4ab6471 100644
+--- a/web-app/lib/cms-api/index.ts
++++ b/web-app/lib/cms-api/index.ts
+@@ -99,7 +99,7 @@ export {
+ // Data Transformers
+ // ============================================================
+ export {
+-  getVariantTitle,
++  getVariantContentType,
+   getVariantType,
+   getContentVariant,
+   getContentVariantWithMetadata,
+diff --git a/web-app/lib/cms-api/schemas.ts b/web-app/lib/cms-api/schemas.ts
+index 87c4ef7..759f2a3 100644
+--- a/web-app/lib/cms-api/schemas.ts
++++ b/web-app/lib/cms-api/schemas.ts
+@@ -9,21 +9,11 @@
+ 
+ import { z } from 'zod';
+ import type {
+-  ContentVariant,
+   HotelStatus,
+   PropertyType,
+   FacilityCategory,
+ } from './types';
+ 
+-/**
+- * Content Variant Enum Schema
+- */
+-export const ContentVariantSchema = z.enum([
+-  'Hotel Concise',
+-  'Hotel Standard',
+-  'Hotel Extended',
+-] as const);
+-
+ /**
+  * Hotel Status Schema
+  */
+@@ -49,13 +39,19 @@ export const PropertyTypeSchema = z.enum([
+ 
+ /**
+  * Address Schema (parsed from JSON string)
++ *
++ * Based on actual CMS response format:
++ * {"city": "Unawatuna", "full": "Yaddehimulla Road, Unawatuna, 80000\\t Unawatuna, Sri Lanka", "country": "lk"}
++ *
++ * Note: CMS may not provide all address fields. Missing fields are optional.
+  */
+ export const CmsAddressSchema = z.object({
+   city: z.string().min(1, 'City cannot be empty'),
+-  state: z.string(),
+-  street: z.string(),
+-  country: z.string().min(1, 'Country cannot be empty'),
+-  postal_code: z.string(),
++  state: z.string().optional(), // May not be in CMS response
++  street: z.string().optional(), // May not be in CMS response (often in "full" field)
++  country: z.string().min(1, 'Country cannot be empty'), // May be ISO code (e.g., "lk") or full name
++  postal_code: z.string().optional(), // May not be in CMS response
++  full: z.string().optional(), // Full address string (present in CMS)
+ });
+ 
+ /**
+@@ -86,12 +82,12 @@ export const CmsHotelSchema = z.object({
+   name: z.string().min(1, 'Hotel name cannot be empty'),
+   slug: z.string().min(1, 'Hotel slug cannot be empty'),
+   property_type: PropertyTypeSchema,
+-  star_rating: z.number().int().min(1).max(5, 'Star rating must be between 1 and 5'),
++  star_rating: z.number().int().min(1).max(5).nullable(), // CMS returns null
+   status: HotelStatusSchema,
+   opening_year: z.number().int().positive().nullable(),
+   address: z.string(), // JSON string - will be parsed separately
+-  is_template: z.boolean(),
+-  has_override: z.boolean(),
++  is_template: z.boolean().nullable(), // May be null in some CMS responses
++  has_override: z.boolean().nullable(), // May be null in some CMS responses
+   created_at: z.string().datetime('Created at must be a valid ISO 8601 datetime'),
+   updated_at: z.string().datetime('Updated at must be a valid ISO 8601 datetime'),
+ });
+@@ -102,14 +98,14 @@ export const CmsHotelSchema = z.object({
+ export const CmsContentSchema = z.object({
+   id: z.string().uuid(),
+   hotel_id: z.string().uuid(),
+-  content_type: z.string(),
+-  title: ContentVariantSchema,
++  content_type: z.string(), // 'brand_story', 'brief_description', 'detailed_description'
++  title: z.string(), // Localized display title (e.g., "Hikayemiz", "Наша История")
+   content: z.string().min(1, 'Content cannot be empty'),
+   language: z.string().min(2).max(5), // ISO 639-1: 2-5 characters
+-  status: z.string(),
++  status: z.string(), // 'published' in actual CMS (not 'available' or 'draft')
+   sort_order: z.number().int(),
+-  parent_content_id: z.string().uuid().nullable(),
+-  has_override: z.boolean(),
++  parent_content_id: z.string().uuid().nullable().optional(), // Not present in current CMS response
++  has_override: z.boolean().optional(), // Not present in current CMS response
+ });
+ 
+ /**
+@@ -180,7 +176,7 @@ export const HotelFullResponseSchema = z.object({
+   facilities: z.array(CmsFacilitySchema),
+   images: z.array(CmsImageSchema).nullable(),
+   _metadata: CmsMetadataSchema,
+-  _errors: z.array(z.string()),
++  _errors: z.array(z.string()).nullable(), // CMS returns null when no errors
+ });
+ 
+ /**
+diff --git a/web-app/lib/cms-api/transformers.ts b/web-app/lib/cms-api/transformers.ts
+index 70c3725..f40a455 100644
+--- a/web-app/lib/cms-api/transformers.ts
++++ b/web-app/lib/cms-api/transformers.ts
+@@ -26,44 +26,45 @@ import { ContentVariant } from './types';
+ import { parseAddressString } from './schemas';
+ 
+ /**
+- * Content variant title mapping
++ * Content variant type mapping
+  *
+- * Maps CMS content titles to our internal variant enum.
++ * Maps CMS content_type values to our internal ContentVariantType.
+  * Used for efficient lookups when selecting content.
+  */
+ const CONTENT_VARIANT_MAP: Record<ContentVariant, ContentVariantType> = {
+-  [ContentVariant.CONCISE]: 'concise',
+-  [ContentVariant.STANDARD]: 'standard',
+-  [ContentVariant.EXTENDED]: 'extended',
++  [ContentVariant.CONCISE]: 'concise',      // brief_description → concise
++  [ContentVariant.STANDARD]: 'standard',    // brand_story → standard
++  [ContentVariant.EXTENDED]: 'extended',    // detailed_description → extended
+ } as const;
+ 
+ /**
+- * Reverse mapping from internal type to CMS title
++ * Reverse mapping from internal type to CMS content_type
+  */
+-const VARIANT_TYPE_TO_TITLE: Record<ContentVariantType, ContentVariant> = {
++const VARIANT_TYPE_TO_CONTENT_TYPE: Record<ContentVariantType, ContentVariant> = {
+   concise: ContentVariant.CONCISE,
+   standard: ContentVariant.STANDARD,
+   extended: ContentVariant.EXTENDED,
+ } as const;
+ 
+ /**
+- * Get content variant title from type
++ * Get CMS content_type from internal variant type
+  *
+  * @param variant - Internal variant type
+- * @returns CMS content variant title
++ * @returns CMS content_type enum value
+  */
+-export function getVariantTitle(variant: ContentVariantType): ContentVariant {
+-  return VARIANT_TYPE_TO_TITLE[variant];
++export function getVariantContentType(variant: ContentVariantType): ContentVariant {
++  return VARIANT_TYPE_TO_CONTENT_TYPE[variant];
+ }
+ 
+ /**
+- * Get content variant type from title
++ * Get content variant type from CMS content_type
+  *
+- * @param title - CMS content variant title
++ * @param contentType - CMS content_type string or enum value
+  * @returns Internal variant type or undefined if not found
+  */
+-export function getVariantType(title: string): ContentVariantType | undefined {
+-  return CONTENT_VARIANT_MAP[title as ContentVariant];
++export function getVariantType(contentType: string): ContentVariantType | undefined {
++  // Handle both enum values and plain strings
++  return CONTENT_VARIANT_MAP[contentType as ContentVariant];
+ }
+ 
+ /**
+@@ -102,19 +103,19 @@ export function getContentVariant(
+     return '';
+   }
+ 
+-  const variantTitle = getVariantTitle(variant);
++  const variantContentType = getVariantContentType(variant);
+ 
+-  // Helper to find content by language and variant title
+-  const findContent = (lang: string, title: ContentVariant): CmsContent | undefined => {
++  // Helper to find content by language and content_type
++  const findContent = (lang: string, contentType: ContentVariant): CmsContent | undefined => {
+     return content.find(
+-      (c) => c.language === lang && c.title === title && (c.status === 'available' || c.status === 'draft')
++      (c) => c.language === lang && c.content_type === contentType && c.status === 'published'
+     );
+   };
+ 
+   // Helper to find any content by language
+   const findAnyContentInLanguage = (lang: string): CmsContent | undefined => {
+     return content.find(
+-      (c) => c.language === lang && (c.status === 'available' || c.status === 'draft')
++      (c) => c.language === lang && c.status === 'published'
+     );
+   };
+ 
+@@ -125,14 +126,14 @@ export function getContentVariant(
+ 
+   // Fallback chain: try different variants in requested language
+   const variantsToTry: ContentVariant[] = [
+-    variantTitle,
++    variantContentType,
+     ContentVariant.STANDARD,
+     ContentVariant.CONCISE,
+     ContentVariant.EXTENDED,
+   ];
+ 
+-  for (const title of variantsToTry) {
+-    const item = findContent(language, title);
++  for (const contentType of variantsToTry) {
++    const item = findContent(language, contentType);
+     if (item && item.content) {
+       return item.content;
+     }
+@@ -140,8 +141,8 @@ export function getContentVariant(
+ 
+   // Fallback to English if requested language is not English
+   if (language !== 'en') {
+-    for (const title of variantsToTry) {
+-      const item = findContent('en', title);
++    for (const contentType of variantsToTry) {
++      const item = findContent('en', contentType);
+       if (item && item.content) {
+         return item.content;
+       }
+@@ -189,18 +190,18 @@ export function getContentVariantWithMetadata(
+     return { content: '', language: 'en', variant: 'standard', wasFallback: true };
+   }
+ 
+-  const variantTitle = getVariantTitle(variant);
++  const variantContentType = getVariantContentType(variant);
+ 
+   // Try to find exact match
+   const exactMatch = content.find(
+-    (c) => c.language === language && c.title === variantTitle && (c.status === 'available' || c.status === 'draft')
++    (c) => c.language === language && c.content_type === variantContentType && c.status === 'published'
+   );
+ 
+   if (exactMatch) {
+     return {
+       content: exactMatch.content,
+       language: exactMatch.language,
+-      variant: CONTENT_VARIANT_MAP[exactMatch.title as ContentVariant] || 'standard',
++      variant: CONTENT_VARIANT_MAP[exactMatch.content_type as ContentVariant] || 'standard',
+       wasFallback: false,
+     };
+   }
+@@ -214,7 +215,7 @@ export function getContentVariantWithMetadata(
+   return {
+     content: fallbackContent,
+     language: fallbackItem?.language || language,
+-    variant: fallbackItem ? (CONTENT_VARIANT_MAP[fallbackItem.title as ContentVariant] || 'standard') : 'standard',
++    variant: fallbackItem ? (CONTENT_VARIANT_MAP[fallbackItem.content_type as ContentVariant] || 'standard') : 'standard',
+     wasFallback: true,
+   };
+ }
+@@ -232,11 +233,11 @@ export function buildContentLookup(content: CmsContent[]): ContentLookup {
+   const lookup: ContentLookup = {};
+ 
+   for (const item of content) {
+-    // Content items use 'draft' or 'available' status in CMS
+-    if (item.status !== 'available' && item.status !== 'draft') continue;
++    // Content items use 'published' status in actual CMS
++    if (item.status !== 'published') continue;
+ 
+-    const { language, title } = item;
+-    const variantType = CONTENT_VARIANT_MAP[title as ContentVariant];
++    const { language, content_type } = item;
++    const variantType = CONTENT_VARIANT_MAP[content_type as ContentVariant];
+ 
+     if (!variantType) continue; // Skip unknown variants
+ 
+@@ -254,8 +255,7 @@ export function buildContentLookup(content: CmsContent[]): ContentLookup {
+  * Get available languages from content array
+  *
+  * Extracts unique language codes from content items.
+- * Note: CMS API uses 'draft' status for content items, while 'available' is used for
+- * rooms/facilities. Both are accepted to ensure compatibility with actual CMS data.
++ * Note: Actual CMS uses 'published' status for content items.
+  *
+  * @param content - Array of content items from CMS
+  * @returns Array of unique language codes
+@@ -263,7 +263,7 @@ export function buildContentLookup(content: CmsContent[]): ContentLookup {
+  * @example
+  * ```ts
+  * const languages = getAvailableLanguages(cmsData.content);
+- * // ['en', 'th', 'ja']
++ * // ['tr', 'ru', 'en']
+  * ```
+  */
+ export function getAvailableLanguages(content: CmsContent[]): string[] {
+@@ -273,8 +273,8 @@ export function getAvailableLanguages(content: CmsContent[]): string[] {
+ 
+   const languages = new Set<string>();
+   for (const item of content) {
+-    // Content items use 'draft' or 'available' status in CMS
+-    if (item.status === 'available' || item.status === 'draft') {
++    // Content items use 'published' status in actual CMS
++    if (item.status === 'published') {
+       languages.add(item.language);
+     }
+   }
+diff --git a/web-app/lib/cms-api/types.ts b/web-app/lib/cms-api/types.ts
+index 34113a0..24f7d1e 100644
+--- a/web-app/lib/cms-api/types.ts
++++ b/web-app/lib/cms-api/types.ts
+@@ -14,11 +14,16 @@
+  * - Concise: ~50 words (cards, previews, meta descriptions)
+  * - Standard: ~100 words (standard page sections)
+  * - Extended: ~150 words (hero sections, full descriptions)
++ *
++ * Maps to CMS content_type field values:
++ * - brief_description → concise
++ * - brand_story → standard
++ * - detailed_description → extended
+  */
+ export enum ContentVariant {
+-  CONCISE = 'Hotel Concise',
+-  STANDARD = 'Hotel Standard',
+-  EXTENDED = 'Hotel Extended',
++  CONCISE = 'brief_description',
++  STANDARD = 'brand_story',
++  EXTENDED = 'detailed_description',
+ }
+ 
+ /**
+@@ -39,15 +44,25 @@ export type PropertyType = 'hotel' | 'resort' | 'hostel' | 'guesthouse' | 'villa
+ /**
+  * Address object parsed from JSON string
+  *
+- * The CMS stores address as a JSON string that needs to be parsed:
+- * {"city": "Unawatuna", "state": "Southern Province", "street": "2A, Galle Road", "country": "Sri Lanka", "postal_code": "80200"}
++ * The CMS stores address as a JSON string that needs to be parsed.
++ * Not all fields are guaranteed to be present in the CMS response.
++ *
++ * Example from CMS:
++ * {"city": "Unawatuna", "full": "Yaddehimulla Road, Unawatuna...", "country": "lk"}
++ *
++ * Note: state, street, and postal_code may not be present in all CMS responses.
++ *
++ * Index signature added to allow additional fields from CMS and to satisfy
++ * Zod passthrough() compatibility in contracts.
+  */
+ export interface CmsAddress {
+   city: string;
+-  state: string;
+-  street: string;
++  state?: string;  // May not be in CMS response
++  street?: string; // May not be in CMS response (often in "full" field)
+   country: string;
+-  postal_code: string;
++  postal_code?: string; // May not be in CMS response
++  full?: string; // Full address string (present in CMS)
++  [key: string]: unknown; // Index signature for additional fields from CMS
+ }
+ 
+ /**
+@@ -73,18 +88,25 @@ export interface CmsHotel {
+  *
+  * Content is organized by language and has 3 length variants per language.
+  * This is NOT a translation system - each language has its own 3 variants.
++ *
++ * Variant is determined by content_type field:
++ * - brief_description: Concise variant (~50 words)
++ * - brand_story: Standard variant (~100 words)
++ * - detailed_description: Extended variant (~150 words)
++ *
++ * Title is a localized display string (e.g., "Hikayemiz", "Наша История")
+  */
+ export interface CmsContent {
+   id: string;
+   hotel_id: string;
+-  content_type: string; // Currently "custom"
+-  title: ContentVariant; // "Hotel Concise" | "Hotel Standard" | "Hotel Extended"
++  content_type: ContentVariant; // 'brief_description' | 'brand_story' | 'detailed_description'
++  title: string; // Localized display title (e.g., "Hikayemiz", "Наша История")
+   content: string; // Marketing text (50-150 words)
+-  language: string; // ISO 639-1 code: "en", "th", "ja", "ar", etc.
++  language: string; // ISO 639-1 code: "tr", "ru", "en", etc.
+   status: string;
+   sort_order: number;
+-  parent_content_id: string | null;
+-  has_override: boolean;
++  parent_content_id: string | null | undefined;
++  has_override: boolean | undefined;
+ }
+ 
+ /**
+diff --git a/web-app/lib/content/locale/constants.ts b/web-app/lib/content/locale/constants.ts
+index cc4021c..b33b5e2 100644
+--- a/web-app/lib/content/locale/constants.ts
++++ b/web-app/lib/content/locale/constants.ts
+@@ -7,13 +7,56 @@
+ 
+ /**
+  * All supported locale codes for the application.
+- * Uses const assertion for strict typing.
++ *
++ * This array can be extended with additional language codes as needed.
++ * The locale system is designed to be dynamic - languages are determined
++ * from the actual CMS content, not limited to this hardcoded list.
++ *
++ * Common ISO 639-1 codes:
++ * - en: English
++ * - es: Spanish
++ * - fr: French
++ * - de: German
++ * - th: Thai
++ * - ja: Japanese
++ * - ar: Arabic
++ * - tr: Turkish
++ * - ru: Russian
++ * - zh: Chinese
++ * - ko: Korean
++ * - vi: Vietnamese
++ * - pt: Portuguese
++ * - it: Italian
++ * - nl: Dutch
++ * - pl: Polish
++ * - uk: Ukrainian
+  */
+-export const SUPPORTED_LOCALES = ['en', 'es', 'fr', 'de', 'th', 'ja', 'ar'] as const;
++export const SUPPORTED_LOCALES = [
++  'en',
++  'es',
++  'fr',
++  'de',
++  'th',
++  'ja',
++  'ar',
++  'tr',  // Turkish
++  'ru',  // Russian
++  'zh',  // Chinese
++  'ko',  // Korean
++  'vi',  // Vietnamese
++  'pt',  // Portuguese
++  'it',  // Italian
++  'nl',  // Dutch
++  'pl',  // Polish
++  'uk',  // Ukrainian
++] as const;
+ 
+ /**
+  * Locale type derived from SUPPORTED_LOCALES.
+  * Use this type for any function accepting locale codes.
++ *
++ * Note: This type represents known/declared locales. For dynamic locale
++ * handling (e.g., languages from CMS), use `string` type instead.
+  */
+ export type Locale = typeof SUPPORTED_LOCALES[number];
+ 
+@@ -28,12 +71,22 @@ export const DEFAULT_LOCALE: Locale = 'en';
+  */
+ export const LOCALE_NAMES: Record<Locale, string> = {
+   en: 'English',
+-  es: 'Español',
+-  fr: 'Français',
+-  de: 'Deutsch',
++  es: 'Spanish',
++  fr: 'French',
++  de: 'German',
+   th: 'Thai',
+   ja: 'Japanese',
+   ar: 'Arabic',
++  tr: 'Turkish',
++  ru: 'Russian',
++  zh: 'Chinese',
++  ko: 'Korean',
++  vi: 'Vietnamese',
++  pt: 'Portuguese',
++  it: 'Italian',
++  nl: 'Dutch',
++  pl: 'Polish',
++  uk: 'Ukrainian',
+ };
+ 
+ /**
+@@ -48,6 +101,16 @@ export const LOCALE_NATIVE_NAMES: Record<Locale, string> = {
+   th: 'ภาษาไทย',
+   ja: '日本語',
+   ar: 'العربية',
++  tr: 'Türkçe',
++  ru: 'Русский',
++  zh: '中文',
++  ko: '한국어',
++  vi: 'Tiếng Việt',
++  pt: 'Português',
++  it: 'Italiano',
++  nl: 'Nederlands',
++  pl: 'Polski',
++  uk: 'Українська',
+ };
+ 
+ /**
+@@ -62,6 +125,16 @@ export const LOCALE_CODES: Record<Locale, { iso639_1: string; regions: string[]
+   th: { iso639_1: 'th', regions: ['TH'] },
+   ja: { iso639_1: 'ja', regions: ['JP'] },
+   ar: { iso639_1: 'ar', regions: ['SA', 'AE', 'EG', 'QA', 'KW', 'JO', 'LB', 'OM', 'BH', 'DZ', 'MA', 'TN', 'YE', 'SY', 'IQ', 'LY', 'SD', 'PS'] },
++  tr: { iso639_1: 'tr', regions: ['TR'] },
++  ru: { iso639_1: 'ru', regions: ['RU', 'BY', 'KZ', 'KG', 'UZ'] },
++  zh: { iso639_1: 'zh', regions: ['CN', 'TW', 'HK', 'SG'] },
++  ko: { iso639_1: 'ko', regions: ['KR', 'KP'] },
++  vi: { iso639_1: 'vi', regions: ['VN'] },
++  pt: { iso639_1: 'pt', regions: ['BR', 'PT'] },
++  it: { iso639_1: 'it', regions: ['IT', 'CH', 'SM'] },
++  nl: { iso639_1: 'nl', regions: ['NL', 'BE'] },
++  pl: { iso639_1: 'pl', regions: ['PL'] },
++  uk: { iso639_1: 'uk', regions: ['UA'] },
+ };
+ 
+ /**
+diff --git a/web-app/lib/contracts/hotel-info.contract.ts b/web-app/lib/contracts/hotel-info.contract.ts
+index f59cf95..4d205b6 100644
+--- a/web-app/lib/contracts/hotel-info.contract.ts
++++ b/web-app/lib/contracts/hotel-info.contract.ts
+@@ -13,11 +13,11 @@ import { z } from 'zod';
+  */
+ export const addressSchema = z.object({
+   city: z.string().min(1),
+-  state: z.string().min(1),
+-  street: z.string().min(1),
++  state: z.string().min(1).optional(),  // Made optional to match CMS data
++  street: z.string().min(1).optional(), // Made optional to match CMS data
+   country: z.string().min(1),
+-  postal_code: z.string().min(1),
+-});
++  postal_code: z.string().min(1).optional(), // Made optional to match CMS data
++}).passthrough(); // Allow additional fields like 'full'
+ 
+ /**
+  * Hotel data schema for HotelInfo component
+diff --git a/web-app/lib/metadata/hotel-metadata.ts b/web-app/lib/metadata/hotel-metadata.ts
+index 7e119c7..74337a5 100644
+--- a/web-app/lib/metadata/hotel-metadata.ts
++++ b/web-app/lib/metadata/hotel-metadata.ts
+@@ -13,8 +13,6 @@ import type {
+   CmsAddress,
+   CmsImage,
+ } from '@/lib/cms-api/types';
+-import type { Locale } from '@/lib/content/locale/constants';
+-import { LOCALE_CODES } from '@/lib/content/locale/constants';
+ 
+ /**
+  * Site base URL from environment
+@@ -25,39 +23,115 @@ import { LOCALE_CODES } from '@/lib/content/locale/constants';
+ export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || '';
+ 
+ /**
+- * Extended locale code mapping
++ * Common country/region codes for BCP 47 locale construction
+  *
+- * Maps our internal locale codes to full BCP 47 locale codes for proper
+- * hreflang and Open Graph tags.
+- *
+- * Format: language-REGION (ISO 639-1 + ISO 3166-1 alpha-2)
++ * Maps language codes to their most common country/region associations.
++ * Used for constructing BCP 47 locale codes when no explicit mapping exists.
++ */
++const COMMON_COUNTRY_CODES: Record<string, string> = {
++  en: 'US',
++  es: 'ES',
++  fr: 'FR',
++  de: 'DE',
++  th: 'TH',
++  ja: 'JP',
++  ar: 'SA',
++  tr: 'TR',
++  ru: 'RU',
++  zh: 'CN',
++  ko: 'KR',
++  vi: 'VN',
++  pt: 'BR',
++  it: 'IT',
++  nl: 'NL',
++  pl: 'PL',
++  uk: 'UA',
++  // Add more as needed
++};
++
++/**
++ * Known BCP 47 locale codes for languages with specific regional variants
+  *
+- * @example
+- * getExtendedLocaleCode('en') // 'en-US'
+- * getExtendedLocaleCode('th') // 'th-TH'
++ * These are well-established locale codes used in hreflang and Open Graph tags.
+  */
+-export const EXTENDED_LOCALE_CODES: Record<Locale, string> = {
+-  en: 'en-US',
+-  es: 'es-ES',
+-  fr: 'fr-FR',
+-  de: 'de-DE',
+-  th: 'th-TH',
+-  ja: 'ja-JP',
+-  ar: 'ar-SA', // Saudi Arabic as default for Arabic
+-} as const;
++const KNOWN_LOCALE_CODES: Record<string, string> = {
++  'en': 'en-US',
++  'en-GB': 'en-GB',
++  'en-CA': 'en-CA',
++  'en-AU': 'en-AU',
++  'es': 'es-ES',
++  'es-MX': 'es-MX',
++  'es-AR': 'es-AR',
++  'fr': 'fr-FR',
++  'fr-CA': 'fr-CA',
++  'fr-BE': 'fr-BE',
++  'de': 'de-DE',
++  'de-AT': 'de-AT',
++  'de-CH': 'de-CH',
++  'th': 'th-TH',
++  'ja': 'ja-JP',
++  'ar': 'ar-SA',
++  'tr': 'tr-TR',
++  'ru': 'ru-RU',
++  'zh': 'zh-CN',
++  'zh-TW': 'zh-TW',
++  'ko': 'ko-KR',
++  'vi': 'vi-VN',
++  'pt': 'pt-BR',
++  'pt-PT': 'pt-PT',
++  'it': 'it-IT',
++  'nl': 'nl-NL',
++  'pl': 'pl-PL',
++  'uk': 'uk-UA',
++};
+ 
+ /**
+- * Get extended locale code from internal locale
++ * Get extended BCP 47 locale code from language code
++ *
++ * Converts a simple language code (e.g., 'en', 'tr', 'ru') to a full
++ * BCP 47 locale code (e.g., 'en-US', 'tr-TR', 'ru-RU') for use in
++ * hreflang tags and Open Graph metadata.
++ *
++ * The function:
++ * 1. Checks for known locale codes first
++ * 2. Falls back to constructing from language + common country code
++ * 3. Returns uppercase-language format as final fallback
+  *
+- * @param locale - Internal locale code
++ * @param locale - Language code (ISO 639-1) or locale code
+  * @returns Extended BCP 47 locale code
+  *
+  * @example
+  * getExtendedLocaleCode('en') // 'en-US'
+- * getExtendedLocaleCode('th') // 'th-TH'
++ * getExtendedLocaleCode('tr') // 'tr-TR'
++ * getExtendedLocaleCode('ru') // 'ru-RU'
++ * getExtendedLocaleCode('zh') // 'zh-CN'
++ * getExtendedLocaleCode('xx') // 'XX' (fallback for unknown)
+  */
+-export function getExtendedLocaleCode(locale: Locale): string {
+-  return EXTENDED_LOCALE_CODES[locale];
++export function getExtendedLocaleCode(locale: string): string {
++  // Normalize input to lowercase
++  const normalizedLocale = locale.toLowerCase();
++
++  // Check if already a full locale code (contains hyphen)
++  if (normalizedLocale.includes('-')) {
++    const [lang, region] = normalizedLocale.split('-');
++    // Return in proper format: language-REGION
++    return `${lang}-${region.toUpperCase()}`;
++  }
++
++  // Check known locale codes first
++  if (KNOWN_LOCALE_CODES[normalizedLocale]) {
++    return KNOWN_LOCALE_CODES[normalizedLocale];
++  }
++
++  // Construct from language + common country code
++  const country = COMMON_COUNTRY_CODES[normalizedLocale];
++  if (country) {
++    return `${normalizedLocale}-${country}`;
++  }
++
++  // Final fallback: uppercase the language code
++  // This is valid for locales without regional variants
++  return normalizedLocale.toUpperCase();
+ }
+ 
+ /**
+@@ -95,13 +169,13 @@ export function buildCanonicalUrl(
+  * @returns Record of locale to URL mappings
+  *
+  * @example
+- * buildHreflangUrls('https://example.com', 'thaproban-beach-house', ['en', 'th'])
+- * // { 'en-US': 'https://example.com/en/hotels/...', 'th-TH': 'https://example.com/th/hotels/...' }
++ * buildHreflangUrls('https://example.com', 'thaproban-beach-house', ['en', 'th', 'tr'])
++ * // { 'en-US': 'https://example.com/en/hotels/...', 'th-TH': 'https://example.com/th/hotels/...', 'tr-TR': 'https://example.com/tr/hotels/...' }
+  */
+ export function buildHreflangUrls(
+   baseUrl: string,
+   slug: string,
+-  availableLanguages: Locale[]
++  availableLanguages: string[]
+ ): Record<string, string> {
+   const urls: Record<string, string> = {};
+ 
+diff --git a/web-app/next.config.ts b/web-app/next.config.ts
+index 51caf2b..d8293c1 100644
+--- a/web-app/next.config.ts
++++ b/web-app/next.config.ts
+@@ -1,7 +1,20 @@
+ import type { NextConfig } from 'next';
+ 
++/**
++ * Next.js Configuration
++ *
++ * Important: Static export is DISABLED in development mode.
++ *
++ * Why: With static export enabled, Next.js calls generateStaticParams() at
++ * dev startup, which makes slow CMS API calls. This causes 20+ minute startup.
++ *
++ * In development, routes are generated on-demand (fast startup).
++ * In production, we use static export for pre-built HTML (SEO optimized).
++ */
+ const nextConfig: NextConfig = {
+-  output: 'export',
++  // Disable static export in development for faster startup
++  // In production, static export is used for optimal SEO
++  output: process.env.ENABLE_STATIC_EXPORT === 'true' ? 'export' : undefined,
+   // Fix workspace root detection issues
+   // Set explicit tracing root to avoid parent workspace detection
+   outputFileTracingRoot: process.cwd(),
+diff --git a/web-app/package.json b/web-app/package.json
+index 30d9142..ce8946a 100644
+--- a/web-app/package.json
++++ b/web-app/package.json
+@@ -4,7 +4,7 @@
+   "private": true,
+   "scripts": {
+     "dev": "next dev",
+-    "build": "next build",
++    "build": "ENABLE_STATIC_EXPORT=true next build",
+     "start": "next start",
+     "mock:directus": "node ../mock-directus/server.js",
+     "test": "jest",

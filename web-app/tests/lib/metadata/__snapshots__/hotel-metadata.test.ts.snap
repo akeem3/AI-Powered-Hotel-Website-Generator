@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`Sub-Page Metadata Utilities (Story 24.3) buildPageHreflangUrls basic functionality should build hreflang URLs for all available languages 1`] = `
+{
+  "de-DE": "https://example.com/de/rooms",
+  "en-US": "https://example.com/en/rooms",
+  "fr-FR": "https://example.com/fr/rooms",
+  "ja-JP": "https://example.com/ja/rooms",
+  "ru-RU": "https://example.com/ru/rooms",
+  "th-TH": "https://example.com/th/rooms",
+  "tr-TR": "https://example.com/tr/rooms",
+}
+`;
