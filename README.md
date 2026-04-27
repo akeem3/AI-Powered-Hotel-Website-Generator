@@ -2,9 +2,8 @@
 
 Automated platform generating 10,000+ unique hotel websites at ~$2/site using LangGraph workflows and component-based architecture.
 
-## Status
-
-[![Chromatic](https://github.com/Dilidonka/et-llm-websites/actions/workflows/chromatic.yml/badge.svg)](https://www.chromatic.com/library?appId=697852f049be43181587e61e)
+## Status 
+Done
 
 ---
 
@@ -132,9 +131,6 @@ npm run dev
 
 ---
 
-## License
-
-[Your License Here]
 
 ---
 
