@@ -1,6 +1,6 @@
 # ET Hotel AI - LLM-Driven Hotel Website Generator
 
-Automated platform generating 10,000+ unique hotel websites at ~$2/site using LangGraph workflows and component-based architecture.
+Automated platform generating 10+ unique hotel websites at ~$2/site using LangGraph workflows and component-based architecture.
 
 ## Status 
 Done
