@@ -131,7 +131,3 @@ npm run dev
 
 ---
 
-
----
-
-*Generated for ET Hotel AI Project - Epic 12: Visual Excellence & Design System*
